@@ -2,7 +2,7 @@ import React from "react";
 
 const Testimonials = () => {
   return (
-    <div className='flex flex-col items-center my-8 gap-4'>
+    <div className='flex flex-col items-center my-8 gap-12'>
       <div className='text-center sm:max-w-[60vw]'>
         <h2 className='text-2xl font-medium'>Testimonials</h2>
         <p>
@@ -11,7 +11,7 @@ const Testimonials = () => {
           tincidents iocuis
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
         <div>
           <div className='flex items-center gap-3'>
             <span className='flex w-12 h-12 bg-slate-900 rounded-full'></span>

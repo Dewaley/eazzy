@@ -32,7 +32,7 @@ const Footer = () => {
           <p>Lagos Nigeria</p>
         </div>
       </div>
-      <div className='w-[90%] border-t-[1px] border-t-white mt-8'>
+      <div className='w-[90%] border-t-[1px] border-t-white mt-8 text-center sm:text-left'>
         &#169; 2022 Eazzy All rights reserved
       </div>
     </div>
