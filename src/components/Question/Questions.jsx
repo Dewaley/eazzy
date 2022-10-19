@@ -20,8 +20,8 @@ const Questions = ({ question, answer }) => {
         />
       </div>
       <div
-        className={`text-greenish font-light overflow-hidden mb-2 ${
-          open ? "h-auto" : "h-0"
+        className={`text-greenish font-light transition-all duration-500 overflow-hidden mb-2 ${
+          open ? "max-h-[400px]" : "max-h-0"
         }`}
       >
         <p>{answer}</p>
