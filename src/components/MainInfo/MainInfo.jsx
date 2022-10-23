@@ -40,7 +40,7 @@ const MainInfo = () => {
         <img
           src={mainInfoPic}
           alt=''
-          className='w-full sm:w-auto sm:h-[350px] md:h-[500px]'
+          className='md:w-auto w[60vw]'
         />
       </div>
       <div className='grid grid-cols-3 py-2 border-y-2'>

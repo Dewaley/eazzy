@@ -28,7 +28,7 @@ const WhyEazzy = () => {
     <div className="bg-[#EBF2EB] w-full px-4 py-24 flex justify-center">
       <div className='flex md:w-[80vw] gap-8 items-center md:flex-row flex-col'>
         <div className='flex flex-col'>
-          <h2 className='font-medium text-2xl'>Why Eazzy?</h2>
+          <h2 className='font-medium text-2xl text-center md:text-left'>Why Eazzy?</h2>
           <ul className='py-8 flex flex-col gap-4'>
             {items.map((item, index) => (
               <li className='flex items-center gap-4'>
