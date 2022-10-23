@@ -4,6 +4,7 @@ import meat from "../../assets/meat.png";
 import poultry from "../../assets/poultry&fishes.png";
 import spices from "../../assets/spices.png";
 import tubers from "../../assets/tubers.png";
+import illustration from "../../assets/illustration.png"
 
 const Categories = () => {
   const items = [
@@ -40,21 +41,22 @@ const Categories = () => {
   ];
 
   return (
-    <div className='flex flex-col gap-12 items-center'>
+    <div className='flex flex-col gap-12 items-center relative'>
       <h2 className='text-2xl text-center font-medium'>Categories</h2>
-      <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-4'>
+      <div className='grid w-[80vw] md:w-auto grid-cols-2 md:grid-cols-3 gap-4'>
         {items.map((item, index) => (
           <div
             key={index}
-            className={`p-8 font-light flex flex-col gap-3 items-center ${
+            className={`hover:scale-125 transition p-8 font-light flex flex-col gap-3 items-center ${
               item.short
             }`}
           >
             <img src={item.pic} alt={item.short} />
-            <span>{item.name}</span>
+            <span className="text-center text-sm md:text-base">{item.name}</span>
           </div>
         ))}
       </div>
+      <img src={illustration} alt="" className="absolute w-full h-full object-cover object-center" />
     </div>
   );
 };

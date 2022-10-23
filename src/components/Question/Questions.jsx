@@ -20,7 +20,7 @@ const Questions = ({ question, answer }) => {
         />
       </div>
       <div
-        className={`text-greenish font-light transition-all duration-300 overflow-hidden mb-2 ${
+        className={`text-greenish font-light transition-all duration-1000 overflow-hidden mb-2 ${
           open ? "max-h-[400px]" : "max-h-0"
         }`}
       >

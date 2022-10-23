@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div className='px-3 md:px-6'>
+      <div className='font-poppins'>
         <Routes>
           {routes.map((route,index) => (
             <Route key={index} path={route.path} element={route.component} />

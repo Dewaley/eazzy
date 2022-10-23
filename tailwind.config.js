@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         blackish: "#343538",
         greenish: "#3D7E47",
+        lightGreenish: "#7FE18E",
         greyish: "rgba(52, 53, 56, 0.52)",
         fruits: "rgba(109, 131, 73, 0.42)",
         spices: "rgba(231, 230, 227, 0.42)",
@@ -18,6 +19,7 @@ module.exports = {
     fontFamily: {
       roboto: ["Roboto", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
     },
   },
   plugins: [],
