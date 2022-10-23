@@ -41,9 +41,9 @@ const Categories = () => {
   ];
 
   return (
-    <div className='flex flex-col gap-12 items-center relative'>
-      <h2 className='text-2xl text-center font-medium'>Categories</h2>
-      <div className='grid w-[80vw] md:w-auto grid-cols-2 md:grid-cols-3 gap-4'>
+    <div className='bg-[#EBF2EB] w-full flex flex-col gap-12 items-center relative py-12'>
+      <h2 className='text-2xl z-20 text-center font-medium'>Categories</h2>
+      <div className='grid z-20 w-[80vw] md:w-auto grid-cols-2 md:grid-cols-3 gap-4'>
         {items.map((item, index) => (
           <div
             key={index}
@@ -56,7 +56,7 @@ const Categories = () => {
           </div>
         ))}
       </div>
-      <img src={illustration} alt="" className="absolute w-full h-full object-cover object-center" />
+      <img src={illustration} alt="" className="z-10 absolute w-full h-full object-cover object-center" />
     </div>
   );
 };

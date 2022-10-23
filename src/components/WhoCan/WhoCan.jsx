@@ -15,12 +15,12 @@ const WhoCan = () => {
 ]
 
   return (
-      <div className="flex flex-col items-center gap-8">
+      <div className="flex flex-col items-center gap-12">
           <h4 className="text-2xl font-medium">Who can use Eazzy?</h4>
           <div className="grid md:grid-cols-2 divide-x-2 gap-y-6">
-              {items.map((item,index)=>(<div className="flex flex-col items-center">
-                  <img src={item.image} alt="" className="w-[80%]" />
-                  <p className="w-[80%]" >{item.details}</p>
+              {items.map((item,index)=>(<div className="flex flex-col items-center gap-3 py-4">
+                  <img src={item.image} alt="" className="w-[60%]" />
+                  <p className="w-[60%]" >{item.details}</p>
               </div>))}
           </div>
     </div>

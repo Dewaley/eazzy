@@ -2,8 +2,8 @@ import React from "react";
 
 const Testimonials = () => {
   return (
-    <div className='px-3 md:px-6 flex flex-col items-center my-8 gap-12'>
-      <div className='text-center sm:max-w-[60vw]'>
+    <div className='px-3 md:px-6 flex flex-col items-center my-8 gap-12 relative overflow-hidden'>
+      <div className='text-center sm:max-w-[60vw] mt-8'>
         <h2 className='text-2xl font-medium'>Testimonials</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare non id
@@ -11,7 +11,7 @@ const Testimonials = () => {
           tincidents iocuis
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div className="mb-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
         <div>
           <div className='flex items-center gap-3'>
             <span className='flex w-12 h-12 bg-slate-900 rounded-full'></span>
@@ -79,6 +79,8 @@ const Testimonials = () => {
           </p>
         </div>
       </div>
+      <div className="flex bg-[#3D7E47]/50 h-12 w-12 rounded-full absolute -top-[.75rem] -right-[.75rem]"></div>
+      <div className="flex bg-[#3D7E47]/50 h-12 w-12 rounded-full absolute -left-0 -bottom-[1.5rem]"></div>
     </div>
   );
 };
