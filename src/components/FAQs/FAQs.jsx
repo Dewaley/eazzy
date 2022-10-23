@@ -10,7 +10,7 @@ const FAQs = () => {
   ];
 
   return (
-    <div className='px-3 flex flex-col items-center my-4 gap-12'>
+    <div className='px-3 flex flex-col items-center gap-12'>
       <h3 className='text-2xl font-medium text-center'>
         Frequently Asked Questions
       </h3>

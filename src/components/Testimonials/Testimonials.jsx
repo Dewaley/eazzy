@@ -2,9 +2,9 @@ import React from "react";
 
 const Testimonials = () => {
   return (
-    <div className='px-3 md:px-6 flex flex-col items-center my-8 gap-12 relative overflow-hidden'>
-      <div className='text-center sm:max-w-[60vw] mt-8'>
-        <h2 className='text-2xl font-medium'>Testimonials</h2>
+    <div className='px-3 md:px-6 py-16 flex flex-col items-center my-8 gap-12 relative overflow-hidden'>
+      <div className='text-center sm:max-w-[60vw]'>
+        <h2 className='text-3xl font-medium'>Testimonials</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare non id
           sit quis.,tristique sed turpis scodales mi nunc quis phareta

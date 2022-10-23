@@ -41,8 +41,8 @@ const Categories = () => {
   ];
 
   return (
-    <div className='bg-[#EBF2EB] w-full flex flex-col gap-12 items-center relative py-12'>
-      <h2 className='text-2xl z-20 text-center font-medium'>Categories</h2>
+    <div className='bg-[#EBF2EB] w-full flex flex-col gap-12 items-center relative pt-12 pb-24'>
+      <h2 className='text-3xl z-20 text-center font-medium'>Categories</h2>
       <div className='grid z-20 w-[80vw] md:w-auto grid-cols-2 md:grid-cols-3 gap-4'>
         {items.map((item, index) => (
           <div

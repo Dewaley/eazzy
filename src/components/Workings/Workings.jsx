@@ -39,9 +39,9 @@ const Workings = () => {
 
   return (
     <div className='flex md:w-[80vw] gap-8 items-center md:flex-row flex-col'>
-      <img src={workings} alt='' className='md:h-[80vh] md:w-auto w-[70vw]' />
-      <div className='flex flex-col gap-4'>
-        <h2 className='px-4 md:px-0 font-medium text-2xl text-center md:text-left'>How it works</h2>
+      <img src={workings} alt='' className='md:w-[30vw] w-[70vw]' />
+      <div className='flex flex-col justify-between'>
+        <h2 className='px-4 md:px-0 font-medium text-3xl text-center md:text-left'>How it works</h2>
         <ul className='px-4 md:px-0 md:py-8 flex flex-col gap-4'>
           {items.map((item, index) => (
             <li className='flex items-center gap-4'>
@@ -49,8 +49,8 @@ const Workings = () => {
                 {item.icon}
               </span>
               <div>
-                <h5 className='font-medium'>{item.header}</h5>
-                <p className='font-light text-sm'>{item.details}</p>
+                <h5 className='font-medium text-lg'>{item.header}</h5>
+                <p className='font-light'>{item.details}</p>
               </div>
             </li>
           ))}

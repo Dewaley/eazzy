@@ -7,7 +7,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className='bg-greenish mt-4 p-8 text-white flex flex-col items-center'>
+    <div className='bg-greenish p-8 text-white flex flex-col items-center'>
       <div className='flex flex-col sm:flex-row sm:justify-between items-center w-full text-center sm:text-left gap-4'>
         <div className='flex flex-col gap-1'>
           <h2 className='text-2xl italic'>Eazzy</h2>
