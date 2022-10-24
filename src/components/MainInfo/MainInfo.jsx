@@ -24,9 +24,9 @@ const MainInfo = () => {
   ];
 
   return (
-    <div className='px-3 md:px-6 flex gap-8 flex-col'>
-      <div className='flex flex-col sm:flex-row items-center gap-8 justify-evenly'>
-        <div className='flex flex-col gap-8 sm:w-[40%]'>
+    <div className='px-3 md:px-6 flex gap-12 flex-col items-center'>
+      <div className='w-full h-full relative flex flex-col sm:flex-row items-center gap-8 justify-evenly'>
+        <div className='z-20 flex flex-col gap-8 sm:w-[40%]'>
           <h1 className='text-4xl font-medium'>
             The Smarter way to buy food items & groceries.
           </h1>
@@ -37,13 +37,21 @@ const MainInfo = () => {
           </p>
           <Button content={"Shop Now"} big={true} />
         </div>
-        <img
-          src={mainInfoPic}
-          alt=''
-          className='md:w-auto w[60vw]'
-        />
+        <img src={mainInfoPic} alt='' className='z-20 md:w-auto w[60vw]' />
+        <ul class='circles z-10'>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
-      <div className='grid grid-cols-3 py-2 border-y-2'>
+      <div className='grid grid-cols-3 py-2 border-y-2 md:w-[85vw]'>
         {items.map((item, index) => (
           <div
             className='flex items-center justify-center divide-x-2'
