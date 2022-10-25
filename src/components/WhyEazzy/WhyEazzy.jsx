@@ -27,7 +27,7 @@ const WhyEazzy = () => {
   return (
     <div className="bg-[#EBF2EB] w-full px-4 py-24 flex justify-center">
       <div className='flex md:w-[80vw] gap-8 items-center md:flex-row flex-col'>
-        <div className='flex flex-col'>
+        <div className='flex flex-col md:w-[60%]'>
           <h2 className='font-medium text-3xl text-center md:text-left'>Why Eazzy?</h2>
           <ul className='py-8 flex flex-col gap-4'>
             {items.map((item, index) => (
@@ -40,7 +40,7 @@ const WhyEazzy = () => {
             ))}
           </ul>
         </div>
-        <img src={pic1} alt='' />
+        <img src={pic1} alt='' className="md:w-[40%]" />
       </div>
     </div>
   );
