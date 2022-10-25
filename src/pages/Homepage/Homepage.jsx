@@ -7,19 +7,23 @@ import Categories from "../../components/Categories/Categories";
 import Workings from "../../components/Workings/Workings";
 import WhyEazzy from "../../components/WhyEazzy/WhyEazzy";
 import WhoCan from "../../components/WhoCan/WhoCan";
+import DownloadApp from "../../components/DownloadApp/DownloadApp";
 
 const Homepage = () => {
   return (
-    <div className="flex flex-col items-center gap-20">
+    <div className='flex flex-col items-center gap-20'>
       <MainInfo />
-      <Workings/>
+      <Workings />
       <WhyEazzy />
-      <WhoCan/>
-      <Categories/>
-      <NewProducts/>
+      <WhoCan />
+      <Categories />
+      <NewProducts />
       <Testimonials />
       <FAQs />
-      <NewsLetter />
+      <div className="w-full">
+        <DownloadApp />
+        <NewsLetter />
+      </div>
     </div>
   );
 };

@@ -24,7 +24,7 @@ const MainInfo = () => {
   ];
 
   return (
-    <div className='px-3 md:px-6 flex gap-12 flex-col items-center'>
+    <div className='px-3 md:px-6 flex gap-12 flex-col items-center py-4'>
       <div className='w-full h-full relative flex flex-col sm:flex-row items-center gap-8 justify-evenly'>
         <div className='z-20 flex flex-col gap-8 sm:w-[40%]'>
           <h1 className='text-4xl font-medium overflow-visible h-fit'>
