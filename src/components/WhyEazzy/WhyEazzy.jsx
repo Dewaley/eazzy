@@ -40,7 +40,7 @@ const WhyEazzy = () => {
             ))}
           </ul>
         </div>
-        <img src={pic1} alt='' className='h-[60vh]' />
+        <img src={pic1} alt='' />
       </div>
     </div>
   );

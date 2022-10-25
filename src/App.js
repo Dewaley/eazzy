@@ -7,15 +7,13 @@ import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <Router>
-      <Navbar />
-      <div className='font-poppins'>
+        <Navbar />
         <Routes>
-          {routes.map((route,index) => (
+          {routes.map((route, index) => (
             <Route key={index} path={route.path} element={route.component} />
           ))}
         </Routes>
-      </div>
-      <Footer/>
+        <Footer />
     </Router>
   );
 }

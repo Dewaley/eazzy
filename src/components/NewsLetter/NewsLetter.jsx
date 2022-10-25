@@ -2,7 +2,7 @@ import Button from "../Button/Button";
 
 const NewsLetter = () => {
   return (
-    <div className="overflow-hidden relative ">
+    <div className="overflow-hidden relative w-full">
       <form
         onSubmit={(e) => e.preventDefault()}
         className='flex flex-col gap-6 items-center px-3 py-8 bg-[#EBF2EB] w-full overflow-hidden z-20'

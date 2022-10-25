@@ -44,7 +44,7 @@ const Workings = () => {
   return (
     <div className='flex md:w-[80vw] gap-8 items-center md:flex-row flex-col'>
       <img src={workings} alt='' className='md:w-[30vw] w-[70vw]' />
-      <div className='flex flex-col justify-between'>
+      <div className='flex flex-col gap-8'>
         <h2 className='px-4 md:px-0 font-medium text-3xl text-center md:text-left'>
           How it works
         </h2>
