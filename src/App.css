@@ -1,123 +1,139 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 .fruits {
-    background-color: rgba(109, 131, 73, 0.42);
+  background-color: rgba(109, 131, 73, 0.42);
 }
 .spices {
-    background-color: rgba(231, 230, 227, 0.42);
+  background-color: rgba(231, 230, 227, 0.42);
 }
 .tubers {
-    background-color: rgba(242, 196, 135, 0.42);
+  background-color: rgba(242, 196, 135, 0.42);
 }
 .poultry {
-    background-color: rgba(123, 82, 82, 0.42);
+  background-color: rgba(123, 82, 82, 0.42);
 }
 .grains {
-    background-color: rgba(244, 216, 102, 0.42);
+  background-color: rgba(244, 216, 102, 0.42);
 }
 .meat {
-    background-color: rgba(157, 47, 50, 0.42);
+  background-color: rgba(157, 47, 50, 0.42);
 }
 
 * {
-    font-family: "Poppins", "sans-serif" !important;
+  font-family: "Poppins", "sans-serif" !important;
 }
 
-
-.circles{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-.circles li{
-    position: absolute;
-    display: block;
-    list-style: none;
-    width: 15px;
-    height: 15px;
-    background: #3D7E47;
-    animation: animate 25s linear infinite;
-    bottom: -150px;
-    border-radius: 50%;
-    
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 15px;
+  height: 15px;
+  background: #3d7e47;
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+  border-radius: 50%;
 }
 
-.circles li:nth-child(1){
-    left: 25%;
-    animation-delay: 0s;
+.circles li:nth-child(1) {
+  left: 25%;
+  animation-delay: 0s;
 }
 
-
-.circles li:nth-child(2){
-    left: 10%;
-    animation-delay: 2s;
-    background: #F38576;
-    animation-duration: 12s;
+.circles li:nth-child(2) {
+  left: 10%;
+  animation-delay: 2s;
+  background: #f38576;
+  animation-duration: 12s;
 }
 
-.circles li:nth-child(3){
-    left: 70%;
-    animation-delay: 4s;
+.circles li:nth-child(3) {
+  left: 70%;
+  animation-delay: 4s;
 }
 
-.circles li:nth-child(4){
-    left: 40%;
-    animation-delay: 0s;
-    background: #F38576;
-    animation-duration: 18s;
+.circles li:nth-child(4) {
+  left: 40%;
+  animation-delay: 0s;
+  background: #f38576;
+  animation-duration: 18s;
 }
 
-.circles li:nth-child(5){
-    left: 65%;
-    animation-delay: 0s;
+.circles li:nth-child(5) {
+  left: 65%;
+  animation-delay: 0s;
 }
 
-.circles li:nth-child(6){
-    left: 75%;
-    background: #F38576;
-    animation-delay: 3s;
+.circles li:nth-child(6) {
+  left: 75%;
+  background: #f38576;
+  animation-delay: 3s;
 }
 
-.circles li:nth-child(7){
-    left: 35%;
-    animation-delay: 7s;
+.circles li:nth-child(7) {
+  left: 35%;
+  animation-delay: 7s;
 }
 
-.circles li:nth-child(8){
-    left: 50%;
-    animation-delay: 15s;
-    animation-duration: 45s;
+.circles li:nth-child(8) {
+  left: 50%;
+  animation-delay: 15s;
+  animation-duration: 45s;
 }
 
-.circles li:nth-child(9){
-    left: 20%;
-    animation-delay: 2s;
-    animation-duration: 35s;
+.circles li:nth-child(9) {
+  left: 20%;
+  animation-delay: 2s;
+  animation-duration: 35s;
 }
 
-.circles li:nth-child(10){
-    left: 85%;
-    animation-delay: 0s;
-    animation-duration: 11s;
+.circles li:nth-child(10) {
+  left: 85%;
+  animation-delay: 0s;
+  animation-duration: 11s;
 }
-
-
 
 @keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
 
-    0%{
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+  }
+}
 
-    100%{
-        transform: translateY(-1000px) rotate(720deg);
-        opacity: 0;
-    }
+.indicator li:hover h5 {
+  color: #3d7e47;
+  transition: color 0.5s;
+}
 
+.slipping div {
+  animation: slip 25s linear infinite;
+}
+
+@keyframes slip {
+  0% {
+    transform: translateY(0);
+  }
+  33.33% {
+    transform: translateY(calc((-0.4*80vw)-2rem));
+  }
+  66.66% {
+    transform: translateY(calc(((-0.4*80vw)-2rem)*2));
+  }
+  100% {
+    transform: translateY(calc(((-0.4*80vw)-2rem))*3);
+  }
 }

@@ -1,28 +1,40 @@
+import { useState } from "react";
 import pic1 from "../../assets/pic1.png";
+import pic2 from "../../assets/pic2.png";
+import pic3 from "../../assets/pic3.png";
+import pic4 from "../../assets/pic4.png";
 
 const WhyEazzy = () => {
   const items = [
     {
+      count: 1,
       header: "High quality produce",
       details:
         "Get fresh and direct supply from the finest farmers/vendors, and at affordable prices.",
     },
     {
+      count: 2,
       header: "Your market runs on auto-pilot",
       details:
         "Pre-order fresh food items and other groceries on a schedule that works for you.",
     },
     {
+      count: 3,
       header: "Saves time and money",
       details:
         "Our platform enables businesses and consumers like you to procure and shop fromthe comfort of your location.",
     },
     {
+      count: 4,
       header: "Multiple & Reliable payment option",
       details:
         "We are all about the easy life, who needs cash when you can pay “eazzily” via payment links, debit cards, & a fundable in-app wallet",
     },
   ];
+
+  const [count, setCount] = useState(1);
+  // const increment = () => setCount((prev) => (count === 4 ? 0 : count + 1));
+  // setInterval(() => setCount((prev) => (count === 4 ? 0 : count + 1)), 2000);
 
   return (
     <div className='bg-[#EBF2EB] w-full px-4 py-24 flex justify-center'>
@@ -31,16 +43,50 @@ const WhyEazzy = () => {
           <h2 className='font-medium text-3xl text-center md:text-left'>
             Why Eazzy?
           </h2>
-          <ul className='py-8 flex flex-col gap-4'>
+          <ul className='py-8 flex flex-col gap-4 indicator'>
             {items.map((item, index) => (
-              <li className='flex flex-col border-l-transparent border-l-2 hover:border-greenish pl-2 cursor-default'>
+              <li
+                className={`flex flex-col border-l-2 pl-2 cursor-default ${
+                  count === item.count
+                    ? "border-l-greenish"
+                    : "border-l-transparent"
+                }`}
+              >
                 <h5 className='font-medium text-lg'>{item.header}</h5>
                 <p className='font-light text-base'>{item.details}</p>
               </li>
             ))}
           </ul>
         </div>
-        <img src={pic1} alt='' className='md:w-[40%]' />
+        <div className='md:w-[40%] h-[calc((0.4*80vw)-2.125rem)] overflow-hidden'>
+          <div
+            className={`flex flex-col ${
+              count === 1 && "transition translate-y-0"
+            } ${
+              count === 2 &&
+              "transition translate-y-[calc((-0.4*80vw)+2.125rem)]"
+            } ${
+              count === 3 &&
+              "transition translate-y-[calc(((-0.4*80vw)+2.125rem)*2)]"
+            } ${
+              count === 4 &&
+              "transition translate-y-[calc(((-0.4*80vw)+2.125rem)*3)]"
+            }`}
+          >
+            <div>
+              <img src={pic3} alt='' className='w-full' />
+            </div>
+            <div>
+              <img src={pic2} alt='' className='w-full' />
+            </div>
+            <div>
+              <img src={pic3} alt='' className='w-full' />
+            </div>
+            <div>
+              <img src={pic4} alt='' className='w-full' />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
