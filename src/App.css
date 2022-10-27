@@ -118,22 +118,3 @@
   color: #3d7e47;
   transition: color 0.5s;
 }
-
-.slipping div {
-  animation: slip 25s linear infinite;
-}
-
-@keyframes slip {
-  0% {
-    transform: translateY(0);
-  }
-  33.33% {
-    transform: translateY(calc((-0.4*80vw)-2rem));
-  }
-  66.66% {
-    transform: translateY(calc(((-0.4*80vw)-2rem)*2));
-  }
-  100% {
-    transform: translateY(calc(((-0.4*80vw)-2rem))*3);
-  }
-}

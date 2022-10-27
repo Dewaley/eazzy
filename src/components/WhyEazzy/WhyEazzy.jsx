@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import pic1 from "../../assets/pic1.png";
 import pic2 from "../../assets/pic2.png";
 import pic3 from "../../assets/pic3.png";
@@ -33,8 +33,17 @@ const WhyEazzy = () => {
   ];
 
   const [count, setCount] = useState(1);
-  // const increment = () => setCount((prev) => (count === 4 ? 0 : count + 1));
-  // setInterval(() => setCount((prev) => (count === 4 ? 0 : count + 1)), 2000);
+  const increment = () => setCount((prev) => (count === 4 ? 1 : count + 1));
+  // setInterval(() => {
+  //   count === 1 && setCount(2)
+  //   count === 2 && setCount(3)
+  //   count === 3 && setCount(4)
+  //   count === 4 && setCount(1)
+  // }, 2000);
+
+  useEffect(() => {
+    setTimeout(increment, 2000);
+  }, [count]);
 
   return (
     <div className='bg-[#EBF2EB] w-full px-4 py-24 flex justify-center'>
@@ -46,7 +55,7 @@ const WhyEazzy = () => {
           <ul className='py-8 flex flex-col gap-4 indicator'>
             {items.map((item, index) => (
               <li
-                className={`flex flex-col border-l-2 pl-2 cursor-default ${
+                className={`flex flex-col border-l-4 pl-2 cursor-default ${
                   count === item.count
                     ? "border-l-greenish"
                     : "border-l-transparent"
@@ -58,32 +67,35 @@ const WhyEazzy = () => {
             ))}
           </ul>
         </div>
-        <div className='md:w-[40%] h-[calc((0.4*80vw)-2.125rem)] overflow-hidden'>
+        <div className='w-[280px] md:w-[40%] h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] overflow-hidden'>
           <div
-            className={`flex flex-col ${
-              count === 1 && "transition translate-y-0"
-            } ${
+            className={`flex flex-col
+            ${count === 1 && "transition translate-y-0"} ${
               count === 2 &&
-              "transition translate-y-[calc((-0.4*80vw)+2.125rem)]"
+              "transition translate-y-[calc(-280px/1.05)] md:translate-y-[calc((-0.4*80vw)/1.05)]"
             } ${
               count === 3 &&
-              "transition translate-y-[calc(((-0.4*80vw)+2.125rem)*2)]"
+              "transition translate-y-[calc((-280px/1.05)*2)] md:translate-y-[calc(((-0.4*80vw)/1.05)*2)]"
             } ${
               count === 4 &&
-              "transition translate-y-[calc(((-0.4*80vw)+2.125rem)*3)]"
+              "transition translate-y-[calc((-280px/1.05)*3)] md:translate-y-[calc(((-0.4*80vw)/1.05)*3)]"
             }`}
           >
-            <div>
-              <img src={pic3} alt='' className='w-full' />
+            <div className='h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
+              <img
+                src={pic3}
+                alt=''
+                className='w-full h-full object-cover object-center'
+              />
             </div>
-            <div>
-              <img src={pic2} alt='' className='w-full' />
+            <div className='h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
+              <img src={pic2} alt='' className='w-full h-full object-cover object-center' />
             </div>
-            <div>
-              <img src={pic3} alt='' className='w-full' />
+            <div className='h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
+              <img src={pic3} alt='' className='w-full h-full object-cover object-center' />
             </div>
-            <div>
-              <img src={pic4} alt='' className='w-full' />
+            <div className='h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
+              <img src={pic4} alt='' className='w-full h-full object-cover object-center' />
             </div>
           </div>
         </div>
