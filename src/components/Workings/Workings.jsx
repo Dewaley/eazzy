@@ -13,15 +13,15 @@ import { BiTimeFive } from "react-icons/bi";
 const Workings = () => {
   const items = [
     {
-      header: "Create account",
+      header: "Sign-up",
       details:
         "Create an account and access a diverse range of products to shop from.",
       icon: <AiOutlineUser />,
       img: user,
     },
     {
-      header: "Search items",
-      details: "Search items by cateogories,product and select an item",
+      header: "Search what you want",
+      details: "Select a category, search item by name or recipe, and even sort by price",
       icon: <AiOutlineSearch />,
       img: search,
     },

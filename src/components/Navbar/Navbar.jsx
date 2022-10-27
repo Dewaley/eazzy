@@ -28,35 +28,35 @@ const Navbar = () => {
           />
           <Button content={"SEARCH"} />
         </form>
+        <div
+          className='hidden md:flex items-center justify-center h-6 rounded gap-1 cursor-pointer'
+          onClick={() => {
+            setAccountOpen(!accountOpen);
+            setHelpOpen(false);
+          }}
+        >
+          <BiUser />
+          <span>Account</span>
+          <BsChevronDown
+            className={`transition duration-500 ${
+              accountOpen && "-rotate-180"
+            }`}
+          />
+        </div>
+        <div
+          className='hidden md:flex items-center justify-center h-6 rounded gap-1 cursor-pointer'
+          onClick={() => {
+            setHelpOpen(!helpOpen);
+            setAccountOpen(false);
+          }}
+        >
+          <BiHelpCircle />
+          <span>Help</span>
+          <BsChevronDown
+            className={`transition duration-500 ${helpOpen && "-rotate-180"}`}
+          />
+        </div>
         <div className='flex items-center text-blackish gap-4 z-40'>
-          <div
-            className='flex items-center justify-center h-6 rounded gap-1 cursor-pointer'
-            onClick={() => {
-              setAccountOpen(!accountOpen);
-              setHelpOpen(false);
-            }}
-          >
-            <BiUser />
-            <span>Account</span>
-            <BsChevronDown
-              className={`transition duration-500 ${
-                accountOpen && "-rotate-180"
-              }`}
-            />
-          </div>
-          <div
-            className='hidden md:flex items-center justify-center h-6 rounded gap-1 cursor-pointer'
-            onClick={() => {
-              setHelpOpen(!helpOpen);
-              setAccountOpen(false);
-            }}
-          >
-            <BiHelpCircle />
-            <span>Help</span>
-            <BsChevronDown
-              className={`transition duration-500 ${helpOpen && "-rotate-180"}`}
-            />
-          </div>
           <span className='flex items-center justify-center h-6 px-1 rounded border-[1px] border-blackish gap-1'>
             <AiOutlineShoppingCart /> <span className='text-sm'>0</span>
           </span>
@@ -72,7 +72,7 @@ const Navbar = () => {
           </ul>
         )}
         {accountOpen && (
-          <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[7rem] flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
+          <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
             <Button content={"Sign up"} big />
             <li className='cursor-pointer items-center flex gap-2'>
               <BiUser />
@@ -95,18 +95,18 @@ const Navbar = () => {
         )}
       </div>
       <form
-          action=''
-          className='md:hidden flex items-center gap-4 justify-center px-3'
-        >
-          <input
-            type='text'
-            name=''
-            id=''
-            placeholder='Search by cartegory, price and product'
-            className='border-2 rounded p-2 w-[85%]'
-          />
-          <Button content={"SEARCH"} />
-        </form>
+        action=''
+        className='md:hidden flex items-center gap-4 justify-center px-3'
+      >
+        <input
+          type='text'
+          name=''
+          id=''
+          placeholder='Search by cartegory, price and product'
+          className='border-2 rounded p-2 w-[85%]'
+        />
+        <Button content={"SEARCH"} />
+      </form>
     </div>
   );
 };

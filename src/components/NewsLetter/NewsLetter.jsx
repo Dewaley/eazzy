@@ -17,14 +17,14 @@ const NewsLetter = () => {
           name=''
           id=''
           placeholder='Your Name'
-          className='border-[1px] border-greyish p-3 w-[80vw] rounded sm:w-[50vw] lg:w-[35vw] bg-transparent z-20'
+          className='border-[1px] border-greenish p-3 w-[80vw] rounded sm:w-[50vw] lg:w-[35vw] bg-transparent z-20'
         />
         <input
           type='text'
           name=''
           id=''
           placeholder='Email Address'
-          className='border-[1px] border-greyish p-3 rounded w-[80vw] sm:w-[50vw] lg:w-[35vw] bg-transparent z-20'
+          className='border-[1px] border-greenish p-3 rounded w-[80vw] sm:w-[50vw] lg:w-[35vw] bg-transparent z-20'
         />
         <Button
           content={"Subscribe"}
