@@ -33,7 +33,7 @@ const Workings = () => {
       img: check,
     },
     {
-      header: "Put your feet up and lay back",
+      header: "Lay back and relax",
       details:
         "Get more value for your time and money by doing other things that matter to you.",
       icon: <BiTimeFive />,

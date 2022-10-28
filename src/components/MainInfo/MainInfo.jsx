@@ -35,12 +35,12 @@ const MainInfo = () => {
             businesses to shop & procure fresh food items instantly and on a
             schedule.
           </p>
-          <Button content={"Get Started"} big={true} />
+          <Button content={"Shop Now"} big={true} />
         </div>
         <img
           src={mainInfoPic}
           alt=''
-          className='z-20 sm:w-[50%] md:w-[40%] w[60vw]'
+          className='z-20 sm:w-[50%] md:w-[35%] w[60vw]'
         />
         <ul class='circles z-10'>
           <li></li>

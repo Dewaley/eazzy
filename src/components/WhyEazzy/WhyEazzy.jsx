@@ -67,34 +67,34 @@ const WhyEazzy = () => {
             ))}
           </ul>
         </div>
-        <div className='w-[280px] md:w-[40%] h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] overflow-hidden'>
+        <div className='w-[60vw] md:w-[40%] h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] overflow-hidden'>
           <div
             className={`flex flex-col
             ${count === 1 && "transition translate-y-0"} ${
               count === 2 &&
-              "transition translate-y-[calc(-280px/1.05)] md:translate-y-[calc((-0.4*80vw)/1.05)]"
+              "transition translate-y-[calc(-60vw/1.05)] md:translate-y-[calc((-0.4*80vw)/1.05)]"
             } ${
               count === 3 &&
-              "transition translate-y-[calc((-280px/1.05)*2)] md:translate-y-[calc(((-0.4*80vw)/1.05)*2)]"
+              "transition translate-y-[calc((-60vw/1.05)*2)] md:translate-y-[calc(((-0.4*80vw)/1.05)*2)]"
             } ${
               count === 4 &&
-              "transition translate-y-[calc((-280px/1.05)*3)] md:translate-y-[calc(((-0.4*80vw)/1.05)*3)]"
+              "transition translate-y-[calc((-60vw/1.05)*3)] md:translate-y-[calc(((-0.4*80vw)/1.05)*3)]"
             }`}
           >
-            <div className='h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
+            <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
               <img
-                src={pic3}
+                src={pic1}
                 alt=''
                 className='w-full h-full object-cover object-center'
               />
             </div>
-            <div className='h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
+            <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
               <img src={pic2} alt='' className='w-full h-full object-cover object-center' />
             </div>
-            <div className='h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
+            <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
               <img src={pic3} alt='' className='w-full h-full object-cover object-center' />
             </div>
-            <div className='h-[calc(280px/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
+            <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
               <img src={pic4} alt='' className='w-full h-full object-cover object-center' />
             </div>
           </div>

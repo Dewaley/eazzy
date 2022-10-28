@@ -5,11 +5,11 @@ const WhoCan = () => {
 
     const items = [
         {
-            details: "Resturants and small food bussinesses can shop with eazzy on pre- ordr and order in bulk",
+            details: "Resturants and small food bussinesses can procure fresh food items in bulk on a schedule & make their orders recurring",
             image: can1,
         },
         {
-            details: "Individual cuatomers can use eazzy to shop groceries on pre-order and order basis",
+            details: "Individual customers can buy fresh foods and groceries instantly or recieve orders on a convenient schedule",
             image: can2,
         }
 ]

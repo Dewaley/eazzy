@@ -4,6 +4,7 @@ import {
   FaFacebookF,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -11,12 +12,14 @@ const Footer = () => {
       <div className='flex flex-col sm:flex-row sm:justify-between items-center w-full text-center sm:text-left gap-4'>
         <div className='flex flex-col gap-1'>
           <h2 className='text-2xl italic'>Eazzy</h2>
-          <p>Putting your grocery runs on auto-pilot</p>
+          <p>The Farmers market in your pocket</p>
           <div className='flex gap-2 justify-center sm:justify-start'>
-            <FaFacebookF />
-            <FaInstagram />
-            <FaTwitter />
-            <FaLinkedinIn />
+            <a href='https://instagram.com/tryeazzy/' target="_blank" rel="noreferrer">
+              <FaInstagram className='hover:scale-125 transition' />
+            </a>
+            <a href='https://twitter.com/tryeazzy/' target="_blank" rel="noreferrer">
+              <FaTwitter className='hover:scale-125 transition' />
+            </a>
           </div>
         </div>
         <div className='flex flex-col gap-3'>
