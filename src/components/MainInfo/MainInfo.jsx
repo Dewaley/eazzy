@@ -8,13 +8,13 @@ const MainInfo = () => {
   const items = [
     {
       icon: <TbTruckDelivery />,
-      header: "Opening Hours",
-      text: "Mon- Sun 9am-9pm",
+      header: "Fast delivery",
+      text: "Within 1 - 2 hours after ordering",
     },
     {
       icon: <TiWorldOutline />,
-      header: "Opening Hours",
-      text: "Mon- Sun 9am-9pm",
+      header: "Eco friendly packaging",
+      text: "Sustainable Materails",
     },
     {
       icon: <BiTime />,
@@ -55,14 +55,14 @@ const MainInfo = () => {
           <li></li>
         </ul>
       </div>
-      <div className='grid grid-cols-3 py-2 border-y-2 md:w-[85vw]'>
+      <div className='grid grid-cols-3 py-2 border-y-2 md:w-[85vw] divide-x-2 md:divide-x-0'>
         {items.map((item, index) => (
           <div
-            className='flex items-center justify-center divide-x-2'
+            className='flex flex-col md:flex-row items-center justify-center md:divide-x-2'
             key={index}
           >
             <span className='px-3 text-2xl'>{item.icon}</span>
-            <div className='px-3 text-xs md:text-base'>
+            <div className='px-3 text-xs md:text-base text-center md:text-left'>
               <h6 className='font-medium'>{item.header}</h6>
               <p className='font-light'>{item.text}</p>
             </div>
