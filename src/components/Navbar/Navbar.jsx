@@ -89,7 +89,7 @@ const Navbar = () => {
           </ul>
         )}
         {menu && (
-          <div className='absolute px-3 py-2 top-[4rem] right-[0] flex flex-col bg-white w-[50vw] max-w-[15rem] md:w-48 z-40 gap-4 justify-between rounded-b md:h-auto'>
+          <div className='absolute px-3 py-2 top-[4rem] right-[0] flex flex-col bg-white w-[50vw] max-w-[18rem] md:w-48 z-40 gap-4 justify-between rounded-b md:h-auto'>
             <ul className='flex flex-col gap-2'>
               <h4 className='text-lg font-medium'>Categories</h4>
               <li className='transition hover:text-greenish cursor-pointer'>
