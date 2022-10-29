@@ -22,7 +22,7 @@ const WhyEazzy = () => {
       count: 3,
       header: "Saves time and money",
       details:
-        "Our platform enables businesses and consumers like you to procure and shop fromthe comfort of your location.",
+        "Our platform enables businesses and consumers like you to procure and shop from the comfort of your location.",
     },
     {
       count: 4,

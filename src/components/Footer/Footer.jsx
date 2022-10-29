@@ -12,7 +12,7 @@ const Footer = () => {
       <div className='flex flex-col sm:flex-row sm:justify-between items-center w-full text-center sm:text-left gap-4'>
         <div className='flex flex-col gap-1'>
           <h2 className='text-2xl italic'>Eazzy</h2>
-          <p>The Farmers market in your pocket</p>
+          <p>The Farmers market in your pocket.</p>
           <div className='flex gap-2 justify-center sm:justify-start'>
             <a href='https://instagram.com/tryeazzy/' target="_blank" rel="noreferrer">
               <FaInstagram className='hover:scale-125 transition' />
@@ -30,9 +30,9 @@ const Footer = () => {
         </div>
         <div className='flex flex-col gap-3'>
           <h4 className='text-xl'>Contact</h4>
-          <p>(+24) 812345654</p>
-          <p>Tryeazzy@gmail.com</p>
-          <p>Lagos Nigeria</p>
+          <p>08169793982</p>
+          <a href="mailto:support@tryeazzy.com">support@tryeazzy.com</a>
+          <p>Lagos, Nigeria</p>
         </div>
       </div>
       <div className='w-[90%] border-t-[1px] border-t-white mt-8 text-center sm:text-left'>

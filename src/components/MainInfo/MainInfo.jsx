@@ -9,12 +9,12 @@ const MainInfo = () => {
     {
       icon: <TbTruckDelivery />,
       header: "Fast delivery",
-      text: "Within 1 - 2 hours after ordering",
+      text: "45 minutes after ordering",
     },
     {
       icon: <TiWorldOutline />,
       header: "Eco friendly packaging",
-      text: "Sustainable Materails",
+      text: "Using sustainable materials",
     },
     {
       icon: <BiTime />,
@@ -28,12 +28,11 @@ const MainInfo = () => {
       <div className='w-full h-full relative flex flex-col sm:flex-row items-center gap-8 justify-evenly'>
         <div className='z-20 flex flex-col gap-8 sm:w-[40%]'>
           <h1 className='text-4xl font-medium overflow-visible h-fit'>
-            The Smarter way to buy food items & groceries.
+            The Smarter way to buy fresh foods & groceries.
           </h1>
           <p>
-            Eazzy is a digital marketplace that enables individuals and
-            businesses to shop & procure fresh food items instantly and on a
-            schedule.
+            Eazzy is a digital farmers market that enables food businesses and
+            individuals in Africa to buy fresh food items and groceries, instantly and on a schedule.
           </p>
           <Button content={"Shop Now"} big={true} />
         </div>

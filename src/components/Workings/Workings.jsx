@@ -21,7 +21,7 @@ const Workings = () => {
     },
     {
       header: "Search what you want",
-      details: "Select a category, search item by name or recipe, and even sort by price",
+      details: "Select a category, search item by name or brand, and even sort by price",
       icon: <AiOutlineSearch />,
       img: search,
     },
