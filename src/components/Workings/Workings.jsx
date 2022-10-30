@@ -20,7 +20,7 @@ const Workings = () => {
       img: user,
     },
     {
-      header: "Search what you want",
+      header: "Search for what you want",
       details: "Select a category, search item by name or brand, and even sort by price",
       icon: <AiOutlineSearch />,
       img: search,

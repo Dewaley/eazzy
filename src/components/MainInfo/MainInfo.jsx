@@ -19,7 +19,7 @@ const MainInfo = () => {
     {
       icon: <BiTime />,
       header: "Opening Hours",
-      text: "Mon- Sun 9am-9pm",
+      text: "Mon- Sun, 9am-9pm.",
     },
   ];
 
@@ -32,7 +32,7 @@ const MainInfo = () => {
           </h1>
           <p>
             Eazzy is a digital farmers market that enables food businesses and
-            individuals in Africa to buy fresh food items and groceries, instantly and on a schedule.
+            individuals in Africa to buy fresh food items and groceries, instantly or on a schedule.
           </p>
           <Button content={"Shop Now"} big={true} />
         </div>

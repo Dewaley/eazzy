@@ -5,11 +5,11 @@ const FAQs = () => {
     {
       question: "What is Eazzy?",
       answer:
-        "Eazzy is a digital marketplace that enables individuals and businesses to shop & procure fresh food items instantly and on a schedule.",
+        "Eazzy is a digital farmers market that enables food businesses and individuals in Africa to buy fresh food items and groceries, instantly or on a schedule.",
     },
     {
       question: "When are your operating hours?",
-      answer: "We currently operate 9am-6pm, Daily.",
+      answer: "We currently operate 9am-9pm, Daily.",
     },
     {
       question: "Do you accept payment on delivery?",
@@ -38,8 +38,7 @@ const FAQs = () => {
     },
     {
       question: "What are your delivery rates?",
-      answer:
-        "Depending on your location it ranges from N350-1000.",
+      answer: "Depending on your location it ranges from N350-1000.",
     },
     {
       question: "Is Eazzy a food delivery service?",

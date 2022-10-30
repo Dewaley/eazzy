@@ -30,7 +30,7 @@ const Footer = () => {
         </div>
         <div className='flex flex-col gap-3'>
           <h4 className='text-xl'>Contact</h4>
-          <p>08169793982</p>
+          <a href="tel:08169793982">08169793982</a>
           <a href="mailto:support@tryeazzy.com">support@tryeazzy.com</a>
           <p>Lagos, Nigeria</p>
         </div>

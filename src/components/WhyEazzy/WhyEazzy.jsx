@@ -20,9 +20,9 @@ const WhyEazzy = () => {
     },
     {
       count: 3,
-      header: "Saves time and money",
+      header: "Save time and money",
       details:
-        "Our platform enables businesses and consumers like you to procure and shop from the comfort of your location.",
+        "Our platform enables food businesses and consumers like you to procure and shop conveniently from the comfort of your location.",
     },
     {
       count: 4,
