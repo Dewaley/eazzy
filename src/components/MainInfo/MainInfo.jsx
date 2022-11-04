@@ -8,8 +8,7 @@ const MainInfo = () => {
   const items = [
     {
       icon: <TbTruckDelivery />,
-      header: "Fast delivery",
-      text: "45 minutes after ordering",
+      header: "Reliable delivery",
     },
     {
       icon: <TiWorldOutline />,

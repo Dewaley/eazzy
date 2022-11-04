@@ -9,7 +9,7 @@ import illustration from "../../assets/illustration.png"
 const Categories = () => {
   const items = [
     {
-      name: "Fruits and Veggies",
+      name: "Vegetables",
       short: "fruits",
       pic: fruits,
     },
@@ -29,7 +29,7 @@ const Categories = () => {
       short: "meat",
     },
     {
-      name: "Poultry and Fishes",
+      name: "Fish & Seafood",
       pic: poultry,
       short: "poultry",
     },
