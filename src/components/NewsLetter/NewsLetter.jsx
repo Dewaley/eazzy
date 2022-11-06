@@ -5,13 +5,23 @@ const NewsLetter = () => {
   const form = document.getElementById("my-form");
 
   const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({
+    Name: "",
+    Email: "",
+  });
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
 
   return (
     <div className='overflow-hidden relative w-full'>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const data = new FormData(form);
+          const data = new FormData();
+          data.append("Name", formData.Name)
+          data.append("Email",formData.Email)
           const action =
             "https://script.google.com/macros/s/AKfycbw93XWQ4hlGTPsSo2FyrcU3Rn-9aS9O2TTFZXP5aFftIPEzjlsDnwYaTien6ef5O4uFgg/exec";
           fetch(action, {
@@ -38,11 +48,15 @@ const NewsLetter = () => {
           type='text'
           name='Name'
           id=''
+          value={formData.Name}
+          onChange={handleChange}
           placeholder='Your Name'
           className='border-[1px] border-greenish p-3 w-[80vw] rounded sm:w-[50vw] lg:w-[35vw] bg-transparent z-20'
           required
         />
         <input
+          value={formData.Email}
+          onChange={handleChange}
           type='email'
           name='Email'
           id=''
