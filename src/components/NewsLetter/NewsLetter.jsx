@@ -2,7 +2,6 @@ import Button from "../Button/Button";
 import { useState } from "react";
 
 const NewsLetter = () => {
-  const form = document.getElementById("my-form");
 
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({

@@ -1,7 +1,7 @@
 import FAQs from "../../components/FAQs/FAQs";
 import MainInfo from "../../components/MainInfo/MainInfo";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
-import Testimonials from "../../components/Testimonials/Testimonials";
+// import Testimonials from "../../components/Testimonials/Testimonials";
 import NewProducts from "../../components/NewProducts/NewProducts";
 import Categories from "../../components/Categories/Categories";
 import Workings from "../../components/Workings/Workings";
@@ -18,7 +18,7 @@ const Homepage = () => {
       <WhoCan />
       <Categories />
       <NewProducts />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <FAQs />
       <div className="w-full">
         <DownloadApp />
