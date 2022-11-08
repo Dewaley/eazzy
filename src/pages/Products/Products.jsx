@@ -6,7 +6,7 @@ const Products = () => {
   const { id } = useParams();
   return (
     <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
-      <div className='md:w-[90vw]'>
+      <div className='w-full md:w-[90vw]'>
         <div className='capitalize'>
           Home {">"} <span className='!text-[#343538]/52'>Spices</span>
         </div>
