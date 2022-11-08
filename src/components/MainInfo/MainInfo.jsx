@@ -3,6 +3,7 @@ import Button from "../Button/Button";
 import { BiTime } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { TiWorldOutline } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const MainInfo = () => {
   const items = [
@@ -33,7 +34,7 @@ const MainInfo = () => {
             Eazzy is a digital farmers market that enables food businesses and
             individuals in Africa to buy fresh food items and groceries, instantly or on a schedule.
           </p>
-          <Button content={"Shop Now"} big={true} />
+          <a href="#categories"><Button content={"Shop Now"} big={true} /></a>
         </div>
         <img
           src={mainInfoPic}
