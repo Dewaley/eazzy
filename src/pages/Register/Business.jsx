@@ -68,7 +68,7 @@ const Business = () => {
             placeholder='Password'
           />
           <div className="flex flex-col mt-4">
-            <Button content={"Sign up"} large type={"submit"} />
+            <Button content={"Sign up"} large type={"submit"} loader />
             <span className="text-neutral-400 text-center mt-2">
               Already have an account? <Link to='/signin' className="text-greenish">Log in</Link>
             </span>

@@ -19,22 +19,24 @@ const Individual = () => {
           </p>
         </div>
         <form action='' className='flex flex-col gap-4 w-full'>
-          <input
-            type='text'
-            name=''
-            id=''
-            required
-            className='border-2 rounded p-2'
-            placeholder='Business Name'
-          />
-          <input
-            type='text'
-            name=''
-            id=''
-            required
-            className='border-2 rounded p-2'
-            placeholder='RC Number'
-          />
+          <div className="flex justify-between">
+            <input
+              type='text'
+              name=''
+              id=''
+              required
+              className='border-2 rounded p-2 w-[48%]'
+              placeholder='First Name'
+            />
+            <input
+              type='text'
+              name=''
+              id=''
+              required
+              className='border-2 rounded p-2 w-[48%]'
+              placeholder='Last Name'
+            />
+          </div>
           <input
             type='email'
             name=''
@@ -57,7 +59,7 @@ const Individual = () => {
             id=''
             required
             className='border-2 rounded p-2'
-            placeholder='Business Address'
+            placeholder='Home Address'
           />
           <input
             type='text'
