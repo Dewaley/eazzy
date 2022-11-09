@@ -3,6 +3,7 @@ import Product from "../pages/Product/Product"
 import Products from "../pages/Products/Products"
 import Business from "../pages/Register/Business"
 import Individual from "../pages/Register/Individual"
+import PasswordReset from "../pages/ResetPassword/PasswordReset"
 import Signin from "../pages/Signin/Signin"
 
 const routes = [
@@ -29,6 +30,10 @@ const routes = [
     {
         path: "/register/individual",
         component: <Individual/>
+    },
+    {
+        path: "/passwordreset",
+        component: <PasswordReset/>
     }
 ]
 

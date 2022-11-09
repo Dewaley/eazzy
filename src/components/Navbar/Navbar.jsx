@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div
       className={`${
-        pathname.includes("/signin") || pathname.includes("/register")
+        pathname.includes("/signin") || pathname.includes("/register") || pathname.includes("/passwordreset")
           ? "hidden"
           : "block"
       }`}

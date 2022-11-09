@@ -14,7 +14,9 @@ const Footer = () => {
   return (
     <div
       className={`${
-        pathname.includes("/signin") || pathname.includes("/register")
+        pathname.includes("/signin") ||
+        pathname.includes("/register") ||
+        pathname.includes("/passwordreset")
           ? "hidden"
           : "block"
       } bg-greenish p-8 text-white flex flex-col items-center overflow-x-hidden`}

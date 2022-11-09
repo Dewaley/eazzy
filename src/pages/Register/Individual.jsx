@@ -12,8 +12,8 @@ const Individual = () => {
         className='z-10 absolute w-full h-full object-cover object-center'
       />
       <div className='w-[90vw] max-w-[500px] bg-white rounded-md flex flex-col items-center gap-4 z-20 p-8'>
-        <div>
-          <img src={logo} alt='' className='h-12 mb-2' />
+        <div className="flex flex-col items-center">
+          <img src={logo} alt='' className='w-[40%] mb-2' />
           <p className='text-center font-medium text-lg'>
             Create your eazzy account
           </p>
