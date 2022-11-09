@@ -6,7 +6,7 @@ const Product = () => {
     <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
       <div className='w-full md:w-[90vw]'>
         <div className='capitalize'>
-          Home {">"} <span className='!text-[#343538]/52'>Spices</span>
+          Home {">"} <span className='text-neutral-400'>Spices</span> {">"} <span className='text-neutral-400'>Onions</span>
         </div>
       </div>
       <div className='md:w-[90vw] flex flex-col gap-y-8 md:flex-row items-center justify-between'>

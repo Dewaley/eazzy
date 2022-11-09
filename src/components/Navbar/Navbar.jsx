@@ -4,15 +4,18 @@ import { BiHelpCircle, BiUser } from "react-icons/bi";
 import { BsChevronDown, BsBox } from "react-icons/bs";
 import { useState } from "react";
 import Button from "../Button/Button";
-import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [helpOpen, setHelpOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
   const [menu, setMenu] = useState(false);
 
+  const location = useLocation()
+  const pathname = location.pathname
+
   return (
-    <div>
+    <div className={`${pathname.includes("/signin") ? "hidden" : "block"}`}>
       <div className='flex justify-between items-center p-6 font-poppins h-16 relative gap-2'>
         <h1 className='text-2xl italic z-40'>
           <img src={logo} alt='' className='w-32' />

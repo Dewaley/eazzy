@@ -1,14 +1,13 @@
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import advocado from "../../assets/advocado.png";
 import Button from "../../components/Button/Button";
 
 const Products = () => {
-  const { id } = useParams();
   return (
     <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
       <div className='w-full md:w-[90vw]'>
         <div className='capitalize'>
-          Home {">"} <span className='!text-[#343538]/52'>Spices</span>
+          Home {">"} <span className='text-neutral-400'>Spices</span>
         </div>
       </div>
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:w-[90vw]'>
