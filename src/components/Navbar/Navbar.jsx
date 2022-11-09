@@ -11,11 +11,17 @@ const Navbar = () => {
   const [accountOpen, setAccountOpen] = useState(false);
   const [menu, setMenu] = useState(false);
 
-  const location = useLocation()
-  const pathname = location.pathname
+  const location = useLocation();
+  const pathname = location.pathname;
 
   return (
-    <div className={`${pathname.includes("/signin") ? "hidden" : "block"}`}>
+    <div
+      className={`${
+        pathname.includes("/signin") || pathname.includes("/register")
+          ? "hidden"
+          : "block"
+      }`}
+    >
       <div className='flex justify-between items-center p-6 font-poppins h-16 relative gap-2'>
         <h1 className='text-2xl italic z-40'>
           <img src={logo} alt='' className='w-32' />

@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 
 const Signin = () => {
   return (
-    <div className='bg-greenish relative min-h-screen flex justify-center items-center'>
+    <div className='bg-greenish relative min-h-screen flex justify-center items-center py-8'>
       <img
         src={illustration}
         alt=''
@@ -33,16 +33,16 @@ const Signin = () => {
             className='border-2 rounded p-2'
             placeholder='Password'
           />
-          <p className='text-neutral-400 mb-3 font-light text-sm sm:text-base'>
+          <p className='text-neutral-400 mb-4 font-light text-sm sm:text-base'>
             Forgot password?{" "}
             <Link to='/resetpassword' className='text-greenish'>
               Reset here
             </Link>
           </p>
-          <Button content={"Add to Cart"} large type={"submit"} />
+          <Button content={"Log in"} large type={"submit"} />
         </form>
-        <div className='flex flex-col gap-2 mt-4 items-center'>
-          <p className='text-center'>New to the space?</p>
+        <div className='flex flex-col gap-2 mt-4 items-center font-light'>
+          <p className='text-center text-neutral-400'>New to the space?</p>
           <div className='flex divide-x-[1px] divide-greenish text-greenish text-sm sm:text-base text-center'>
             <Link to="/register/business" className='pr-2'>Register as business</Link>
             <Link to="/register/individual" className='pl-2'>Register as individual</Link>
