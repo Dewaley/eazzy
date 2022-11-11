@@ -1,3 +1,4 @@
+import Cart from "../pages/Cart/Cart"
 import Homepage from "../pages/Homepage/Homepage"
 import Product from "../pages/Product/Product"
 import Products from "../pages/Products/Products"
@@ -34,6 +35,10 @@ const routes = [
     {
         path: "/passwordreset",
         component: <PasswordReset/>
+    },
+    {
+        path: "/cart",
+        component: <Cart/>
     }
 ]
 

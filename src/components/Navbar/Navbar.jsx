@@ -173,7 +173,7 @@ const Navbar = () => {
       </div>
       <form
         action=''
-        className='md:hidden flex items-center gap-4 justify-center px-3'
+        className='md:hidden flex items-center gap-4 justify-center px-3 mb-2'
       >
         <input
           type='text'
