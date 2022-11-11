@@ -27,9 +27,9 @@ const Cart = () => {
                   <img
                     src={onions}
                     alt=''
-                    className='h-48 w-48 object-center object-cover'
+                    className='w-[20%] object-center object-cover'
                   />
-                  <div className='flex flex-col gap-2'>
+                  <div className='flex flex-col gap-2 w-[80%]'>
                     <div className='flex justify-between'>
                       <h1 className='text-lg font-medium'>Onions</h1>
                       <h4 className='text-lg font-medium'>
@@ -53,9 +53,9 @@ const Cart = () => {
                   <img
                     src={onions}
                     alt=''
-                    className='h-48 w-48 object-center object-cover'
+                    className='w-[20%] object-center object-cover'
                   />
-                  <div className='flex flex-col gap-2'>
+                  <div className='w-[80%] flex flex-col gap-2'>
                     <div className='flex justify-between'>
                       <h1 className='text-lg font-medium'>Onions</h1>
                       <h4 className='text-lg font-medium'>
