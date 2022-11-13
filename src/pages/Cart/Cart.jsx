@@ -1,6 +1,5 @@
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormClose } from "react-icons/gr";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import onions from "../../assets/onions.png";
 import cart from "../../assets/cart.svg";
 import Button from "../../components/Button/Button";
@@ -12,12 +11,11 @@ const Cart = () => {
   return (
     <div>
       {bount > 0 ? (
-        <div>
           <div className='flex flex-col md:flex-row px-3 md:px-6 py-12 gap-6'>
             <div className='flex flex-col gap-8 md:w-[72%]'>
               <div className='flex justify-between border-b-2 pb-3'>
-                <h1 className='text-lg font-medium'>Dewale's cart</h1>
-                <h4 className='flex items-center font-light text-greenish'>
+                <h1 className='font-medium'>Dewale's cart</h1>
+                <h4 className='flex text-sm items-center font-light text-greenish'>
                   Continue shopping
                   <MdNavigateNext />
                 </h4>
@@ -98,10 +96,6 @@ const Cart = () => {
               <Button content={"Check out"} large />
             </div>
           </div>
-          <span className='w-full text-center' onClick={() => setBount(0)}>
-            Empty cart test
-          </span>
-        </div>
       ) : (
         <div className='bg-[#E5E5E5] flex justify-center items-center min-h-[60vh] py-8'>
           <div className='flex flex-col items-center justify-center bg-white md:w-[70vw] p-8 gap-4 rounded'>

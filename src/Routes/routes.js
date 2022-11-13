@@ -1,4 +1,5 @@
 import Cart from "../pages/Cart/Cart"
+import Checkout from "../pages/Checkout/Checkout"
 import Homepage from "../pages/Homepage/Homepage"
 import Product from "../pages/Product/Product"
 import Products from "../pages/Products/Products"
@@ -39,6 +40,10 @@ const routes = [
     {
         path: "/cart",
         component: <Cart/>
+    },
+    {
+        path: "/checkout",
+        component: <Checkout/>
     }
 ]
 
