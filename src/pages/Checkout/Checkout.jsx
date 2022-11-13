@@ -2,6 +2,9 @@ import onions from "../../assets/onions.png";
 import Button from "../../components/Button/Button";
 
 const Checkout = () => {
+  const date = new Date();
+  const Day = date.getYear() + "-" + date.getMonth() + "-" + date.getDate();
+
   return (
     <div className='bg-[#E5E5E5] flex flex-col md:flex-row gap-6 md:gap-8 justify-center min-h-[60vh] px-3 py-8 md:py-12 md:px-8'>
       <div className='flex flex-col gap-8 w-full bg-white px-3 md:px-6 py-6 md:w-[70vw] h-fit rounded'>
@@ -44,15 +47,19 @@ const Checkout = () => {
           </div>
           <div className='flex flex-row gap-4'>
             <input
-              type='date'
+              type='text'
               name=''
               id=''
               className='w-1/2 border-[1px] rounded p-2 font-lg'
+              placeholder='Date'
+              onFocus={(e) => (e.target.type = "date")}
             />
             <input
-              type='time'
+              type='text'
               name=''
               id=''
+              onFocus={(e) => (e.target.type = "time")}
+              placeholder="Time"
               className='w-1/2 border-[1px] rounded p-2 font-lg'
             />
           </div>
