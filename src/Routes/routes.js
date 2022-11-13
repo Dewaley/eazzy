@@ -3,6 +3,7 @@ import Checkout from "../pages/Checkout/Checkout"
 import Homepage from "../pages/Homepage/Homepage"
 import Product from "../pages/Product/Product"
 import Products from "../pages/Products/Products"
+import Profile from "../pages/Profile/Profile"
 import Business from "../pages/Register/Business"
 import Individual from "../pages/Register/Individual"
 import PasswordReset from "../pages/ResetPassword/PasswordReset"
@@ -44,6 +45,10 @@ const routes = [
     {
         path: "/checkout",
         component: <Checkout/>
+    },
+    {
+        path: "/profile",
+        component: <Profile/>
     }
 ]
 

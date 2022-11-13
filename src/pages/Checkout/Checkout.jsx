@@ -2,8 +2,6 @@ import onions from "../../assets/onions.png";
 import Button from "../../components/Button/Button";
 
 const Checkout = () => {
-  const date = new Date();
-  const Day = date.getYear() + "-" + date.getMonth() + "-" + date.getDate();
 
   return (
     <div className='bg-[#E5E5E5] flex flex-col md:flex-row gap-6 md:gap-8 justify-center min-h-[60vh] px-3 py-8 md:py-12 md:px-8'>
