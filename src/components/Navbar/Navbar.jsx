@@ -5,6 +5,7 @@ import { BsChevronDown, BsBox } from "react-icons/bs";
 import { useState } from "react";
 import Button from "../Button/Button";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [helpOpen, setHelpOpen] = useState(false);
@@ -149,7 +150,7 @@ const Navbar = () => {
         )}
         {accountOpen && (
           <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
-            <Button content={"Sign up"} big />
+            <Link to="/signin"><Button content={"Sign up"} big /></Link>
             <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
               <BiUser />
               Account settings

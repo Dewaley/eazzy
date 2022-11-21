@@ -1,9 +1,40 @@
 import illustration from "../../assets/illustration.png";
 import logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import { useForm } from "react-hook-form";
+import AuthServices from "../../services/AuthServices";
+import { useState } from "react";
 
 const Signin = () => {
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(false);
+
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    setLoading(true);
+    console.log(data);
+    AuthServices.signinBusiness(data).then((res) => {
+      console.log(res);
+      if (res?.status === 200) {
+        navigate("/");
+      } else {
+        setErr(res?.data?.message);
+        setTimeout(() => {
+          setErr("");
+        }, 3000);
+      }
+      setLoading(false);
+    });
+  };
+
   return (
     <div className='bg-greenish relative min-h-screen flex justify-center items-center py-8'>
       <img
@@ -15,8 +46,13 @@ const Signin = () => {
         <div>
           <img src={logo} alt='' className='h-12 mb-2' />
           <p className='text-center font-medium text-lg'>Welcome back!</p>
+        <p className="text-red-500 text-center">{err}</p>
         </div>
-        <form action='' className='flex flex-col gap-4 w-full'>
+        <form
+          action=''
+          className='flex flex-col gap-4 w-full'
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <input
             type='email'
             name=''
@@ -24,29 +60,40 @@ const Signin = () => {
             required
             className='border-2 rounded p-2'
             placeholder='Email Address'
+            {...register("email")}
           />
           <input
-            type='text'
+            type='password'
             name=''
             id=''
             required
             className='border-2 rounded p-2'
             placeholder='Password'
+            {...register("password")}
           />
           <p className='text-neutral-400 mb-4 font-light text-sm sm:text-base'>
             Forgot password?{" "}
-            <Link to='/resetpassword' className='text-greenish'>
+            <Link to='/passwordreset' className='text-greenish'>
               Reset here
             </Link>
           </p>
-          <Button content={"Log in"} large type={"submit"} />
+          <Button content={"Log in"} large type={"submit"} loader={loading} />
         </form>
         <div className='flex flex-col gap-2 mt-4 items-center font-light'>
-          <p className='text-center text-neutral-400'>New to the space?</p>
-          <div className='flex divide-x-[1px] divide-greenish text-greenish text-sm sm:text-base text-center'>
-            <Link to="/register/business" className='pr-2'>Register as business</Link>
-            <Link to="/register/individual" className='pl-2'>Register as individual</Link>
-          </div>
+          <p className='text-center text-neutral-400'>
+            New to the space?
+            <Link to='/register/business' className='pl-2 text-greenish'>
+              Register
+            </Link>
+          </p>
+          {/* <div className='flex divide-x-[1px] divide-greenish text-greenish text-sm sm:text-base text-center'>
+            <Link to='/register/business' className='pr-2'>
+              Register as business
+            </Link>
+            <Link to='/register/individual' className='pl-2'>
+              Register as individual
+            </Link>
+          </div> */}
         </div>
       </div>
     </div>

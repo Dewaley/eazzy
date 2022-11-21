@@ -1,9 +1,9 @@
 import { MdNavigateNext } from "react-icons/md";
-import { GrFormClose } from "react-icons/gr";
 import onions from "../../assets/onions.png";
 import cart from "../../assets/cart.svg";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
+import {RiDeleteBin6Line} from "react-icons/ri"
 
 const Cart = () => {
   const [bount, setBount] = useState(99);
@@ -31,7 +31,7 @@ const Cart = () => {
                     <div className='flex justify-between'>
                       <h1 className='text-lg font-medium'>Onions</h1>
                       <h4 className='text-lg font-medium'>
-                        <GrFormClose />
+                        <RiDeleteBin6Line />
                       </h4>
                     </div>
                     <p>
@@ -57,7 +57,7 @@ const Cart = () => {
                     <div className='flex justify-between'>
                       <h1 className='text-lg font-medium'>Onions</h1>
                       <h4 className='text-lg font-medium'>
-                        <GrFormClose />
+                        <RiDeleteBin6Line />
                       </h4>
                     </div>
                     <p>
