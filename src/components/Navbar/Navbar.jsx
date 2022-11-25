@@ -76,9 +76,9 @@ const Navbar = () => {
               />
             </div>
           </div>
-          <span className='flex items-center justify-center h-6 px-1 rounded border-[1px] border-blackish gap-1'>
+          <Link to="/cart" className='flex items-center justify-center h-6 px-1 rounded border-[1px] border-blackish gap-1'>
             <AiOutlineShoppingCart /> <span className='text-sm'>0</span>
-          </span>
+          </Link>
           <span
             className='flex items-center justify-center h-6 rounded cursor-pointer'
             onClick={() => {
