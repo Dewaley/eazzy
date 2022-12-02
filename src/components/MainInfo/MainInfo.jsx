@@ -28,7 +28,7 @@ const MainInfo = () => {
       <div className='w-full h-full relative flex flex-col sm:flex-row items-center gap-8 justify-evenly'>
         <div className='z-20 flex flex-col gap-8 sm:w-[40%]'>
           <h1 className='text-4xl font-medium overflow-visible h-fit'>
-            The Smarter way to buy fresh foods & groceries.
+            Buy Fresh foods conveniently & Automate procurement
           </h1>
           <p>
             Eazzy is a digital farmers market that enables food businesses and
