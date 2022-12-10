@@ -20,7 +20,7 @@ const Products = () => {
         setProducts(res?.data);
       });
     });
-  }, []);
+  }, [id]);
 
   return (
     <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>

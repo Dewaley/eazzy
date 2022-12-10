@@ -5,7 +5,7 @@ import { BsChevronDown, BsBox } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UseSearchData } from "../../context/SearchContext";
 import { UseShoppingCartData } from "../../context/CartContext";
 import ProductServices from "../../services/ProductServices";
@@ -15,11 +15,15 @@ const Navbar = () => {
   const [accountOpen, setAccountOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const [searched, setSearched] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  const navigate = useNavigate();
 
   const location = useLocation();
   const pathname = location.pathname;
 
-  const [searchParams,setSearchParams,searchedData,setSearchedData] = UseSearchData();
+  const [searchParams, setSearchParams, searchedData, setSearchedData] =
+    UseSearchData();
 
   const [cartData, setCartData] = UseShoppingCartData([]);
 
@@ -32,6 +36,10 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    ProductServices.fetchCategories().then((res) => {
+      console.log(res);
+      setCategories(res?.data);
+    });
     if (sessionStorage.getItem("geeToken")) {
       ProductServices.fetchCart().then((res) => {
         console.log(res?.data?.cart);
@@ -51,9 +59,17 @@ const Navbar = () => {
       }`}
     >
       <div className='flex justify-between items-center p-6 font-poppins h-16 relative gap-2'>
-        <h1 className='text-2xl italic z-40'>
+        <Link
+          to='/'
+          className='text-2xl italic z-40'
+          onClick={() => {
+            setHelpOpen(false);
+            setAccountOpen(false);
+            setMenu(false);
+          }}
+        >
           <img src={logo} alt='' className='w-32' />
-        </h1>
+        </Link>
         <form
           action=''
           className='w-[60%] hidden md:flex items-center gap-4 justify-center'
@@ -114,6 +130,11 @@ const Navbar = () => {
           <Link
             to='/cart'
             className='flex items-center justify-center h-6 px-1 rounded border-[1px] border-blackish gap-1'
+            onClick={() => {
+              setHelpOpen(false);
+              setAccountOpen(false);
+              setMenu(false);
+            }}
           >
             <AiOutlineShoppingCart />{" "}
             <span className='text-sm'>{cartData.length || 0}</span>
@@ -131,72 +152,160 @@ const Navbar = () => {
         </div>
         {helpOpen && (
           <ul className='absolute px-3 py-2 top-[4rem] right-[1rem] flex flex-col bg-white w-44 z-40 gap-2 justify-center rounded-b'>
-            <li className='transition hover:text-greenish cursor-pointer'>
+            <li
+              className='transition hover:text-greenish cursor-pointer'
+              onClick={() => {
+                setHelpOpen(false);
+                setAccountOpen(false);
+                setMenu(false);
+              }}
+            >
               Track order
             </li>
-            <li className='transition hover:text-greenish cursor-pointer'>
+            <li
+              className='transition hover:text-greenish cursor-pointer'
+              onClick={() => {
+                setHelpOpen(false);
+                setAccountOpen(false);
+                setMenu(false);
+              }}
+            >
               FAQs
             </li>
-            <Button content={"Contact us"} big />
+            <a
+              href='mailto:support@tryeazzy.com'
+              onClick={() => {
+                setHelpOpen(false);
+                setAccountOpen(false);
+                setMenu(false);
+              }}
+            >
+              <Button content={"Contact us"} big />
+            </a>
           </ul>
         )}
         {menu && (
           <div className='absolute px-3 py-2 top-[4rem] right-[0] flex flex-col bg-white w-[80vw] max-w-[15rem] md:w-48 z-40 gap-4 justify-between rounded-b md:h-auto'>
             <ul className='flex flex-col gap-2'>
               <h4 className='text-lg font-medium'>Categories</h4>
-              <li className='transition hover:text-greenish cursor-pointer'>
-                Fruits and Veggies
-              </li>
-              <li className='transition hover:text-greenish cursor-pointer'>
-                Spices
-              </li>
-              <li className='transition hover:text-greenish cursor-pointer'>
-                Grains
-              </li>
-              <li className='transition hover:text-greenish cursor-pointer'>
-                Meat
-              </li>
-              <li className='transition hover:text-greenish cursor-pointer'>
-                Poultry and Fishes
-              </li>
-              <li className='transition hover:text-greenish cursor-pointer'>
-                Tubers
-              </li>
+              {categories.map((item) => (
+                <Link
+                  to={`/category/${item.category_id}`}
+                  className='transition hover:text-greenish cursor-pointer'
+                  onClick={() => {
+                    setHelpOpen(false);
+                    setAccountOpen(false);
+                    setMenu(false);
+                  }}
+                >
+                  {item.category_name}
+                </Link>
+              ))}
             </ul>
             <ul className='md:hidden flex flex-col gap-2'>
               <h4 className='text-lg font-medium'>Account</h4>
-              <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
+              <li
+                className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
                 <BiUser />
                 Account settings
               </li>
-              <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
+              <li
+                className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
                 <BsBox />
                 Orders
               </li>
-              <Button content={"Sign up"} big />
+              <Link
+                to='/signup'
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
+                <Button content={"Sign up"} big />
+              </Link>
             </ul>
             <ul className='md:hidden flex flex-col gap-2'>
               <h4 className='text-lg font-medium'>Help</h4>
-              <li className='transition hover:text-greenish cursor-pointer'>
+              <li
+                className='transition hover:text-greenish cursor-pointer'
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
                 Track order
               </li>
-              <li className='transition hover:text-greenish cursor-pointer'>
+              <li
+                className='transition hover:text-greenish cursor-pointer'
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
                 FAQs
               </li>
-              <Button content={"Contact us"} big />
+              <a
+                href='mailto:support@tryeazzy.com'
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
+                <Button content={"Contact us"} big />
+              </a>
             </ul>
           </div>
         )}
         {accountOpen && (
           <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] hidden md:flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
-            <Link to='/register/business'>
+            <Link
+              to='/signup'
+              onClick={() => {
+                setHelpOpen(false);
+                setAccountOpen(false);
+                setMenu(false);
+              }}
+            >
               <Button content={"Sign up"} big />
             </Link>
             <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
-              <BiUser />
-              Account settings
+              <Link
+                to='/profile'
+                className='items-center flex gap-2'
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
+                <BiUser />
+                Account settings
+              </Link>
             </li>
-            <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
+            <li
+              className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
+              onClick={() => {
+                setHelpOpen(false);
+                setAccountOpen(false);
+                setMenu(false);
+              }}
+            >
               <BsBox />
               Orders
             </li>
