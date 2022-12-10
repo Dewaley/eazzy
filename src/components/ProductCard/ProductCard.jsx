@@ -26,7 +26,7 @@ const ProductCard = ({ item }) => {
         <img
           src={"https://media.tryeazzy.co/" + item.product_image}
           alt=''
-          className='w-full h-40 object-cover object-center'
+          className='w-full h-48 object-cover object-center'
         />
       </Link>
       <div className='flex flex-col gap-2'>

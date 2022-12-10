@@ -4,6 +4,7 @@ import ProductServices from "../../services/ProductServices";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { UseShoppingCartData } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   const { id } = useParams();
@@ -42,8 +43,8 @@ const Product = () => {
     <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
       <div className='w-full md:w-[90vw]'>
         <div className='capitalize'>
-          Home {">"}{" "}
-          <span className='text-neutral-400'>{category.category_name}</span>{" "}
+          <Link to="/">Home</Link> {">"}{" "}
+          <Link to={`/category/${category.category_id}`} className='text-neutral-400'>{category.category_name}</Link>{" "}
           {">"} <span className='text-neutral-400'>{product.product_name}</span>
         </div>
       </div>
