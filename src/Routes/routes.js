@@ -32,7 +32,7 @@ const routes = [
         component: <Business/>
     },
     {
-        path: "/register/individual",
+        path: "/signup",
         component: <Individual/>
     },
     {

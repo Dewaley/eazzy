@@ -18,6 +18,22 @@ const signupBusiness = async (data) => {
     });
 };
 
+const signupUser = async (data) => {
+  return axios
+    .post(USR_URL + "/signup", data, {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+};
+
 const signin = async (data) => {
     return axios
       .post(USR_URL + "/signin", data, {
@@ -33,6 +49,6 @@ const signin = async (data) => {
       });
   };
 
-const AuthServices = {signupBusiness,signin};
+const AuthServices = {signupBusiness,signin,signupUser};
 
 export default AuthServices;

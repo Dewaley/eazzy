@@ -5,7 +5,7 @@ const WhoCan = () => {
 
     const items = [
         {
-            details: "Hun",
+            details: "Resturants and small food bussinesses can procure fresh food items in bulk on a schedule & make their orders recurring",
             image: can1,
         },
         {
