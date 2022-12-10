@@ -2,23 +2,50 @@ import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import logo from "../../assets/logo.png";
 import { BiHelpCircle, BiUser } from "react-icons/bi";
 import { BsChevronDown, BsBox } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { UseSearchData } from "../../context/SearchContext";
+import { UseShoppingCartData } from "../../context/CartContext";
+import ProductServices from "../../services/ProductServices";
 
 const Navbar = () => {
   const [helpOpen, setHelpOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [searched, setSearched] = useState("");
 
   const location = useLocation();
   const pathname = location.pathname;
 
+  const [searchParams,setSearchParams,searchedData,setSearchedData] = UseSearchData();
+
+  const [cartData, setCartData] = UseShoppingCartData([]);
+
+  const search = () => {
+    ProductServices.searchProduct(searched).then((res) => {
+      console.log(res);
+      setSearchParams({ search: searched });
+      setSearchedData(res?.data);
+    });
+  };
+
+  useEffect(() => {
+    if (sessionStorage.getItem("geeToken")) {
+      ProductServices.fetchCart().then((res) => {
+        console.log(res?.data?.cart);
+        setCartData(res?.data?.cart);
+      });
+    }
+  }, []);
+
   return (
     <div
       className={`${
-        pathname.includes("/signin") || pathname.includes("/register") || pathname.includes("/passwordreset")
+        pathname.includes("/signin") ||
+        pathname.includes("/register") ||
+        pathname.includes("/passwordreset")
           ? "hidden"
           : "block"
       }`}
@@ -30,15 +57,23 @@ const Navbar = () => {
         <form
           action=''
           className='w-[60%] hidden md:flex items-center gap-4 justify-center'
+          onSubmit={(e) => {
+            e.preventDefault();
+            search();
+          }}
         >
           <input
+            onChange={(e) => {
+              setSearched(e.target.value);
+            }}
+            value={searched}
             type='text'
             name=''
             id=''
             placeholder='Search by cartegory, brand and product'
             className='border-2 rounded p-2 w-[85%]'
           />
-          <Button content={"SEARCH"} />
+          <Button content={"SEARCH"} type={"submit"} />
         </form>
 
         <div className='flex items-center text-blackish gap-4 z-40'>
@@ -76,8 +111,12 @@ const Navbar = () => {
               />
             </div>
           </div>
-          <Link to="/cart" className='flex items-center justify-center h-6 px-1 rounded border-[1px] border-blackish gap-1'>
-            <AiOutlineShoppingCart /> <span className='text-sm'>0</span>
+          <Link
+            to='/cart'
+            className='flex items-center justify-center h-6 px-1 rounded border-[1px] border-blackish gap-1'
+          >
+            <AiOutlineShoppingCart />{" "}
+            <span className='text-sm'>{cartData.length || 0}</span>
           </Link>
           <span
             className='flex items-center justify-center h-6 rounded cursor-pointer'
@@ -149,8 +188,10 @@ const Navbar = () => {
           </div>
         )}
         {accountOpen && (
-          <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
-            <Link to="/signin"><Button content={"Sign up"} big /></Link>
+          <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] hidden md:flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
+            <Link to='/register/business'>
+              <Button content={"Sign up"} big />
+            </Link>
             <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
               <BiUser />
               Account settings

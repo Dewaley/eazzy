@@ -5,6 +5,8 @@ import Button from "../../components/Button/Button";
 import { useForm } from "react-hook-form";
 import AuthServices from "../../services/AuthServices";
 import { useState } from "react";
+import { UseShoppingCartData } from "../../context/CartContext";
+import ProductServices from "../../services/ProductServices";
 
 const Signin = () => {
   const [loading, setLoading] = useState(false);
@@ -18,13 +20,21 @@ const Signin = () => {
     formState: { errors },
   } = useForm();
 
+  const [cartData, setCartData] = UseShoppingCartData([]);
+
   const onSubmit = (data) => {
     setLoading(true);
     console.log(data);
-    AuthServices.signinBusiness(data).then((res) => {
+    AuthServices.signin(data).then((res) => {
       console.log(res);
       if (res?.status === 200) {
+        sessionStorage.setItem("geeToken", res.data?.access_token);
+        sessionStorage.setItem("geeId", res.data?.user?.id);
         navigate("/");
+        ProductServices.fetchCart().then((res) => {
+          console.log(res?.data?.cart);
+          setCartData(res?.data?.cart);
+        });
       } else {
         setErr(res?.data?.message);
         setTimeout(() => {
@@ -46,7 +56,7 @@ const Signin = () => {
         <div>
           <img src={logo} alt='' className='h-12 mb-2' />
           <p className='text-center font-medium text-lg'>Welcome back!</p>
-        <p className="text-red-500 text-center">{err}</p>
+          <p className='text-red-500 text-center'>{err}</p>
         </div>
         <form
           action=''

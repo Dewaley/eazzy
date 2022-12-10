@@ -27,18 +27,9 @@ const FAQs = () => {
         "Since we currently offer pre-orders only, you are guaranteed to receive your items quickly using your selected date and time.",
     },
     {
-      question: "When will instant orders be available?",
-      answer:
-        "Instant orders will be available to our users in December, having access to explore a diverse range of food categories, and even at better prices. ",
-    },
-    {
       question: "What is your pricing like?",
       answer:
         "Food items sold on Eazzy are priced fairly and favourable when compared to market prices, thanks to our partner farmers and suppliers.",
-    },
-    {
-      question: "What are your delivery rates?",
-      answer: "Depending on your location it ranges from N350-1000.",
     },
     {
       question: "Is Eazzy a food delivery service?",

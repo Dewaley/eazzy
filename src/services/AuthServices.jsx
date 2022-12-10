@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const USR_URL = "https://eazzy-tech.herokuapp.com/api/user";
-const BUS_URL = "https://eazzy-tech.herokuapp.com/api/business";
+const USR_URL = "https://noserver.tryeazzy.co/api/user";
+const BUS_URL = "http://server.tryeazzy.co/api/business";
 
 const signupBusiness = async (data) => {
   return axios
@@ -18,9 +18,9 @@ const signupBusiness = async (data) => {
     });
 };
 
-const signinBusiness = async (data) => {
+const signin = async (data) => {
     return axios
-      .post(BUS_URL + "/signin", data, {
+      .post(USR_URL + "/signin", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -33,6 +33,6 @@ const signinBusiness = async (data) => {
       });
   };
 
-const AuthServices = {signupBusiness,signinBusiness};
+const AuthServices = {signupBusiness,signin};
 
 export default AuthServices;

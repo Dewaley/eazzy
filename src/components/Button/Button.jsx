@@ -1,7 +1,7 @@
 import React from "react";
 import { ImSpinner6} from "react-icons/im"
 
-const Button = ({ content, type, big,large,loader,onClick }) => {
+const Button = ({ content, type,font, big,large,loader,onClick }) => {
   return (
     <button
     onClick={onClick}
@@ -10,10 +10,9 @@ const Button = ({ content, type, big,large,loader,onClick }) => {
         big ? "px-6" : "px-3"
       } ${
         large ? "w-full" : "w-fit"
-      }`}
+      } ${font && font}`}
     >
-      {loader && <ImSpinner6 className="animate-spin"/>}
-      {content}
+      {loader ? <ImSpinner6 className="animate-spin"/> : content}
     </button>
   );
 };

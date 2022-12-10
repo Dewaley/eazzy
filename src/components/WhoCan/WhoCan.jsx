@@ -5,7 +5,7 @@ const WhoCan = () => {
 
     const items = [
         {
-            details: "Resturants and small food bussinesses can procure fresh food items in bulk on a schedule & make their orders recurring",
+            details: "Hun",
             image: can1,
         },
         {
@@ -16,7 +16,7 @@ const WhoCan = () => {
 
   return (
       <div className="flex flex-col items-center gap-12">
-          <h4 className="text-3xl font-medium">Who can use Eazzy?</h4>
+          <h4 className="text-3xl font-medium">Built for Ambitious Food Businesses</h4>
           <div className="grid md:grid-cols-2 divide-x-2 gap-y-6">
               {items.map((item,index)=>(<div className="flex flex-col items-center gap-3 py-4">
                   <img src={item.image} alt="" className="w-[60%]" />
