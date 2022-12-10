@@ -73,7 +73,10 @@ const Categories = () => {
                 : item.category_description
             }`}
           >
-            <img src={item.category_image} alt={item.name} />
+            <img
+              src={"https://media.tryeazzy.co/" + item.category_image}
+              alt={item.name}
+            />
             <span className='text-center text-sm md:text-base'>
               {item.category_name}
             </span>

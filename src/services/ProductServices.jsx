@@ -87,8 +87,25 @@ const editCart = async ({ id, data }) => {
   return axios
     .patch(baseUrl + "/cart/" + id, data, {
       headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("geeToken")}`,
-        "Accept": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+};
+
+const delCart = async (id) => {
+  return axios
+    .delete(baseUrl + "/cart/" + id, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
@@ -121,7 +138,7 @@ const fetchCart = async () => {
     .get(baseUrl + "/cart", {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
@@ -142,6 +159,7 @@ const ProductServices = {
   editCart,
   fetchSingleProduct,
   fetchCart,
+  delCart,
 };
 
 export default ProductServices;

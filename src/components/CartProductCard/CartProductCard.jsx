@@ -21,13 +21,7 @@ const CartProductCard = ({ item }) => {
               className='cursor-pointer'
               onClick={() => {
                 setLoading(true);
-                const data = {
-                  quantity: 0,
-                };
-                ProductServices.editCart({
-                  id: item.product_id,
-                  data: data,
-                }).then((res) => {
+                ProductServices.delCart(item.product_id).then((res) => {
                   ProductServices.fetchCart().then((response) => {
                     console.log(response?.data?.cart);
                     setCartData(response?.data?.cart);

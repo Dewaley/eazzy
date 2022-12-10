@@ -24,9 +24,9 @@ const ProductCard = ({ item }) => {
     >
       <Link to={`/category/product/${item.product_id}`}>
         <img
-          src={item.product_image}
+          src={"https://media.tryeazzy.co/" + item.product_image}
           alt=''
-          className='w-full object-cover object-center'
+          className='w-full h-40 object-cover object-center'
         />
       </Link>
       <div className='flex flex-col gap-2'>
@@ -73,12 +73,12 @@ const ProductCard = ({ item }) => {
               setLoading(true);
               ProductServices.addToCart(data).then((res) => {
                 console.log(res);
-                setLoading(false);
                 setCount(1);
-              });
-              ProductServices.fetchCart().then((response) => {
-                console.log(response?.data?.cart);
-                setCartData(response?.data?.cart);
+                ProductServices.fetchCart().then((response) => {
+                  console.log(response?.data?.cart);
+                  setCartData(response?.data?.cart);
+                  setLoading(false);
+                });
               });
             }
           }}

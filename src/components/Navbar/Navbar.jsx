@@ -137,7 +137,7 @@ const Navbar = () => {
             }}
           >
             <AiOutlineShoppingCart />{" "}
-            <span className='text-sm'>{cartData.length || 0}</span>
+            <span className='text-sm'>{cartData?.length}</span>
           </Link>
           <span
             className='flex items-center justify-center h-6 rounded cursor-pointer'
