@@ -12,7 +12,11 @@ const CartProductCard = ({ item }) => {
 
   return (
     <div className='flex gap-4 items-center'>
-      <img src={onions} alt='' className='w-[20%] object-center object-cover' />
+      <img
+        src={"https://media.tryeazzy.co/" + item.product_image}
+        alt=''
+        className='w-[20%] object-center object-cover'
+      />
       <div className='flex flex-col gap-2 w-[80%]'>
         <div className='flex justify-between items-center'>
           <h1 className='text-lg font-medium'>{item.product_name}</h1>
@@ -51,11 +55,12 @@ const CartProductCard = ({ item }) => {
                     id: item.product_id,
                     data: data,
                   }).then((res) => {
-                    ProductServices.fetchCart().then((response) => {
-                      console.log(response?.data?.cart);
-                      setCartData(response?.data?.cart);
-                      setLoading(false);
-                    });
+                    ProductServices.fetchCart()
+                      .then((response) => {
+                        console.log(response?.data?.cart);
+                        setCartData(response?.data?.cart);
+                      })
+                      .then(() => setLoading(false));
                   });
                 }
               }}

@@ -4,15 +4,17 @@ import Button from "../../components/Button/Button";
 import { useState, useEffect } from "react";
 import { UseShoppingCartData } from "../../context/CartContext";
 import CartProductCard from "../../components/CartProductCard/CartProductCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
+
   const [total, setTotal] = useState(0);
-  const [cartData] = UseShoppingCartData([]);
+  const [cartData, setCartData] = UseShoppingCartData([]);
 
   useEffect(() => {
-    const sum = cartData.reduce(
-      (add, item) => add + item.product_price * item.caryQuantity,
+    const sum = cartData?.reduce(
+      (add, item) => add + item?.product_price * item?.caryQuantity,
       0
     );
     setTotal(sum);
@@ -56,7 +58,11 @@ const Cart = () => {
               <h4>Total</h4>
               <span>#5,000</span>
             </div>
-            <Button content={"Check out"} large />
+            <Button
+              content={"Check out"}
+              large
+              onClick={() => navigate("/checkout")}
+            />
           </div>
         </div>
       ) : (
