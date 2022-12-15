@@ -44,7 +44,7 @@ const Product = () => {
       <div className='w-full md:w-[90vw]'>
         <div className='capitalize'>
           <Link to="/">Home</Link> {">"}{" "}
-          <Link to={`/category/${category.category_id}`} className='text-neutral-400'>{category.category_name}</Link>{" "}
+          <Link to={`/category/${category.category_id}`} className=''>{category.category_name}</Link>{" "}
           {">"} <span className='text-neutral-400'>{product.product_name}</span>
         </div>
       </div>

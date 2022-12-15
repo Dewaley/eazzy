@@ -55,15 +55,26 @@ const Individual = () => {
           className='flex flex-col gap-4 w-full'
           onSubmit={handleSubmit(onSubmit)}
         >
-          <input
-            type='text'
-            name=''
-            id=''
-            required
-            className='border-2 rounded p-2'
-            placeholder='Full Name'
-            {...register("name")}
-          />
+          <div className='flex flex-col md:flex-row gap-y-4 md:justify-between'>
+            <input
+              type='text'
+              name=''
+              id=''
+              required
+              className='border-2 rounded p-2 w-full md:w-[48%]'
+              placeholder='Firstname'
+              {...register("first_name")}
+            />
+            <input
+              type='text'
+              name=''
+              id=''
+              required
+              className='border-2 rounded p-2 w-full md:w-[48%]'
+              placeholder='Lastname'
+              {...register("last_name")}
+            />
+          </div>
           <input
             type='email'
             name=''

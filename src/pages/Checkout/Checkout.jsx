@@ -10,11 +10,15 @@ const Checkout = () => {
   const [cartData, setCartData] = UseShoppingCartData([]);
   const navigate = useNavigate();
   useEffect(() => {
-    const sum = cartData?.reduce(
-      (add, item) => add + item?.product_price * item?.caryQuantity,
-      0
-    );
-    setTotal(sum);
+    if (cartData.length < 1) {
+      navigate("/cart");
+    } else {
+      const sum = cartData?.reduce(
+        (add, item) => add + item?.product_price * item?.caryQuantity,
+        0
+      );
+      setTotal(sum);
+    }
   }, [cartData]);
 
   if (cartData?.length > 0) {

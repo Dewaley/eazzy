@@ -44,7 +44,7 @@ const Cart = () => {
             <h1 className='border-b-2 pb-3 text-lg font-medium'>
               Checkout summary
             </h1>
-            <div className='py-6 border-b-2 flex flex-col gap-3'>
+            {/* <div className='py-6 border-b-2 flex flex-col gap-3'>
               <div className='flex justify-between'>
                 <h4>Subtotal</h4>
                 <span>#{total}</span>
@@ -53,10 +53,10 @@ const Cart = () => {
                 <h4>Delivery</h4>
                 <span>#2,000</span>
               </div>
-            </div>
+            </div> */}
             <div className='flex justify-between py-6'>
               <h4>Total</h4>
-              <span>#5,000</span>
+              <span>#{total}</span>
             </div>
             <Button
               content={"Check out"}

@@ -34,7 +34,7 @@ const MainInfo = () => {
             Eazzy is a digital farmers market that enables food businesses and
             individuals in Africa to buy fresh food items and groceries, instantly or on a schedule.
           </p>
-          <a href="#categories"><Button content={"Shop Now"} big={true} /></a>
+          <a href="#categories" className="w-fit"><Button content={"Shop Now"} big={true} /></a>
         </div>
         <img
           src={mainInfoPic}

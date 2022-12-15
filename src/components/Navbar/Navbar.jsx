@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UseSearchData } from "../../context/SearchContext";
 import { UseShoppingCartData } from "../../context/CartContext";
 import ProductServices from "../../services/ProductServices";
+import AuthServices from "../../services/AuthServices";
 
 const Navbar = () => {
   const [helpOpen, setHelpOpen] = useState(false);
@@ -16,6 +17,7 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [searched, setSearched] = useState("");
   const [categories, setCategories] = useState([]);
+  const [user, setUser] = useState(false);
 
   const navigate = useNavigate();
 
@@ -41,12 +43,20 @@ const Navbar = () => {
       setCategories(res?.data);
     });
     if (sessionStorage.getItem("geeToken")) {
-      ProductServices.fetchCart().then((res) => {
-        console.log(res?.data?.cart);
-        setCartData(res?.data?.cart);
+      AuthServices.fetchUser().then((res) => {
+        console.log(res.data.message);
+        if (res?.data?.message === "Unauthenticated.") {
+          setUser(false);
+        } else {
+          setUser(true);
+          ProductServices.fetchCart().then((res) => {
+            console.log(res?.data?.cart);
+            setCartData(res?.data?.cart);
+          });
+        }
       });
     }
-  }, []);
+  }, [sessionStorage.getItem("geeToken")]);
 
   return (
     <div
@@ -137,7 +147,7 @@ const Navbar = () => {
             }}
           >
             <AiOutlineShoppingCart />{" "}
-            <span className='text-sm'>{cartData?.length}</span>
+            <span className='text-sm'>{cartData?.length || 0}</span>
           </Link>
           <span
             className='flex items-center justify-center h-6 rounded cursor-pointer'
@@ -152,16 +162,18 @@ const Navbar = () => {
         </div>
         {helpOpen && (
           <ul className='absolute px-3 py-2 top-[4rem] right-[1rem] flex flex-col bg-white w-44 z-40 gap-2 justify-center rounded-b'>
-            <li
-              className='transition hover:text-greenish cursor-pointer'
-              onClick={() => {
-                setHelpOpen(false);
-                setAccountOpen(false);
-                setMenu(false);
-              }}
-            >
-              Track order
-            </li>
+            {user && (
+              <li
+                className='transition hover:text-greenish cursor-pointer'
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
+                Track order
+              </li>
+            )}
             <li
               className='transition hover:text-greenish cursor-pointer'
               onClick={() => {
@@ -204,51 +216,77 @@ const Navbar = () => {
             </ul>
             <ul className='md:hidden flex flex-col gap-2'>
               <h4 className='text-lg font-medium'>Account</h4>
-              <li
-                className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
-                onClick={() => {
-                  setHelpOpen(false);
-                  setAccountOpen(false);
-                  setMenu(false);
-                }}
-              >
-                <BiUser />
-                Account settings
-              </li>
-              <li
-                className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
-                onClick={() => {
-                  setHelpOpen(false);
-                  setAccountOpen(false);
-                  setMenu(false);
-                }}
-              >
-                <BsBox />
-                Orders
-              </li>
-              <Link
-                to='/signup'
-                onClick={() => {
-                  setHelpOpen(false);
-                  setAccountOpen(false);
-                  setMenu(false);
-                }}
-              >
-                <Button content={"Sign up"} big />
-              </Link>
+              {user && (
+                <li
+                  className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
+                  onClick={() => {
+                    setHelpOpen(false);
+                    setAccountOpen(false);
+                    setMenu(false);
+                  }}
+                >
+                  <BiUser />
+                  Account settings
+                </li>
+              )}
+              {user && (
+                <li
+                  className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
+                  onClick={() => {
+                    setHelpOpen(false);
+                    setAccountOpen(false);
+                    setMenu(false);
+                  }}
+                >
+                  <BsBox />
+                  Orders
+                </li>
+              )}
+              {user ? (
+                <Button
+                  content={"Logout"}
+                  big
+                  onClick={() => {
+                    setHelpOpen(false);
+                    setAccountOpen(false);
+                    setMenu(false);
+                    AuthServices.logout().then((res) => {
+                      console.log(res.data);
+                      sessionStorage.removeItem("geeToken");
+                      setCartData([]);
+                      setUser(false);
+                      navigate("/");
+                    });
+                  }}
+                />
+              ) : (
+                <Link
+                  to={"/signup"}
+                  onClick={() => {
+                    setHelpOpen(false);
+                    setAccountOpen(false);
+                    setMenu(false);
+                  }}
+                  className='w-fit'
+                >
+                  <Button content={"Sign up"} big />
+                </Link>
+              )}
             </ul>
             <ul className='md:hidden flex flex-col gap-2'>
               <h4 className='text-lg font-medium'>Help</h4>
-              <li
-                className='transition hover:text-greenish cursor-pointer'
-                onClick={() => {
-                  setHelpOpen(false);
-                  setAccountOpen(false);
-                  setMenu(false);
-                }}
-              >
-                Track order
-              </li>
+              {user && (
+                <li
+                  className='transition hover:text-greenish cursor-pointer'
+                  onClick={() => {
+                    setHelpOpen(false);
+                    setAccountOpen(false);
+                    setMenu(false);
+                  }}
+                >
+                  Track order
+                </li>
+              )}
               <li
                 className='transition hover:text-greenish cursor-pointer'
                 onClick={() => {
@@ -274,41 +312,65 @@ const Navbar = () => {
         )}
         {accountOpen && (
           <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] hidden md:flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
-            <Link
-              to='/signup'
-              onClick={() => {
-                setHelpOpen(false);
-                setAccountOpen(false);
-                setMenu(false);
-              }}
-            >
-              <Button content={"Sign up"} big />
-            </Link>
-            <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
+            {user ? (
+              <Button
+                content={"Logout"}
+                big
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                  AuthServices.logout().then((res) => {
+                    console.log(res.data);
+                    sessionStorage.removeItem("geeToken");
+                    setCartData([]);
+                    setUser(false);
+                    navigate("/");
+                  });
+                }}
+              />
+            ) : (
               <Link
-                to='/profile'
-                className='items-center flex gap-2'
+                to={"/signup"}
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+                className='w-fit'
+              >
+                <Button content={"Sign up"} big />
+              </Link>
+            )}
+            {user && (
+              <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
+                <Link
+                  to='/profile'
+                  className='items-center flex gap-2'
+                  onClick={() => {
+                    setHelpOpen(false);
+                    setAccountOpen(false);
+                    setMenu(false);
+                  }}
+                >
+                  <BiUser />
+                  Account settings
+                </Link>
+              </li>
+            )}
+            {user && (
+              <li
+                className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
                 onClick={() => {
                   setHelpOpen(false);
                   setAccountOpen(false);
                   setMenu(false);
                 }}
               >
-                <BiUser />
-                Account settings
-              </Link>
-            </li>
-            <li
-              className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
-              onClick={() => {
-                setHelpOpen(false);
-                setAccountOpen(false);
-                setMenu(false);
-              }}
-            >
-              <BsBox />
-              Orders
-            </li>
+                <BsBox />
+                Orders
+              </li>
+            )}
           </ul>
         )}
         {(helpOpen || accountOpen || menu) && (

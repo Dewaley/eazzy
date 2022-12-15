@@ -127,7 +127,7 @@ input[type=number] {
   }
 }
 
-.indicator li:hover h5 {
+.indicator li:hover h5, .indicator2 li:hover h5 {
   color: #3d7e47;
   transition: color 0.5s;
 }

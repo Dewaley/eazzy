@@ -22,7 +22,7 @@ const signupUser = async (data) => {
   return axios
     .post(USR_URL + "/signup", data, {
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
@@ -35,20 +35,54 @@ const signupUser = async (data) => {
 };
 
 const signin = async (data) => {
-    return axios
-      .post(USR_URL + "/signin", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        return error.response;
-      });
-  };
+  return axios
+    .post(USR_URL + "/signin", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+};
 
-const AuthServices = {signupBusiness,signin,signupUser};
+const fetchUser = async () => {
+  return axios
+    .get(USR_URL, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+};
+
+const logout = async () => {
+  return axios
+    .get(USR_URL + "/signout", {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+};
+
+const AuthServices = { signupBusiness, signin, signupUser, fetchUser, logout };
 
 export default AuthServices;

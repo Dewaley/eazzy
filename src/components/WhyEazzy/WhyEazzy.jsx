@@ -89,13 +89,25 @@ const WhyEazzy = () => {
               />
             </div>
             <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
-              <img src={pic4} alt='' className='w-full h-full object-cover object-center' />
+              <img
+                src={pic4}
+                alt=''
+                className='w-full h-full object-cover object-center'
+              />
             </div>
             <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
-              <img src={pic3} alt='' className='w-full h-full object-cover object-center' />
+              <img
+                src={pic3}
+                alt=''
+                className='w-full h-full object-cover object-center'
+              />
             </div>
             <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
-              <img src={pic2} alt='' className='w-full h-full object-cover object-center' />
+              <img
+                src={pic2}
+                alt=''
+                className='w-full h-full object-cover object-center'
+              />
             </div>
           </div>
         </div>

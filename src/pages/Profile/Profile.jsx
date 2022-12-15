@@ -3,6 +3,7 @@ import { GrClose } from "react-icons/gr";
 import Button from "../../components/Button/Button";
 
 const Profile = () => {
+  const [user,setUser] = useState([])
   const [account, setAccount] = useState(false);
   const [security, setSecurity] = useState(false);
   const [home, setHome] = useState(false);
