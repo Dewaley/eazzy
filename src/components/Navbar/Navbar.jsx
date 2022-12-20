@@ -10,6 +10,8 @@ import { UseSearchData } from "../../context/SearchContext";
 import { UseShoppingCartData } from "../../context/CartContext";
 import ProductServices from "../../services/ProductServices";
 import AuthServices from "../../services/AuthServices";
+import { useUserContext } from "../../context/UserContext";
+import { UseCart } from "../../context/UnAuthCart";
 
 const Navbar = () => {
   const [helpOpen, setHelpOpen] = useState(false);
@@ -17,7 +19,8 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [searched, setSearched] = useState("");
   const [categories, setCategories] = useState([]);
-  const [user, setUser] = useState(false);
+  const { user, setUser } = useUserContext(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,6 +29,8 @@ const Navbar = () => {
 
   const [searchParams, setSearchParams, searchedData, setSearchedData] =
     UseSearchData();
+
+  const { state, dispatch } = UseCart();
 
   const [cartData, setCartData] = UseShoppingCartData([]);
 
@@ -57,6 +62,21 @@ const Navbar = () => {
       });
     }
   }, [sessionStorage.getItem("geeToken")]);
+
+  useEffect(() => {
+    console.log(state)
+  //   if (state.items.length > 0) {
+  //     state.items.map((item) => {
+  //       const dat = {
+  //         quantity: item.quantity,
+  //       };
+  //       // ProductServices.editCart({ id: item.id, data: dat }).then((res) => {
+  //       //   console.log(res);
+  //       // });
+  //       return item
+  //     });
+  //   }
+  }, [state]);
 
   return (
     <div
@@ -147,7 +167,11 @@ const Navbar = () => {
             }}
           >
             <AiOutlineShoppingCart />{" "}
-            <span className='text-sm'>{cartData?.length || 0}</span>
+            {user ? (
+              <span className='text-sm'>{cartData?.length || 0}</span>
+            ) : (
+              <span className='text-sm'>{state?.items?.length}</span>
+            )}
           </Link>
           <span
             className='flex items-center justify-center h-6 rounded cursor-pointer'
@@ -244,19 +268,25 @@ const Navbar = () => {
               )}
               {user ? (
                 <Button
+                  loader={loading}
                   content={"Logout"}
-                  big
+                  large
                   onClick={() => {
-                    setHelpOpen(false);
-                    setAccountOpen(false);
-                    setMenu(false);
-                    AuthServices.logout().then((res) => {
-                      console.log(res.data);
-                      sessionStorage.removeItem("geeToken");
-                      setCartData([]);
-                      setUser(false);
-                      navigate("/");
-                    });
+                    setLoading(true);
+                    AuthServices.logout()
+                      .then((res) => {
+                        console.log(res.data);
+                        sessionStorage.removeItem("geeToken");
+                        setCartData([]);
+                        setLoading(false);
+                      })
+                      .then(() => {
+                        setHelpOpen(false);
+                        setAccountOpen(false);
+                        setMenu(false);
+                        setUser(false);
+                        navigate("/");
+                      });
                   }}
                 />
               ) : (
@@ -267,14 +297,13 @@ const Navbar = () => {
                     setAccountOpen(false);
                     setMenu(false);
                   }}
-                  className='w-fit'
                 >
-                  <Button content={"Sign up"} big />
+                  <Button content={"Sign up"} large />
                 </Link>
               )}
             </ul>
             <ul className='md:hidden flex flex-col gap-2'>
-              <h4 className='text-lg font-medium'>Help</h4>
+              <h4 className='text-lg font-medium'>Helpa</h4>
               {user && (
                 <li
                   className='transition hover:text-greenish cursor-pointer'
@@ -305,7 +334,7 @@ const Navbar = () => {
                   setMenu(false);
                 }}
               >
-                <Button content={"Contact us"} big />
+                <Button content={"Contact us"} large />
               </a>
             </ul>
           </div>
@@ -314,19 +343,25 @@ const Navbar = () => {
           <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] hidden md:flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
             {user ? (
               <Button
+                loader={loading}
                 content={"Logout"}
-                big
+                large
                 onClick={() => {
-                  setHelpOpen(false);
-                  setAccountOpen(false);
-                  setMenu(false);
-                  AuthServices.logout().then((res) => {
-                    console.log(res.data);
-                    sessionStorage.removeItem("geeToken");
-                    setCartData([]);
-                    setUser(false);
-                    navigate("/");
-                  });
+                  setLoading(true);
+                  AuthServices.logout()
+                    .then((res) => {
+                      console.log(res.data);
+                      sessionStorage.removeItem("geeToken");
+                      setCartData([]);
+                      setLoading(false);
+                    })
+                    .then(() => {
+                      setHelpOpen(false);
+                      setAccountOpen(false);
+                      setMenu(false);
+                      setUser(false);
+                      navigate("/");
+                    });
                 }}
               />
             ) : (
@@ -337,9 +372,8 @@ const Navbar = () => {
                   setAccountOpen(false);
                   setMenu(false);
                 }}
-                className='w-fit'
               >
-                <Button content={"Sign up"} big />
+                <Button content={"Sign up"} large />
               </Link>
             )}
             {user && (

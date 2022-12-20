@@ -7,10 +7,13 @@ import AuthServices from "../../services/AuthServices";
 import { useState } from "react";
 import { UseShoppingCartData } from "../../context/CartContext";
 import ProductServices from "../../services/ProductServices";
+import { useUserContext } from "../../context/UserContext";
+import { UseCart } from "../../context/UnAuthCart";
 
 const Signin = () => {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
+  const { user, setUser } = useUserContext(false);
 
   const navigate = useNavigate();
 
@@ -21,6 +24,7 @@ const Signin = () => {
   } = useForm();
 
   const [cartData, setCartData] = UseShoppingCartData([]);
+  const { state, dispatch } = UseCart();
 
   const onSubmit = (data) => {
     setLoading(true);
@@ -30,18 +34,55 @@ const Signin = () => {
       if (res?.status === 200) {
         sessionStorage.setItem("geeToken", res.data?.access_token);
         sessionStorage.setItem("geeId", res.data?.user?.id);
-        navigate("/");
-        ProductServices.fetchCart().then((res) => {
-          console.log(res?.data?.cart);
-          setCartData(res?.data?.cart);
-        });
+        if (localStorage.getItem("geeUnauthCart")) {
+          ProductServices.emptyCart()
+            .then((res) => {
+              console.log(res);
+            })
+            .then(() => {
+              state.items.map((item) => {
+                const data = {
+                  product_id: item?.product_id,
+                  quantity: item?.caryQuantity,
+                };
+                ProductServices.addToCart(data).then((res) => {
+                  console.log(res);
+                });
+                return item;
+              });
+            })
+            .then(() => {
+              ProductServices.fetchCart()
+                .then((res) => {
+                  console.log(res?.data?.cart);
+                  setCartData(res?.data?.cart);
+                  setUser(true);
+                })
+                .then(() => {
+                  setLoading(false);
+                  navigate("/");
+                  localStorage.removeItem("geeUnauthCart")
+                });
+            });
+        } else {
+          ProductServices.fetchCart()
+            .then((res) => {
+              console.log(res?.data?.cart);
+              setCartData(res?.data?.cart);
+              setUser(true);
+            })
+            .then(() => {
+              setLoading(false);
+              navigate("/");
+            });
+        }
       } else {
         setErr(res?.data?.message);
+        setLoading(false);
         setTimeout(() => {
           setErr("");
         }, 3000);
       }
-      setLoading(false);
     });
   };
 

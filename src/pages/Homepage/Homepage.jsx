@@ -38,14 +38,14 @@ const Homepage = () => {
           <WhyEazzy />
           <WhoCan />
           <Categories />
-          {/* <NewProducts /> */}
+          <NewProducts />
           {/* <Testimonials /> */}
           <FAQs />
           <div className='w-full'>
             <DownloadApp />
             <NewsLetter />
           </div>
-          <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
+          {/* <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
             <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:w-[90vw]'>
               <ProductSkeleton />
               <ProductSkeleton />
@@ -54,7 +54,7 @@ const Homepage = () => {
               <ProductSkeleton />
               <ProductSkeleton />
             </div>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div>

@@ -1,14 +1,11 @@
 import illustration from "../../assets/illustration.png";
 import { useEffect, useState } from "react";
 import ProductServices from "../../services/ProductServices";
-import { useNavigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
 import CategorySkeleton from "./CategorySkeleton";
+import Category from "./Category";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     ProductServices.fetchCategories().then((res) => {
@@ -16,8 +13,6 @@ const Categories = () => {
       setCategories(res?.data);
     });
   }, []);
-
-  const Category = lazy(() => import("./Category"));
 
   // const items = [
   //   {
@@ -58,24 +53,22 @@ const Categories = () => {
       className='bg-[#EBF2EB] h-fit w-full flex flex-col gap-12 items-center relative pt-12 pb-24'
     >
       <h2 className='text-3xl z-20 text-center font-medium'>Categories</h2>
-      <div className='grid z-20 w-[80vw] grid-cols-2 md:grid-cols-3 gap-4'>
-        <Suspense
-          fallback={
-            <div className='grid z-20 w-[80vw] grid-cols-2 md:grid-cols-3 gap-4'>
-              <CategorySkeleton />
-              <CategorySkeleton />
-              <CategorySkeleton />
-              <CategorySkeleton />
-              <CategorySkeleton />
-              <CategorySkeleton />
-            </div>
-          }
-        >
+      {categories?.length > 0 ? (
+        <div className='grid z-20 w-[80vw] grid-cols-2 md:grid-cols-3 gap-4'>
           {categories.map((item) => (
             <Category item={item} />
           ))}
-        </Suspense>
-      </div>
+        </div>
+      ) : (
+        <div className='grid z-20 w-[80vw] grid-cols-2 md:grid-cols-3 gap-4'>
+          <CategorySkeleton />
+          <CategorySkeleton />
+          <CategorySkeleton />
+          <CategorySkeleton />
+          <CategorySkeleton />
+          <CategorySkeleton />
+        </div>
+      )}
       <img
         src={illustration}
         alt=''

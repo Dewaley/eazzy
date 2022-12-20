@@ -150,6 +150,23 @@ const fetchCart = async () => {
     });
 };
 
+const emptyCart = () => {
+  return axios
+  .delete(baseUrl + "/cart", {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => {
+    return response;
+  })
+  .catch((error) => {
+    return error.response;
+  });
+}
+
 const ProductServices = {
   fetchCategories,
   searchProduct,
@@ -160,6 +177,7 @@ const ProductServices = {
   fetchSingleProduct,
   fetchCart,
   delCart,
+  emptyCart
 };
 
 export default ProductServices;

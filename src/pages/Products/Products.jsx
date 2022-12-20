@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import ProductServices from "../../services/ProductServices";
 import PlaceholderLoading from "react-placeholder-loading";
 import { Link } from "react-router-dom";
-import { lazy, Suspense } from "react";
 import ProductSkeleton from "./ProductSkeleton";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 const Products = () => {
-  const Card = lazy(() => import("../../components/ProductCard/ProductCard"));
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
 
@@ -27,8 +26,24 @@ const Products = () => {
   }, [id]);
 
   return (
-    <Suspense
-      fallback={
+    <div>
+      {products?.length > 0 ? (
+        <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
+          <div className='w-full md:w-[90vw]'>
+            <div className='capitalize flex items-center gap-1'>
+              <Link to='/'>Home</Link> {">"}{" "}
+              <span className='text-neutral-400 flex'>
+                {category.category_name}
+              </span>
+            </div>
+          </div>
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:w-[90vw]'>
+            {products.map((item) => (
+              <ProductCard item={item} />
+            ))}
+          </div>
+        </div>
+      ) : (
         <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
           <div className='w-full md:w-[90vw]'>
             <div className='capitalize flex items-center gap-1'>
@@ -47,24 +62,8 @@ const Products = () => {
             <ProductSkeleton />
           </div>
         </div>
-      }
-    >
-      <div className='px-3 md:px-6 flex flex-col items-center gap-6 py-8'>
-        <div className='w-full md:w-[90vw]'>
-          <div className='capitalize flex items-center'>
-            <Link to='/'>Home</Link> {">"}{" "}
-            <span className='text-neutral-400 flex'>
-              {category.category_name}
-            </span>
-          </div>
-        </div>
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:w-[90vw]'>
-          {products.map((item) => (
-            <Card item={item} />
-          ))}
-        </div>
-      </div>
-    </Suspense>
+      )}
+    </div>
   );
 };
 

@@ -5,26 +5,33 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import { SearchDataProvider } from "./context/SearchContext";
 import { CartDataProvider } from "./context/CartContext";
+import { UserProvider } from "./context/UserContext";
+import { CartProvider } from "./context/UnAuthCart";
 
 function App() {
+
   return (
     <div>
       <Router>
-        <CartDataProvider>
-          <SearchDataProvider>
-            <Navbar />
-            <Routes>
-              {routes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={route.component}
-                />
-              ))}
-            </Routes>
-            <Footer />
-          </SearchDataProvider>
-        </CartDataProvider>
+        <UserProvider>
+          <CartProvider>
+            <CartDataProvider>
+              <SearchDataProvider>
+                <Navbar />
+                <Routes>
+                  {routes.map((route, index) => (
+                    <Route
+                      key={index}
+                      path={route.path}
+                      element={route.component}
+                    />
+                  ))}
+                </Routes>
+                <Footer />
+              </SearchDataProvider>
+            </CartDataProvider>
+          </CartProvider>
+        </UserProvider>
       </Router>
     </div>
   );

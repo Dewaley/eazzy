@@ -1,12 +1,46 @@
-import { useState } from "react";
+import { useState, useReducer, useEffect } from "react";
 import Button from "../Button/Button";
 import ProductServices from "../../services/ProductServices";
 import { Link } from "react-router-dom";
 import { UseShoppingCartData } from "../../context/CartContext";
+import { useUserContext } from "../../context/UserContext";
+import { UseCart } from "../../context/UnAuthCart";
 
 const ProductCard = ({ item }) => {
   const [count, setCount] = useState(1);
   const [loading, setLoading] = useState(false);
+
+  const { state, dispatch } = UseCart();
+
+  const { user, setUser } = useUserContext(false);
+
+  function numberWithCommas(x) {
+    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+
+  function handleAddItem({
+    product_id,
+    caryQuantity,
+    product_image,
+    product_description,
+    product_price,
+    product_unit,
+    product_name,
+  }) {
+    dispatch({
+      type: "ADD_ITEM",
+      item: {
+        product_id: product_id,
+        caryQuantity: caryQuantity,
+        product_image: product_image,
+        product_description: product_description,
+        product_price: product_price,
+        product_unit: product_unit,
+        product_name: product_name,
+      },
+    });
+  }
 
   const increment = () => {
     setCount((prev) => prev + 1);
@@ -22,7 +56,7 @@ const ProductCard = ({ item }) => {
       key={item.product_id}
       className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'
     >
-      <Link to={`/category/product/${item.product_id}`}>
+      <Link to={`/category/product/${item.product_slug}`}>
         <img
           src={"https://media.tryeazzy.co/" + item.product_image}
           alt=''
@@ -34,7 +68,7 @@ const ProductCard = ({ item }) => {
           <span className='text-sm md:text-base'>{item.product_name}</span>
         </Link>
         <p className='flex justify-between md:text-sm text-xs items-center'>
-          <span>&#x20A6;{item.product_price}</span>
+          <span>&#x20A6;{numberWithCommas(item.product_price)}</span>
           <span className=''>({item.product_unit})</span>
         </p>
         <span className='flex items-center justify-between gap-2'>
@@ -59,30 +93,51 @@ const ProductCard = ({ item }) => {
             +
           </button>
         </span>
-        <Button
-          loader={loading}
-          content={"Add to Cart"}
-          large
-          font={"text-xs md:text-base"}
-          onClick={() => {
-            if (sessionStorage.getItem("geeToken")) {
-              const data = {
-                product_id: item?.product_id,
-                quantity: count,
-              };
-              setLoading(true);
-              ProductServices.addToCart(data).then((res) => {
-                console.log(res);
-                setCount(1);
-                ProductServices.fetchCart().then((response) => {
-                  console.log(response?.data?.cart);
-                  setCartData(response?.data?.cart);
-                  setLoading(false);
+        {user ? (
+          <Button
+            loader={loading}
+            content={"Add to Cart"}
+            large
+            font={"text-xs md:text-base"}
+            onClick={() => {
+              if (sessionStorage.getItem("geeToken")) {
+                const data = {
+                  product_id: item?.product_id,
+                  quantity: count,
+                };
+                setLoading(true);
+                ProductServices.addToCart(data).then((res) => {
+                  console.log(res);
+                  setCount(1);
+                  ProductServices.fetchCart().then((response) => {
+                    console.log(response?.data?.cart);
+                    setCartData(response?.data?.cart);
+                    setLoading(false);
+                  });
                 });
+              }
+            }}
+          />
+        ) : (
+          <Button
+            loader={loading}
+            content={"Add to Cart"}
+            large
+            font={"text-xs md:text-base"}
+            onClick={() => {
+              setCount(1)
+              handleAddItem({
+                product_id: item?.product_id,
+                caryQuantity: count,
+                product_description: item?.product_description,
+                product_price: item?.product_price,
+                product_unit: item?.product_unit,
+                product_image: item?.product_image,
+                product_name: item?.product_name,
               });
-            }
-          }}
-        />
+            }}
+          />
+        )}
       </div>
     </div>
   );
