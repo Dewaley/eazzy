@@ -14,7 +14,7 @@ const WhoCan = () => {
           alt=''
           className='w-[60vw] md:w-[40%] object-cover object-center'
         />
-        <ul className='flex flex-col indicator2 gap-4'>
+        <ul className='flex flex-col indicator2 gap-4 items-center md:items-start text-center md:text-left'>
           <li className={`flex flex-col pl-4 cursor-default`}>
             <h5 className='font-medium text-lg'>
               <Link to='/signup'>Create an Account</Link>
@@ -42,9 +42,9 @@ const WhoCan = () => {
               deliveries.
             </p>
           </li>
-          <a href='#categories' className='w-fit pl-4'>
+          {/* <a href='#categories' className='w-fit pl-4'>
             <Button content={"Shop Now"} big={true} />
-          </a>
+          </a> */}
         </ul>
       </div>
     </div>
