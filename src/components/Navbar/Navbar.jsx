@@ -303,7 +303,7 @@ const Navbar = () => {
               )}
             </ul>
             <ul className='md:hidden flex flex-col gap-2'>
-              <h4 className='text-lg font-medium'>Helpa</h4>
+              <h4 className='text-lg font-medium'>Help</h4>
               {user && (
                 <li
                   className='transition hover:text-greenish cursor-pointer'

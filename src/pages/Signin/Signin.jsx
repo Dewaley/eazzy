@@ -61,7 +61,7 @@ const Signin = () => {
                 .then(() => {
                   setLoading(false);
                   navigate("/");
-                  localStorage.removeItem("geeUnauthCart")
+                  localStorage.removeItem("geeUnauthCart");
                 });
             });
         } else {
@@ -133,7 +133,7 @@ const Signin = () => {
         <div className='flex flex-col gap-2 mt-4 items-center font-light'>
           <p className='text-center text-neutral-400'>
             New to the space?
-            <Link to='/register/business' className='pl-2 text-greenish'>
+            <Link to='/signup' className='pl-2 text-greenish'>
               Register
             </Link>
           </p>
