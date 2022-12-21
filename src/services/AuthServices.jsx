@@ -66,6 +66,23 @@ const fetchUser = async () => {
     });
 };
 
+const updateUser = async (data) => {
+  return axios
+    .patch(USR_URL, data, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+};
+
 const logout = async () => {
   return axios
     .get(USR_URL + "/signout", {
@@ -83,6 +100,13 @@ const logout = async () => {
     });
 };
 
-const AuthServices = { signupBusiness, signin, signupUser, fetchUser, logout };
+const AuthServices = {
+  signupBusiness,
+  signin,
+  signupUser,
+  fetchUser,
+  logout,
+  updateUser,
+};
 
 export default AuthServices;
