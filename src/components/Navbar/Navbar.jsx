@@ -64,18 +64,18 @@ const Navbar = () => {
   }, [sessionStorage.getItem("geeToken")]);
 
   useEffect(() => {
-    console.log(state)
-  //   if (state.items.length > 0) {
-  //     state.items.map((item) => {
-  //       const dat = {
-  //         quantity: item.quantity,
-  //       };
-  //       // ProductServices.editCart({ id: item.id, data: dat }).then((res) => {
-  //       //   console.log(res);
-  //       // });
-  //       return item
-  //     });
-  //   }
+    console.log(state);
+    //   if (state.items.length > 0) {
+    //     state.items.map((item) => {
+    //       const dat = {
+    //         quantity: item.quantity,
+    //       };
+    //       // ProductServices.editCart({ id: item.id, data: dat }).then((res) => {
+    //       //   console.log(res);
+    //       // });
+    //       return item
+    //     });
+    //   }
   }, [state]);
 
   return (
@@ -102,7 +102,7 @@ const Navbar = () => {
         </Link>
         <form
           action=''
-          className='w-[60%] hidden md:flex items-center gap-4 justify-center'
+          className='w-[55%] hidden md:flex items-center gap-4 justify-center'
           onSubmit={(e) => {
             e.preventDefault();
             search();
@@ -156,6 +156,41 @@ const Navbar = () => {
                 }`}
               />
             </div>
+            {user ? (
+              <Button
+                loader={loading}
+                content={"Logout"}
+                large
+                onClick={() => {
+                  setLoading(true);
+                  AuthServices.logout()
+                    .then((res) => {
+                      console.log(res.data);
+                      sessionStorage.removeItem("geeToken");
+                      setCartData([]);
+                      setLoading(false);
+                    })
+                    .then(() => {
+                      setHelpOpen(false);
+                      setAccountOpen(false);
+                      setMenu(false);
+                      setUser(false);
+                      navigate("/");
+                    });
+                }}
+              />
+            ) : (
+              <Link
+                to={"/signup"}
+                onClick={() => {
+                  setHelpOpen(false);
+                  setAccountOpen(false);
+                  setMenu(false);
+                }}
+              >
+                <Button content={"Sign up"} large />
+              </Link>
+            )}
           </div>
           <Link
             to='/cart'
@@ -198,7 +233,8 @@ const Navbar = () => {
                 Track order
               </li>
             )}
-            <li
+            <Link
+              to='/faqs'
               className='transition hover:text-greenish cursor-pointer'
               onClick={() => {
                 setHelpOpen(false);
@@ -207,7 +243,7 @@ const Navbar = () => {
               }}
             >
               FAQs
-            </li>
+            </Link>
             <a
               href='mailto:support@tryeazzy.com'
               onClick={() => {
@@ -316,7 +352,8 @@ const Navbar = () => {
                   Track order
                 </li>
               )}
-              <li
+              <Link
+                to='/faqs'
                 className='transition hover:text-greenish cursor-pointer'
                 onClick={() => {
                   setHelpOpen(false);
@@ -325,7 +362,7 @@ const Navbar = () => {
                 }}
               >
                 FAQs
-              </li>
+              </Link>
               <a
                 href='mailto:support@tryeazzy.com'
                 onClick={() => {
@@ -341,7 +378,7 @@ const Navbar = () => {
         )}
         {accountOpen && (
           <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] hidden md:flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
-            {user ? (
+            {/* {user ? (
               <Button
                 loader={loading}
                 content={"Logout"}
@@ -375,7 +412,7 @@ const Navbar = () => {
               >
                 <Button content={"Sign up"} large />
               </Link>
-            )}
+            )} */}
             {user && (
               <li className='transition hover:text-greenish cursor-pointer items-center flex gap-2'>
                 <Link
