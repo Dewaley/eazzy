@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { GrClose } from "react-icons/gr";
 import Button from "../../components/Button/Button";
 import AuthServices from "../../services/AuthServices";
+import PlaceholderLoading from "react-placeholder-loading";
 
 const Profile = () => {
   const [user, setUser] = useState({});
@@ -35,6 +36,7 @@ const Profile = () => {
           })
           .then(() => {
             setAccount(false);
+            setHome(false);
           });
       });
   };
@@ -63,7 +65,7 @@ const Profile = () => {
 
   return (
     <div>
-      {user.id && (
+      {user?.id ? (
         <div className='flex flex-col gap-4 justify-center items-center py-12 px-3'>
           <h1 className='text-xl font-medium w-full md:w-[70vw]'>
             Account Settings
@@ -124,9 +126,11 @@ const Profile = () => {
                 </span>
               </div>
               <div className='flex flex-col'>
-                <div className='flex flex-col'>
+                <div className='flex justify-between gap-8'>
                   <h1 className='font-medium'>Home Address</h1>
-                  <p className='text-neutral-400'>{user?.home_address}</p>
+                  <p className='text-neutral-400 break-all'>
+                    {user?.home_address}
+                  </p>
                 </div>
               </div>
             </div>
@@ -135,7 +139,10 @@ const Profile = () => {
             <form
               className='absolute z-50 flex flex-col p-4 bg-white top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] rounded gap-4 w-[95vw] max-w-[400px]'
               id='accontForm'
-              onSubmit={() => handleSubmit()}
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
             >
               <div className='text-lg font-medium flex justify-between items-center'>
                 <h1 className=''>Account Settings</h1>
@@ -147,6 +154,7 @@ const Profile = () => {
               <div className='flex flex-col gap-3'>
                 <input
                   type='text'
+                  value={updated.email}
                   required
                   placeholder='Email Address'
                   className='border-[1px] rounded p-2 font-lg'
@@ -162,6 +170,7 @@ const Profile = () => {
                   placeholder='Phone Number'
                   required
                   className='border-[1px] rounded p-2 font-lg'
+                  value={updated.phone}
                   pattern='[0-9]{11,13}'
                   onChange={(e) => {
                     setUpdated({
@@ -182,9 +191,9 @@ const Profile = () => {
                   content={"Save"}
                   type={"submit"}
                   loader={loading}
-                  onClick={() => {
-                    handleSubmit();
-                  }}
+                  // onClick={() => {
+                  //   handleSubmit();
+                  // }}
                 />
               </div>
             </form>
@@ -231,7 +240,13 @@ const Profile = () => {
             </form>
           )}
           {home && (
-            <form className='absolute z-50 flex flex-col p-4 bg-white top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] rounded gap-4 w-[95vw] max-w-[400px]'>
+            <form
+              className='absolute z-50 flex flex-col p-4 bg-white top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] rounded gap-4 w-[95vw] max-w-[400px]'
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+            >
               <div className='text-lg font-medium flex justify-between items-center'>
                 <h1 className=''>Home Info Settings</h1>
                 <GrClose
@@ -244,6 +259,13 @@ const Profile = () => {
                   type='text'
                   placeholder='Home Address'
                   className='border-[1px] rounded p-2 font-lg'
+                  value={updated?.home_address}
+                  onChange={(e) => {
+                    setUpdated({
+                      ...updated,
+                      home_address: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className='flex justify-end gap-2'>
@@ -253,11 +275,7 @@ const Profile = () => {
                 >
                   Cancel
                 </button>
-                <Button
-                  content={"Save"}
-                  type={"submit"}
-                  onClick={() => setHome(false)}
-                />
+                <Button content={"Save"} type={"submit"} loader={loading} />
               </div>
             </form>
           )}
@@ -271,6 +289,72 @@ const Profile = () => {
               }}
             ></div>
           )}
+        </div>
+      ) : (
+        <div className='flex flex-col gap-4 justify-center items-center py-12 px-3'>
+          <h1 className='text-xl font-medium w-full md:w-[70vw]'>
+            Account Settings
+          </h1>
+          <div className='w-full md:w-[70vw] flex flex-col gap-2 divide-y-2'>
+            <div className='flex flex-col gap-2'>
+              <div className='flex justify-between items-center'>
+                <h1 className='text-lg font-medium'>Account Information</h1>
+                <span
+                  className='cursor-pointer font-medium text-greenish'
+                >
+                  Edit
+                </span>
+              </div>
+              <div className='flex flex-col gap-1'>
+                <div className='flex flex-col'>
+                  <h1 className='font-medium'>Email Address</h1>
+                  <p className='text-neutral-400 w-40 overflow-hidden'><PlaceholderLoading shape='rect' width={1000} height={10} /></p>
+                </div>
+                <div className='flex flex-col'>
+                  <h1 className='font-medium'>Full Name</h1>
+                  <p className='text-neutral-400'>
+                  <p className='text-neutral-400 w-40 overflow-hidden'><PlaceholderLoading shape='rect' width={1000} height={10} /></p>
+                  </p>
+                </div>
+                <div className='flex flex-col'>
+                  <h1 className='font-medium'>Phone Number</h1>
+                  <p className='text-neutral-400 w-40 overflow-hidden'><PlaceholderLoading shape='rect' width={1000} height={10} /></p>
+                </div>
+              </div>
+            </div>
+            <div className='flex flex-col gap-2 mt-2 pt-2'>
+              <div className='flex justify-between items-center'>
+                <h1 className='text-lg font-medium'>Security Information</h1>
+                <span
+                  className='cursor-pointer font-medium text-greenish'
+                >
+                  Edit
+                </span>
+              </div>
+              <div className='flex flex-col'>
+                <div className='flex flex-col'>
+                  <h1 className='font-medium'>Password</h1>
+                  <p className='text-neutral-400'>********</p>
+                </div>
+              </div>
+            </div>
+            <div className='flex flex-col gap-2 mt-2 pt-2'>
+              <div className='flex justify-between items-center'>
+                <h1 className='text-lg font-medium'>Home Information</h1>
+                <span
+                  className='cursor-pointer font-medium text-greenish'
+                >
+                  Edit
+                </span>
+              </div>
+              <div className='flex flex-col'>
+                <div className='flex justify-between gap-8'>
+                  <h1 className='font-medium'>Home Address</h1>
+                  <p className='text-neutral-400 w-40 overflow-hidden'><PlaceholderLoading shape='rect' width={1000} height={10} /></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
