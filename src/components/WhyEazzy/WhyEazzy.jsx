@@ -10,13 +10,13 @@ const WhyEazzy = () => {
       count: 1,
       header: "High quality produce",
       details:
-        "Get fresh and direct supply from the finest farmers/vendors, and at affordable prices.",
+        "Get fresh and direct supply from the finest farmers/vendors, at affordable prices.",
     },
     {
       count: 2,
       header: "Your market runs on auto-pilot",
       details:
-        "Pre-order fresh food items and other groceries on a schedule that works for you.",
+        "Pre-order fresh food items and supplies on a schedule that works for you.",
     },
     {
       count: 3,
