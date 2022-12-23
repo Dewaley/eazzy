@@ -28,7 +28,7 @@ const Profile = () => {
               last_name: res?.data?.last_name,
               email: res?.data?.email,
               phone: res?.data?.phone,
-              home_adress: res?.data?.home_address,
+              home_address: res?.data?.home_address,
             });
           })
           .then(() => {
@@ -58,7 +58,7 @@ const Profile = () => {
         last_name: res?.data?.last_name,
         email: res?.data?.email,
         phone: res?.data?.phone,
-        home_adress: res?.data?.home_address,
+        home_address: res?.data?.home_address,
       });
     });
   }, []);
@@ -299,35 +299,41 @@ const Profile = () => {
             <div className='flex flex-col gap-2'>
               <div className='flex justify-between items-center'>
                 <h1 className='text-lg font-medium'>Account Information</h1>
-                <span
-                  className='cursor-pointer font-medium text-greenish'
-                >
+                <span className='cursor-pointer font-medium text-greenish'>
                   Edit
                 </span>
               </div>
               <div className='flex flex-col gap-1'>
                 <div className='flex flex-col'>
                   <h1 className='font-medium'>Email Address</h1>
-                  <p className='text-neutral-400 w-40 overflow-hidden'><PlaceholderLoading shape='rect' width={1000} height={10} /></p>
+                  <p className='text-neutral-400 w-40 overflow-hidden'>
+                    <PlaceholderLoading shape='rect' width={1000} height={10} />
+                  </p>
                 </div>
                 <div className='flex flex-col'>
                   <h1 className='font-medium'>Full Name</h1>
                   <p className='text-neutral-400'>
-                  <p className='text-neutral-400 w-40 overflow-hidden'><PlaceholderLoading shape='rect' width={1000} height={10} /></p>
+                    <p className='text-neutral-400 w-40 overflow-hidden'>
+                      <PlaceholderLoading
+                        shape='rect'
+                        width={1000}
+                        height={10}
+                      />
+                    </p>
                   </p>
                 </div>
                 <div className='flex flex-col'>
                   <h1 className='font-medium'>Phone Number</h1>
-                  <p className='text-neutral-400 w-40 overflow-hidden'><PlaceholderLoading shape='rect' width={1000} height={10} /></p>
+                  <p className='text-neutral-400 w-40 overflow-hidden'>
+                    <PlaceholderLoading shape='rect' width={1000} height={10} />
+                  </p>
                 </div>
               </div>
             </div>
             <div className='flex flex-col gap-2 mt-2 pt-2'>
               <div className='flex justify-between items-center'>
                 <h1 className='text-lg font-medium'>Security Information</h1>
-                <span
-                  className='cursor-pointer font-medium text-greenish'
-                >
+                <span className='cursor-pointer font-medium text-greenish'>
                   Edit
                 </span>
               </div>
@@ -341,16 +347,16 @@ const Profile = () => {
             <div className='flex flex-col gap-2 mt-2 pt-2'>
               <div className='flex justify-between items-center'>
                 <h1 className='text-lg font-medium'>Home Information</h1>
-                <span
-                  className='cursor-pointer font-medium text-greenish'
-                >
+                <span className='cursor-pointer font-medium text-greenish'>
                   Edit
                 </span>
               </div>
               <div className='flex flex-col'>
                 <div className='flex justify-between gap-8'>
                   <h1 className='font-medium'>Home Address</h1>
-                  <p className='text-neutral-400 w-40 overflow-hidden'><PlaceholderLoading shape='rect' width={1000} height={10} /></p>
+                  <p className='text-neutral-400 w-40 overflow-hidden'>
+                    <PlaceholderLoading shape='rect' width={1000} height={10} />
+                  </p>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import onions from "../../assets/onions.png";
+import AuthServices from "../../services/AuthServices";
 import Button from "../../components/Button/Button";
 import CheckoutProduct from "../../components/CheckoutProduct/CheckoutProduct";
 import { useState, useEffect } from "react";
@@ -6,8 +6,11 @@ import { UseShoppingCartData } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const [user, setUser] = useState({});
   const [total, setTotal] = useState(0);
+  const [delivery, setDelivery] = useState(2000);
   const [cartData, setCartData] = UseShoppingCartData([]);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (cartData.length < 1) {
@@ -20,6 +23,23 @@ const Checkout = () => {
       setTotal(sum);
     }
   }, [cartData]);
+
+  useEffect(() => {
+    AuthServices.fetchUser().then((res) => {
+      console.log(res?.data);
+      setUser({
+        first_name: res?.data?.first_name,
+        last_name: res?.data?.last_name,
+        email: res?.data?.email,
+        phone: res?.data?.phone,
+        home_address: res?.data?.home_address,
+      });
+    });
+  }, []);
+
+  function numberWithCommas(x) {
+    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   if (cartData?.length > 0) {
     return (
@@ -35,15 +55,29 @@ const Checkout = () => {
                 type='text'
                 name=''
                 id=''
+                value={user?.first_name}
                 placeholder='First name'
                 className='md:w-1/2 border-[1px] rounded p-2 font-lg'
+                onChange={(e) => {
+                  setUser({
+                    ...user,
+                    first_name: e.target.value,
+                  });
+                }}
               />
               <input
                 type='text'
                 name=''
                 id=''
+                value={user?.last_name}
                 placeholder='Last name'
                 className='md:w-1/2 border-[1px] rounded p-2 font-lg'
+                onChange={(e) => {
+                  setUser({
+                    ...user,
+                    last_name: e.target.value,
+                  });
+                }}
               />
             </div>
             <div className='flex flex-col gap-6'>
@@ -51,8 +85,15 @@ const Checkout = () => {
                 type='tel'
                 name=''
                 id=''
+                value={user?.phone}
                 placeholder='Phone Number'
                 className='border-[1px] rounded p-2 font-lg'
+                onChange={(e) => {
+                  setUser({
+                    ...user,
+                    phone: e.target.value,
+                  });
+                }}
               />
               <select
                 name='states'
@@ -69,23 +110,28 @@ const Checkout = () => {
                 name=''
                 id=''
                 placeholder='Delivery Address'
+                value={user?.home_address}
                 className='border-[1px] rounded p-2 font-lg'
+                onChange={(e) => {
+                  setUser({
+                    ...user,
+                    home_address: e.target.value,
+                  });
+                }}
               />
             </div>
             <div className='flex flex-row gap-4'>
               <input
-                type='text'
+                type='date'
                 name=''
                 id=''
                 className='w-1/2 border-[1px] rounded p-2 font-lg'
                 placeholder='Date'
-                onFocus={(e) => (e.target.type = "date")}
               />
               <input
-                type='text'
+                type='time'
                 name=''
                 id=''
-                onFocus={(e) => (e.target.type = "time")}
                 placeholder='Time'
                 className='w-1/2 border-[1px] rounded p-2 font-lg'
               />
@@ -95,27 +141,37 @@ const Checkout = () => {
         <div className='flex flex-col gap-4 w-full bg-white px-3 md:px-6 py-6 md:w-[30vw] h-fit rounded'>
           <div className='flex flex-col gap-y-2 border-b-2 pb-2'>
             <h1 className='font-medium text-neutral-400'>Order summary</h1>
-            <h4 className='font-medium'>Your order (1 item)</h4>
+            <h4 className='font-medium'>
+              Your order ({cartData.length + " item(s)"})
+            </h4>
           </div>
           <div className='flex flex-col gap-4 py-4 border-b-2'>
             {cartData?.map((item) => (
-              <CheckoutProduct key={item.product_id} item={item} />
+              <CheckoutProduct
+                key={item.product_id}
+                item={item}
+                total={total}
+              />
             ))}
           </div>
           <div className='pb-3 border-b-2 flex flex-col gap-3 pt-2'>
             <div className='flex justify-between'>
               <h4>Subtotal</h4>
-              <span className='font-medium'>#{total}</span>
+              <span className='font-medium'>
+                &#x20A6;{numberWithCommas(total)}
+              </span>
             </div>
             <div className='flex justify-between'>
               <h4>Delivery</h4>
-              <span className='font-medium'>#2,000</span>
+              <span className='font-medium'>
+                &#x20A6;{numberWithCommas(delivery)}
+              </span>
             </div>
           </div>
           <div className='pb-3 border-b-2 pt-2 mb-3'>
             <div className='flex justify-between'>
               <h4>Total</h4>
-              <span className='font-medium text-greenish'>#5,000</span>
+              <span className='font-medium text-greenish'>&#x20A6;{numberWithCommas(delivery + total)}</span>
             </div>
           </div>
           <Button content={"Place order"} large />

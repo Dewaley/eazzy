@@ -102,7 +102,7 @@ const Navbar = () => {
         </Link>
         <form
           action=''
-          className='w-[55%] hidden md:flex items-center gap-4 justify-center'
+          className={`${user ? "w-[55%]" : "w-[60%]"} hidden md:flex items-center gap-4 justify-center`}
           onSubmit={(e) => {
             e.preventDefault();
             search();
@@ -124,22 +124,24 @@ const Navbar = () => {
 
         <div className='flex items-center text-blackish gap-4 z-40'>
           <div className='hidden md:flex items-center justify-center z-40 gap-4'>
-            <div
-              className='hidden md:flex items-center justify-center h-6 rounded gap-1 cursor-pointer'
-              onClick={() => {
-                setAccountOpen(!accountOpen);
-                setHelpOpen(false);
-                setMenu(false);
-              }}
-            >
-              <BiUser />
-              <span>Account</span>
-              <BsChevronDown
-                className={`transition duration-500 ${
-                  accountOpen && "-rotate-180"
-                }`}
-              />
-            </div>
+            {user && (
+              <div
+                className='hidden md:flex items-center justify-center h-6 rounded gap-1 cursor-pointer'
+                onClick={() => {
+                  setAccountOpen(!accountOpen);
+                  setHelpOpen(false);
+                  setMenu(false);
+                }}
+              >
+                <BiUser />
+                <span>Account</span>
+                <BsChevronDown
+                  className={`transition duration-500 ${
+                    accountOpen && "-rotate-180"
+                  }`}
+                />
+              </div>
+            )}
             <div
               className='hidden md:flex items-center justify-center h-6 rounded gap-1 cursor-pointer'
               onClick={() => {
@@ -220,7 +222,7 @@ const Navbar = () => {
           </span>
         </div>
         {helpOpen && (
-          <ul className='absolute px-3 py-2 top-[4rem] right-[1rem] flex flex-col bg-white w-44 z-40 gap-2 justify-center rounded-b'>
+          <ul className='absolute px-3 py-2 top-[4rem] right-[8rem] hidden md:flex flex-col bg-white w-44 z-40 gap-2 justify-center rounded-b'>
             {user && (
               <li
                 className='transition hover:text-greenish cursor-pointer'
@@ -363,8 +365,7 @@ const Navbar = () => {
               >
                 FAQs
               </Link>
-              <a
-                href='mailto:support@tryeazzy.com'
+              <Link to="/contact"
                 onClick={() => {
                   setHelpOpen(false);
                   setAccountOpen(false);
@@ -372,12 +373,12 @@ const Navbar = () => {
                 }}
               >
                 <Button content={"Contact us"} large />
-              </a>
+              </Link>
             </ul>
           </div>
         )}
         {accountOpen && (
-          <ul className='absolute px-3 py-2 top-[4rem] right-[1.5rem] md:right-[9rem] hidden md:flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
+          <ul className='absolute px-3 py-2 top-[4rem] md:right-[14rem] hidden md:flex flex-col bg-white w-48 z-40 gap-2 justify-center rounded-b'>
             {/* {user ? (
               <Button
                 loader={loading}
