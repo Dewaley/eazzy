@@ -4,12 +4,14 @@ import CheckoutProduct from "../../components/CheckoutProduct/CheckoutProduct";
 import { useState, useEffect } from "react";
 import { UseShoppingCartData } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import PaymentServices from "../../services/PaymentServices";
 
 const Checkout = () => {
   const [user, setUser] = useState({});
   const [total, setTotal] = useState(0);
   const [delivery, setDelivery] = useState(2000);
   const [cartData, setCartData] = UseShoppingCartData([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -30,9 +32,13 @@ const Checkout = () => {
       setUser({
         first_name: res?.data?.first_name,
         last_name: res?.data?.last_name,
+        name: user.first_name,
         email: res?.data?.email,
         phone: res?.data?.phone,
-        home_address: res?.data?.home_address,
+        address: res?.data?.home_address,
+        location: "",
+        date: "",
+        time: "",
       });
     });
   }, []);
@@ -61,7 +67,7 @@ const Checkout = () => {
                 onChange={(e) => {
                   setUser({
                     ...user,
-                    first_name: e.target.value,
+                    name: e.target.value,
                   });
                 }}
               />
@@ -99,23 +105,30 @@ const Checkout = () => {
                 name='states'
                 id='states'
                 className='w-full border-[1px] rounded p-2 font-lg'
+                onChange={(e) => {
+                  setUser({
+                    ...user,
+                    address: user.address + e.target.value,
+                  });
+                }}
               >
-                <option value='volvo'>Ogun</option>
-                <option value='saab'>Lagos</option>
-                <option value='mercedes'>Oyo</option>
-                <option value='audi'>Benue</option>
+                <option value=''>-- Choose an option --</option>
+                <option value='Ogun'>Ogun</option>
+                <option value='Lagos'>Lagos</option>
+                <option value='Oyo'>Oyo</option>
+                <option value='Benue'>Benue</option>
               </select>
               <input
                 type='tel'
                 name=''
                 id=''
                 placeholder='Delivery Address'
-                value={user?.home_address}
+                value={user?.address}
                 className='border-[1px] rounded p-2 font-lg'
                 onChange={(e) => {
                   setUser({
                     ...user,
-                    home_address: e.target.value,
+                    address: e.target.value,
                   });
                 }}
               />
@@ -127,6 +140,12 @@ const Checkout = () => {
                 id=''
                 className='w-1/2 border-[1px] rounded p-2 font-lg'
                 placeholder='Date'
+                onChange={(e) => {
+                  setUser({
+                    ...user,
+                    date: e.target.value,
+                  });
+                }}
               />
               <input
                 type='time'
@@ -134,6 +153,12 @@ const Checkout = () => {
                 id=''
                 placeholder='Time'
                 className='w-1/2 border-[1px] rounded p-2 font-lg'
+                onChange={(e) => {
+                  setUser({
+                    ...user,
+                    time: e.target.value,
+                  });
+                }}
               />
             </div>
           </form>
@@ -171,10 +196,33 @@ const Checkout = () => {
           <div className='pb-3 border-b-2 pt-2 mb-3'>
             <div className='flex justify-between'>
               <h4>Total</h4>
-              <span className='font-medium text-greenish'>&#x20A6;{numberWithCommas(delivery + total)}</span>
+              <span className='font-medium text-greenish'>
+                &#x20A6;{numberWithCommas(delivery + total)}
+              </span>
             </div>
           </div>
-          <Button content={"Place order"} large />
+          <Button
+            content={"Place order"}
+            large
+            loader={loading}
+            onClick={() => {
+              const data = {
+                first_name: user?.first_name,
+                last_name: user?.last_name,
+                address: user?.address,
+                datetime: user?.date + " " + user?.time,
+                phone: user?.phone,
+                email: user?.email,
+                location: user?.location,
+              };
+              setLoading(true);
+              PaymentServices.placeOrder(data).then((res) => {
+                console.log(res);
+                setLoading(false);
+                window.location.assign(res?.data?.orderDetails?.order_checkout_url)
+              });
+            }}
+          />
         </div>
       </div>
     );
@@ -184,3 +232,5 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
+//"SQLSTATE[HY000]: General error: 1364 Field 'order_amount' doesn't have a default value (SQL: insert into `orders` (`user_id`, `order_details`, `order_transaction_id`, `order_checkout_url`, `order_status`, `updated_at`, `created_at`) values (piheOcUpKY4pIeMqFHkOM4mVqgDWZC9xfWlAXEmNDwTfFwbcWi6vjqOXbbHOEjPn, [{"product_id":"gxQa8NofvS8JF2j6gDTa63hEAW1aC2rsLs6t3d3n7BlEK8XVZMVwCTTMrfAqa9J4","quantity":5},{"product_id":"HPHpO8jWu5vVYiiPsCiB3gCOCek13VQPsYJulKH6vJaVCCnw0DSde1lxDIdgLIFl","quantity":5}], aSj8g41atr1oJWvHCFRDKoCmB7gkeQDv4RequOoopCZ6cgpsq5FRjdk2a1Q8CEmJ, https://sandbox.sdk.monnify.com/checkout/MNFY|91|20221226165602|000360, Payment Pending, 2022-12-26 15:56:02, 2022-12-26 15:56:02))"
