@@ -82,8 +82,9 @@ const Navbar = () => {
     <div
       className={`${
         pathname.includes("/signin") ||
-        pathname.includes("/register") ||
-        pathname.includes("/passwordreset")
+        pathname.includes("/signup") ||
+        pathname.includes("/passwordreset") ||
+        pathname.includes("/order/confirm")
           ? "hidden"
           : "block"
       }`}

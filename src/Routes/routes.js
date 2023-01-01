@@ -10,6 +10,9 @@ import Individual from "../pages/Register/Individual";
 import PasswordReset from "../pages/ResetPassword/PasswordReset";
 import Signin from "../pages/Signin/Signin";
 import FAQs from "../pages/FAQs/FAQs";
+import OrderConfirmation from "../pages/orders/OrderConfirmation";
+import Orders from "../pages/orders/Orders";
+import NotFound from "../pages/404";
 
 const routes = [
   {
@@ -59,6 +62,14 @@ const routes = [
   {
     path: "/faqs",
     component: <FAQs />,
+  },
+  {
+    path: "/order/confirm",
+    component: <OrderConfirmation/>,
+  },
+  {
+    path: "*",
+    component: <NotFound/>,
   },
 ];
 
