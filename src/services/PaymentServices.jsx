@@ -53,10 +53,28 @@ const confirmPayment = async (data) => {
   });
 }
 
+const fetchSingleOrder = async (data) => {
+  return axios
+  .get(ORDERS_URL + "/" + data, {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => {
+    return response;
+  })
+  .catch((error) => {
+    return error.response;
+  });
+}
+
 const PaymentServices = {
   placeOrder,
   confirmPayment,
   fetchOrders,
+  fetchSingleOrder
 };
 
 export default PaymentServices;

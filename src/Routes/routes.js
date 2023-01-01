@@ -68,6 +68,10 @@ const routes = [
     component: <OrderConfirmation/>,
   },
   {
+    path: "/orders",
+    component: <Orders/>
+  },
+  {
     path: "*",
     component: <NotFound/>,
   },
