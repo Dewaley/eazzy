@@ -150,7 +150,7 @@ const fetchCart = async () => {
     });
 };
 
-const emptyCart = () => {
+const emptyCart = async () => {
   return axios
   .delete(baseUrl + "/cart", {
     headers: {

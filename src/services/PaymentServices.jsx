@@ -19,6 +19,23 @@ const placeOrder = async (data) => {
     });
 };
 
+const fetchOrders = async (page) => {
+  return axios
+    .get(ORDERS_URL + `?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("geeToken")}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+}
+
 const confirmPayment = async (data) => {
   return axios
   .get(ORDERS_URL + "/confirm/" + data, {
@@ -39,6 +56,7 @@ const confirmPayment = async (data) => {
 const PaymentServices = {
   placeOrder,
   confirmPayment,
+  fetchOrders,
 };
 
 export default PaymentServices;
