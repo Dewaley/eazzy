@@ -15,7 +15,7 @@ const Orders = () => {
     PaymentServices.fetchOrders(1).then(async (res) => {
       console.log(res);
       const data = await res?.data?.orders?.data;
-      console.log("aaa", JSON.parse(data));
+      console.log(data);
       setOrders(data);
       return data;
     });
@@ -70,9 +70,24 @@ const Orders = () => {
           </span>
         </div>
         <div className='flex flex-col gap-2'>
-          {orders.map((order) => (
-            <div className="border-2 rounded-md">Hi</div>
-          ))}
+          {orders.map((order) => {
+            const isoDate = order.updated_at
+            const date = new Date(isoDate);
+            const options = { month: "short", day: "2-digit", year: "numeric" };
+            const formattedDate = date.toLocaleDateString("en-US", options);
+            return (
+              <div className='border-2 rounded-md p-2 flex flex-col'>
+                <div className='flex justify-between'>
+                  <span>Processing</span>
+                  <div className='flex flex-col gap-2'>
+                    <span>Order-Date: {formattedDate}</span>
+                    <span className="flex gap-3">
+                    <span>Order-ID: {order.order_treansaction_id}</span><span>Copy</span></span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
