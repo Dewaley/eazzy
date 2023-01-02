@@ -117,6 +117,15 @@ input[type=number] {
   animation-duration: 11s;
 }
 
+.toast {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3d7e47;
+  color: #fff;
+}
+
 @keyframes animate {
   0% {
     transform: translateY(0) rotate(0deg);
