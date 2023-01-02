@@ -1,30 +1,54 @@
-import can1 from "../../assets/can1.png"
-import can2 from "../../assets/can2.png"
+import can1 from "../../assets/can1.png";
+import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 const WhoCan = () => {
-
-    const items = [
-        {
-            details: "Resturants and small food bussinesses can procure fresh food items in bulk on a schedule & make their orders recurring",
-            image: can1,
-        },
-        {
-            details: "Individual customers can buy fresh foods and groceries instantly or recieve orders on a convenient schedule",
-            image: can2,
-        }
-]
-
   return (
-      <div className="flex flex-col items-center gap-12">
-          <h4 className="text-3xl font-medium">Who can use Eazzy?</h4>
-          <div className="grid md:grid-cols-2 divide-x-2 gap-y-6">
-              {items.map((item,index)=>(<div className="flex flex-col items-center gap-3 py-4">
-                  <img src={item.image} alt="" className="w-[60%]" />
-                  <p className="w-[60%]" >{item.details}</p>
-              </div>))}
-          </div>
+    <div className='flex flex-col items-center gap-12'>
+      <h4 className='text-3xl font-medium px-6 text-center'>
+        Built for Ambitious Food Businesses
+      </h4>
+      <div className='flex md:w-[80vw] gap-8 items-center md:items-start md:flex-row flex-col'>
+        <img
+          src={can1}
+          alt=''
+          className='w-[60vw] md:w-[40%] object-cover object-center'
+        />
+        <ul className='flex flex-col indicator2 gap-4 items-center md:items-start text-center md:text-left'>
+          <li className={`flex flex-col pl-4 cursor-default`}>
+            <h5 className='font-medium text-lg'>
+              <Link to='/signup'>Create an Account</Link>
+            </h5>
+            <p className='font-light text-base'>
+              Signup for free in 2 minutes.
+            </p>
+          </li>
+          <li className={`flex flex-col pl-4 cursor-default`}>
+            <h5 className='font-medium text-lg'>Order what you want</h5>
+            <p className='font-light text-base'>
+              Browse through our diverse categories and products.
+            </p>
+          </li>
+          <li className={`flex flex-col pl-4 cursor-default`}>
+            <h5 className='font-medium text-lg'>Schedule your Orders</h5>
+            <p className='font-light text-base'>
+              Fill in your preferred delivery date and time.
+            </p>
+          </li>
+          <li className={`flex flex-col pl-4 cursor-default`}>
+            <h5 className='font-medium text-lg'>Count on us to Deliver</h5>
+            <p className='font-light text-base'>
+              Try Eazzy today and never have to worry about late or unreliable
+              deliveries.
+            </p>
+          </li>
+          {/* <a href='#categories' className='w-fit pl-4'>
+            <Button content={"Shop Now"} big={true} />
+          </a> */}
+        </ul>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default WhoCan
+export default WhoCan;

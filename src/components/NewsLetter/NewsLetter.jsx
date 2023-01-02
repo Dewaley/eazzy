@@ -40,8 +40,7 @@ const NewsLetter = () => {
           Join the waitlist
         </h1>
         <h3 className='text-center z-20'>
-          Become part of our community. Be the first to hear about our exciting
-          news
+          Be the first to hear about our exciting news, and join a thriving community of food businesses
         </h3>
         <input
           type='text'

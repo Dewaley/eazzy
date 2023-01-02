@@ -3,6 +3,7 @@ import Button from "../Button/Button";
 import { BiTime } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { TiWorldOutline } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const MainInfo = () => {
   const items = [
@@ -27,13 +28,16 @@ const MainInfo = () => {
       <div className='w-full h-full relative flex flex-col sm:flex-row items-center gap-8 justify-evenly'>
         <div className='z-20 flex flex-col gap-8 sm:w-[40%]'>
           <h1 className='text-4xl font-medium overflow-visible h-fit'>
-            The Smarter way to buy fresh foods & groceries.
+            Buy Fresh foods conveniently & Automate procurement
           </h1>
           <p>
-            Eazzy is a digital farmers market that enables food businesses and
-            individuals in Africa to buy fresh food items and groceries, instantly or on a schedule.
+            Eazzy is a digital farmers market that enables food businesses in
+            Africa, to buy diverse fresh food items and supplies on a recurring
+            and convenient schedule
           </p>
-          <Button content={"Shop Now"} big={true} />
+          <a href='#categories' className='w-fit'>
+            <Button content={"Shop Now"} big={true} />
+          </a>
         </div>
         <img
           src={mainInfoPic}

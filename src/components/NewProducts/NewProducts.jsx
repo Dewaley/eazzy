@@ -1,161 +1,40 @@
-import advocado from "../../assets/advocado.png";
-import Button from "../Button/Button";
+import { useState, useEffect } from "react";
+import { lazy, Suspense } from "react";
+import ProductServices from "../../services/ProductServices";
+import CategorySkeleton from "../Categories/CategorySkeleton";
 
 const NewProducts = () => {
+  const Card = lazy(() => import("../ProductCard/ProductCard"));
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    ProductServices.fetchAllProducts().then((res) => {
+      console.log(res.data);
+      setProducts(res?.data);
+    });
+  }, []);
+
   return (
     <div className='px-3 md:px-6 flex flex-col items-center gap-12 py-8'>
       <h2 className='text-3xl text-center font-medium'>New Products</h2>
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:w-[90vw]'>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
-        <div className='px-2 py-3 border-[1px] border-greyish flex flex-col gap-3 rounded'>
-          <img
-            src={advocado}
-            alt=''
-            className='w-full object-cover object-center'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='flex justify-between'>
-              <span>Advocado</span>
-              <span>(each)</span>
-            </p>
-            <span>#2500</span>
-            <Button content={"Add to Cart"} />
-          </div>
-        </div>
+        <Suspense
+          fallback={
+            <div className='grid z-20 w-[80vw] grid-cols-2 md:grid-cols-3 gap-4'>
+              <CategorySkeleton />
+              <CategorySkeleton />
+              <CategorySkeleton />
+              <CategorySkeleton />
+              <CategorySkeleton />
+              <CategorySkeleton />
+            </div>
+          }
+        >
+          {products?.length > 0 && products?.map((item) => (
+            <Card key={item.product_id} item={item} />
+          ))}
+        </Suspense>
       </div>
     </div>
   );

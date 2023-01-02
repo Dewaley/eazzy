@@ -10,13 +10,13 @@ const WhyEazzy = () => {
       count: 1,
       header: "High quality produce",
       details:
-        "Get fresh and direct supply from the finest farmers/vendors, and at affordable prices.",
+        "Get fresh and direct supply from the finest farmers/vendors, at affordable prices.",
     },
     {
       count: 2,
       header: "Your market runs on auto-pilot",
       details:
-        "Pre-order fresh food items and other groceries on a schedule that works for you.",
+        "Pre-order fresh food items and supplies on a schedule that works for you.",
     },
     {
       count: 3,
@@ -89,13 +89,25 @@ const WhyEazzy = () => {
               />
             </div>
             <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
-              <img src={pic4} alt='' className='w-full h-full object-cover object-center' />
+              <img
+                src={pic4}
+                alt=''
+                className='w-full h-full object-cover object-center'
+              />
             </div>
             <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
-              <img src={pic3} alt='' className='w-full h-full object-cover object-center' />
+              <img
+                src={pic3}
+                alt=''
+                className='w-full h-full object-cover object-center'
+              />
             </div>
             <div className='h-[calc(60vw/1.05)] md:h-[calc((0.4*80vw)/1.05)] w-full'>
-              <img src={pic2} alt='' className='w-full h-full object-cover object-center' />
+              <img
+                src={pic2}
+                alt=''
+                className='w-full h-full object-cover object-center'
+              />
             </div>
           </div>
         </div>
