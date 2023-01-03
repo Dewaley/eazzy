@@ -22,8 +22,15 @@
 * {
   font-family: "Poppins", "sans-serif" !important;
   scroll-behavior: smooth;
-  color: #343538;
   user-select: none;
+}
+
+body {
+  color: #343538;
+}
+
+footer.div {
+  color: white !important;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -34,7 +41,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -138,7 +145,8 @@ input[type=number] {
   }
 }
 
-.indicator li:hover h5, .indicator2 li:hover h5 {
+.indicator li:hover h5,
+.indicator2 li:hover h5 {
   color: #3d7e47;
   transition: color 0.5s;
 }

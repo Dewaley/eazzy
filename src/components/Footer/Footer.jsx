@@ -24,26 +24,28 @@ const Footer = () => {
     >
       <div className='flex flex-col sm:flex-row sm:justify-between items-center w-full text-center sm:text-left gap-4'>
         <div className='flex flex-col gap-1'>
-          <h2 className='text-2xl italic'>Eazzy</h2>
-          <p>The Farmers market in your pocket.</p>
-          <div className='flex gap-2 justify-center sm:justify-start'>
+          <h2 className='text-2xl italic text-white'>Eazzy</h2>
+          <p className="text-white">The Farmers market in your pocket.</p>
+          <div className='flex gap-2 justify-center sm:justify-start text-white'>
             <a
               href='https://instagram.com/tryeazzy/'
               target='_blank'
               rel='noreferrer'
+              className="text-white"
             >
-              <FaInstagram className='hover:scale-125 transition' />
+              <FaInstagram className='hover:scale-125 transition text-white' />
             </a>
             <a
               href='https://twitter.com/tryeazzy/'
               target='_blank'
               rel='noreferrer'
+              className="text-white"
             >
-              <FaTwitter className='hover:scale-125 transition' />
+              <FaTwitter className='hover:scale-125 transition text-white' />
             </a>
           </div>
         </div>
-        <div className='flex flex-col gap-3'>
+        <div className='flex flex-col gap-3 text-white'>
           <h4 className='text-xl'>Company</h4>
           <p>About Us</p>
           <p>Career</p>
