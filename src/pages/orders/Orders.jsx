@@ -40,8 +40,8 @@ const Orders = () => {
   // }
 
   return (
-    <div className='bg-[#EBF2EB] py-2 md:p-8'>
-      <div className='bg-white p-3 md:p-6 flex flex-col gap-6'>
+    <div className='bg-[#EBF2EB] flex justify-center items-center py-2 md:p-8'>
+      <div className='bg-white p-3 md:p-6 flex flex-col gap-6 w-[100%] md:w-[70%]'>
         <h1 className='font-semibold text-["rgba(52, 53, 56, 0.52)"]'>
           {user?.first_name + "'s orders"}{" "}
         </h1>
@@ -87,7 +87,7 @@ const Orders = () => {
             Completed
           </span>
         </div>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 md:h-[50vh] overflow-scroll order-sect'>
           {orders.map((order) => (
             <Order order={order} />
           ))}

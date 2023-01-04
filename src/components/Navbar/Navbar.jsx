@@ -296,7 +296,8 @@ const Navbar = () => {
                 </li>
               )}
               {user && (
-                <li
+                <Link
+                  to='/orders'
                   className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
                   onClick={() => {
                     setHelpOpen(false);
@@ -306,7 +307,7 @@ const Navbar = () => {
                 >
                   <BsBox />
                   Orders
-                </li>
+                </Link>
               )}
               {user ? (
                 <Button
@@ -437,7 +438,8 @@ const Navbar = () => {
               </li>
             )}
             {user && (
-              <li
+              <Link
+                to='/orders'
                 className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
                 onClick={() => {
                   setHelpOpen(false);
@@ -447,7 +449,7 @@ const Navbar = () => {
               >
                 <BsBox />
                 Orders
-              </li>
+              </Link>
             )}
           </ul>
         )}

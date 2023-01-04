@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Button from "../Button/Button";
 
 const Order = ({ order }) => {
@@ -35,7 +35,7 @@ const Order = ({ order }) => {
         <span className='bg-[#FFA500] p-1 text-white/70 rounded text-xs sm:text-sm mr-1'>
           Processing
         </span>
-        <div className='flex flex-col gap-2 text-neutral-300 text-xs sm:text-sm'>
+        <div className='flex flex-col gap-2 text-neutral-400 text-xs sm:text-sm'>
           <span>Order-Date: {formattedDate}</span>
           <span className='flex gap-3 items-center'>
             <span className='block sm:hidden'>
@@ -44,7 +44,10 @@ const Order = ({ order }) => {
             <span className='hidden sm:block'>
               Order-ID: {order.order_transaction_id.substring(0, 10) + "..."}
             </span>
-            <span className='text-greenish text-xs' onClick={handleCopy}>
+            <span
+              className='text-greenish text-xs cursor-pointer'
+              onClick={handleCopy}
+            >
               Copy
             </span>
           </span>
@@ -52,16 +55,22 @@ const Order = ({ order }) => {
       </div>
       <div className='flex justify-between items-center py-4 text-xs md:text-sm'>
         <div className='flex items-center gap-2 mr-4'>
-          <img
-            src={
-              "https://media.tryeazzy.co/" +
-              order.order_details[0].productDetails.product_image
-            }
-            alt=''
+          <Link
             className='w-[40%] sm:w-[60%]'
-          />
+            to={`/order/${order.order_transaction_id}`}
+          >
+            <img
+              src={
+                "https://media.tryeazzy.co/" +
+                order.order_details[0].productDetails.product_image
+              }
+              alt=''
+            />
+          </Link>
           <div className='flex flex-col gap-2'>
-            <Link to={`/order/${order.order_transaction_id}`}>{order.order_details[0].productDetails.product_name}</Link>
+            <Link to={`/order/${order.order_transaction_id}`}>
+              {order.order_details[0].productDetails.product_name}
+            </Link>
             <span>
               &#x20A6;
               {numberWithCommas(
@@ -74,10 +83,12 @@ const Order = ({ order }) => {
         </div>
         <div className='w-full max-w-[300px]'>
           <Button
-            content={"View order"}
+            content={"Track order"}
             large
             onClick={() => {
-              navigate(`/order/tracking?order_id=${order.order_transaction_id}`);
+              navigate(
+                `/order/tracking?order_id=${order.order_transaction_id}`
+              );
             }}
           />
         </div>
