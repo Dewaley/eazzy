@@ -103,7 +103,9 @@ const Navbar = () => {
         </Link>
         <form
           action=''
-          className={`${user ? "w-[55%]" : "w-[60%]"} hidden md:flex items-center gap-4 justify-center`}
+          className={`${
+            user ? "w-[55%]" : "w-[60%]"
+          } hidden md:flex items-center gap-4 justify-center`}
           onSubmit={(e) => {
             e.preventDefault();
             search();
@@ -225,7 +227,8 @@ const Navbar = () => {
         {helpOpen && (
           <ul className='absolute px-3 py-2 top-[4rem] right-[8rem] hidden md:flex flex-col bg-white w-44 z-40 gap-2 justify-center rounded-b'>
             {user && (
-              <li
+              <Link
+                to='/order/tracking'
                 className='transition hover:text-greenish cursor-pointer'
                 onClick={() => {
                   setHelpOpen(false);
@@ -234,7 +237,7 @@ const Navbar = () => {
                 }}
               >
                 Track order
-              </li>
+              </Link>
             )}
             <Link
               to='/faqs'
@@ -344,7 +347,8 @@ const Navbar = () => {
             <ul className='md:hidden flex flex-col gap-2'>
               <h4 className='text-lg font-medium'>Help</h4>
               {user && (
-                <li
+                <Link
+                  to='/order/tracking'
                   className='transition hover:text-greenish cursor-pointer'
                   onClick={() => {
                     setHelpOpen(false);
@@ -353,7 +357,7 @@ const Navbar = () => {
                   }}
                 >
                   Track order
-                </li>
+                </Link>
               )}
               <Link
                 to='/faqs'
@@ -366,7 +370,8 @@ const Navbar = () => {
               >
                 FAQs
               </Link>
-              <Link to="/contact"
+              <Link
+                to='/contact'
                 onClick={() => {
                   setHelpOpen(false);
                   setAccountOpen(false);

@@ -42,9 +42,9 @@ const WhoCan = () => {
               deliveries.
             </p>
           </li>
-          {/* <a href='#categories' className='w-fit pl-4'>
+          <a href='#categories' className='w-fit pl-4'>
             <Button content={"Shop Now"} big={true} />
-          </a> */}
+          </a>
         </ul>
       </div>
     </div>

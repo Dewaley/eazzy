@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import Button from "../Button/Button";
 
 const Order = ({ order }) => {
@@ -61,7 +61,7 @@ const Order = ({ order }) => {
             className='w-[40%] sm:w-[60%]'
           />
           <div className='flex flex-col gap-2'>
-            <span>{order.order_details[0].productDetails.product_name}</span>
+            <Link to={`/order/${order.order_transaction_id}`}>{order.order_details[0].productDetails.product_name}</Link>
             <span>
               &#x20A6;
               {numberWithCommas(
@@ -77,7 +77,7 @@ const Order = ({ order }) => {
             content={"View order"}
             large
             onClick={() => {
-              navigate(`/order/${order.order_transaction_id}`);
+              navigate(`/order/tracking?order_id=${order.order_transaction_id}`);
             }}
           />
         </div>
