@@ -13,6 +13,7 @@ import FAQs from "../pages/FAQs/FAQs";
 import OrderConfirmation from "../pages/orders/OrderConfirmation";
 import Orders from "../pages/orders/Orders";
 import NotFound from "../pages/404";
+import OrderTracking from "../pages/orders/OrderTracking";
 
 const routes = [
   {
@@ -70,6 +71,10 @@ const routes = [
   {
     path: "/orders",
     component: <Orders/>
+  },
+  {
+    path: "/order/tracking",
+    component: <OrderTracking/>
   },
   {
     path: "*",
