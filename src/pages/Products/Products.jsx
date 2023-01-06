@@ -38,7 +38,7 @@ const Products = () => {
               </span>
             </div>
           </div>
-          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:w-[90vw]'>
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-6 md:w-[90vw]'>
             {products.map((item) => (
               <ProductCard item={item} />
             ))}

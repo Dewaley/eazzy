@@ -1,5 +1,5 @@
-import playStore from "../../assets/playstore.png";
-import appStore from "../../assets/appstore.png";
+import playStore from "../../assets/playstore.svg";
+import appStore from "../../assets/appstore.svg";
 import phones from "../../assets/phones.png";
 
 const DownloadApp = () => {
@@ -11,9 +11,9 @@ const DownloadApp = () => {
           <p>
           We are excited to start this journey with you soon.
           </p>
-          <div className='flex gap-4 justify-center md:justify-start'>
-            <img src={playStore} alt='' />
-            <img src={appStore} alt='' />
+          <div className='flex gap-4 justify-center md:justify-start w-full md:w-auto'>
+            <img src={playStore} alt='' className="w-[45%] md:w-auto" />
+            <img src={appStore} alt='' className="w-[45%] md:w-auto" />
           </div>
         </div>
         <img src={phones} alt='' className='md:w-1/2 py-8' />
