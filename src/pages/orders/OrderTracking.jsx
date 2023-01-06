@@ -32,7 +32,7 @@ const OrderTracking = () => {
     <div className='mt-8 flex flex-col justify-center items-center min-h-[70vh]'>
       <h3 className='text-2xl font-semibold mb-2'>Order Tracking</h3>
       <form
-        className='flex border-2 rounded overflow-hidden w-fit'
+        className='flex border-2 mx-2 rounded overflow-hidden w-fit'
         onSubmit={handleSubmit(onSubmit)}
       >
         <input
@@ -40,7 +40,7 @@ const OrderTracking = () => {
           placeholder='Order-ID'
           name=''
           id=''
-          className='focus:outline-none px-2'
+          className='focus:outline-none px-2 w-[85%] max-w-sm'
           ref={inputRef}
           onInput={checkInput}
           required
@@ -49,10 +49,10 @@ const OrderTracking = () => {
           Search
         </button>
       </form>
-      <span className='text-red-700'>{error}</span>
+      <span className='text-red-700 text-center'>{error}</span>
 
-      <ol class='relative border-l border-[#D9D9D9] dark:border-gray-700 w-[80%] md:w-[60%] mt-12 mb-32 h-96'>
-        <li class='h-32 ml-8'>
+      <ol class='relative border-l border-[#D9D9D9] dark:border-gray-700 w-[80%] md:w-[60%] mt-12 mb-36 h-[27rem]'>
+        <li class='h-36 ml-8'>
           <span class='absolute flex items-center justify-center w-9 h-9 bg-[#D9D9D9] rounded-lg -left-[1.125rem] border-4 border-white'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -62,7 +62,7 @@ const OrderTracking = () => {
               <path d='M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z' />
             </svg>
           </span>
-          <h3 class='flex items-center justify-between font-semibold text-gray-900'>
+          <h3 class='flex items-center justify-between font-semibold text-gray-900 gap-2'>
             Order Received
             <span class='bg-[#789F7E] text-white text-sm font-medium px-2.5 py-2 rounded'>
               03:30PM
@@ -82,7 +82,7 @@ const OrderTracking = () => {
               <path d='M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z' />
             </svg>
           </span>
-          <h3 class='flex items-center justify-between font-semibold text-gray-900'>
+          <h3 class='flex items-center justify-between font-semibold text-gray-900 gap-2'>
           Order Procesing
             <span class='bg-[#789F7E] text-white text-sm font-medium px-2.5 py-2 rounded'>
               03:30PM
@@ -102,7 +102,7 @@ const OrderTracking = () => {
               <path d='M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z' />
             </svg>
           </span>
-          <h3 class='flex items-center justify-between font-semibold text-gray-900'>
+          <h3 class='flex items-center justify-between font-semibold text-gray-900 gap-2'>
           Order on the way
             <span class='bg-[#789F7E] text-white text-sm font-medium px-2.5 py-2 rounded'>
               03:30PM
@@ -122,7 +122,7 @@ const OrderTracking = () => {
               <path d='M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z' />
             </svg>
           </span>
-          <h3 class='flex items-center justify-between font-semibold text-gray-900'>
+          <h3 class='flex items-center justify-between font-semibold text-gray-900 gap-2'>
           Order Delivered
             <span class='bg-[#789F7E] text-white text-sm font-medium px-2.5 py-2 rounded'>
               03:30PM
