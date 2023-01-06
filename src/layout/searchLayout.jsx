@@ -5,7 +5,7 @@ import Searched from "../pages/Searched/Searched";
 
 const SearchLayout = (Component) => {
   function NewComponent(props) {
-    const [search, setSearch] = useState("aaa");
+    const [search, setSearch] = useState("");
     const [searchParams, setSearchParams, searchedData, setSearchedData] =
       UseSearchData();
 
@@ -33,7 +33,7 @@ const SearchLayout = (Component) => {
               <Searched products={searchedData} search={search} />
             ) : (
               <div className='flex justify-center items-center min-h-[80vh]'>
-                <h1 className='text-xl font-semibold'>Oops... No results found</h1>
+                <h1 className='text-xl font-semibold px-2 text-center'>Oops... No results found</h1>
               </div>
             )}
           </div>

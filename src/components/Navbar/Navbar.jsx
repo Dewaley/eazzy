@@ -250,8 +250,8 @@ const Navbar = () => {
             >
               FAQs
             </Link>
-            <a
-              href='mailto:support@tryeazzy.com'
+            <Link
+              to='/contact'
               onClick={() => {
                 setHelpOpen(false);
                 setAccountOpen(false);
@@ -259,7 +259,7 @@ const Navbar = () => {
               }}
             >
               <Button content={"Contact us"} big />
-            </a>
+            </Link>
           </ul>
         )}
         {menu && (
@@ -283,7 +283,8 @@ const Navbar = () => {
             <ul className='md:hidden flex flex-col gap-2'>
               <h4 className='text-lg font-medium'>Account</h4>
               {user && (
-                <li
+                <Link
+                  to="/profile"
                   className='transition hover:text-greenish cursor-pointer items-center flex gap-2'
                   onClick={() => {
                     setHelpOpen(false);
@@ -293,7 +294,7 @@ const Navbar = () => {
                 >
                   <BiUser />
                   Account settings
-                </li>
+                </Link>
               )}
               {user && (
                 <Link
@@ -467,15 +468,23 @@ const Navbar = () => {
       <form
         action=''
         className='md:hidden flex items-center gap-4 justify-center px-3 mb-2'
+        onSubmit={(e) => {
+          e.preventDefault();
+          search();
+        }}
       >
         <input
+          onChange={(e) => {
+            setSearched(e.target.value);
+          }}
+          value={searched}
           type='text'
           name=''
           id=''
           placeholder='Search by cartegory, brand and product'
           className='border-2 rounded p-2 w-[85%]'
         />
-        <Button content={"SEARCH"} />
+        <Button content={"SEARCH"} type={"submit"} />
       </form>
     </div>
   );
