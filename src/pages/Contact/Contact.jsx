@@ -2,6 +2,7 @@ import { BsTelephone } from "react-icons/bs";
 import { IoMailOutline } from "react-icons/io5";
 import { GoLocation } from "react-icons/go";
 import Button from "../../components/Button/Button";
+import SearchLayout from "../../layout/searchLayout";
 
 const Contact = () => {
   return (
@@ -74,4 +75,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default SearchLayout(Contact);

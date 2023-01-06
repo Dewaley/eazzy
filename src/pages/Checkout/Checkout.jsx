@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { UseShoppingCartData } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import PaymentServices from "../../services/PaymentServices";
+import SearchLayout from "../../layout/searchLayout";
 
 const Checkout = () => {
   const [user, setUser] = useState({});
@@ -231,6 +232,5 @@ const Checkout = () => {
   }
 };
 
-export default Checkout;
+export default SearchLayout(Checkout);
 
-//"SQLSTATE[HY000]: General error: 1364 Field 'order_amount' doesn't have a default value (SQL: insert into `orders` (`user_id`, `order_details`, `order_transaction_id`, `order_checkout_url`, `order_status`, `updated_at`, `created_at`) values (piheOcUpKY4pIeMqFHkOM4mVqgDWZC9xfWlAXEmNDwTfFwbcWi6vjqOXbbHOEjPn, [{"product_id":"gxQa8NofvS8JF2j6gDTa63hEAW1aC2rsLs6t3d3n7BlEK8XVZMVwCTTMrfAqa9J4","quantity":5},{"product_id":"HPHpO8jWu5vVYiiPsCiB3gCOCek13VQPsYJulKH6vJaVCCnw0DSde1lxDIdgLIFl","quantity":5}], aSj8g41atr1oJWvHCFRDKoCmB7gkeQDv4RequOoopCZ6cgpsq5FRjdk2a1Q8CEmJ, https://sandbox.sdk.monnify.com/checkout/MNFY|91|20221226165602|000360, Payment Pending, 2022-12-26 15:56:02, 2022-12-26 15:56:02))"

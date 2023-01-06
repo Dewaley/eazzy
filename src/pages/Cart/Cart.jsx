@@ -7,6 +7,7 @@ import CartProductCard from "../../components/CartProductCard/CartProductCard";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { UseCart } from "../../context/UnAuthCart";
+import SearchLayout from "../../layout/searchLayout";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -173,4 +174,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default SearchLayout(Cart);

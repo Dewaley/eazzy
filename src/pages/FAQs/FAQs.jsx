@@ -1,4 +1,5 @@
-import Questions from "../../components/Question/Questions"
+import Questions from "../../components/Question/Questions";
+import SearchLayout from "../../layout/searchLayout";
 
 const FAQs = () => {
   const questions = [
@@ -66,4 +67,4 @@ const FAQs = () => {
   );
 };
 
-export default FAQs;
+export default SearchLayout(FAQs);
