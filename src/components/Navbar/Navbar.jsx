@@ -105,7 +105,7 @@ const Navbar = () => {
           action=''
           className={`${
             user ? "w-[55%]" : "w-[60%]"
-          } hidden md:flex items-center gap-4 justify-center`}
+          } hidden md:flex items-center gap-4 justify-center border-2 rounded`}
           onSubmit={(e) => {
             e.preventDefault();
             search();
@@ -120,9 +120,9 @@ const Navbar = () => {
             name=''
             id=''
             placeholder='Search by cartegory, brand and product'
-            className='border-2 rounded p-2 w-[85%]'
+            className='p-2 w-[85%] outline-none'
           />
-          <Button content={"SEARCH"} type={"submit"} />
+          <button type="submit" className="text-greenish hover:bg-greenish px-4 py-2 rounded-r hover:text-white transition">SEARCH</button>
         </form>
 
         <div className='flex items-center text-blackish gap-4 z-40'>
@@ -467,7 +467,7 @@ const Navbar = () => {
       </div>
       <form
         action=''
-        className='md:hidden flex items-center gap-4 justify-center px-3 mb-2'
+        className='md:hidden flex items-center gap-4 justify-center mx-6 mb-2 border-2 rounded'
         onSubmit={(e) => {
           e.preventDefault();
           search();
@@ -482,9 +482,9 @@ const Navbar = () => {
           name=''
           id=''
           placeholder='Search by cartegory, brand and product'
-          className='border-2 rounded p-2 w-[85%]'
-        />
-        <Button content={"SEARCH"} type={"submit"} />
+          className='p-2 w-[85%] outline-none'
+          />
+          <button type="submit" className="text-greenish hover:bg-greenish px-4 py-2 rounded-r hover:text-white transition">SEARCH</button>
       </form>
     </div>
   );
