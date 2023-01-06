@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import SearchLayout from "../../layout/searchLayout";
 
 const OrderTracking = () => {
   const inputRef = useRef(null);
@@ -136,4 +137,4 @@ const OrderTracking = () => {
   );
 };
 
-export default OrderTracking;
+export default SearchLayout(OrderTracking);

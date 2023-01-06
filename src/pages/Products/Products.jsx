@@ -5,6 +5,7 @@ import PlaceholderLoading from "react-placeholder-loading";
 import { Link } from "react-router-dom";
 import ProductSkeleton from "./ProductSkeleton";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import SearchLayout from "../../layout/searchLayout";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -67,7 +68,7 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default SearchLayout(Products);
 
 {
   /* <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:w-[90vw]'>

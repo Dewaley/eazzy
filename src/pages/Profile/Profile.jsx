@@ -3,6 +3,7 @@ import { GrClose } from "react-icons/gr";
 import Button from "../../components/Button/Button";
 import AuthServices from "../../services/AuthServices";
 import PlaceholderLoading from "react-placeholder-loading";
+import SearchLayout from "../../layout/searchLayout";
 
 const Profile = () => {
   const [user, setUser] = useState({});
@@ -367,4 +368,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default SearchLayout(Profile);

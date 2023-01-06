@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { UseShoppingCartData } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import SearchLayout from "../../layout/searchLayout";
 
 const Product = () => {
   const { id } = useParams();
@@ -202,4 +203,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default SearchLayout(Product);

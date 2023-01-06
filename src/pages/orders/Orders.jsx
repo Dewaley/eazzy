@@ -4,6 +4,7 @@ import AuthServices from "../../services/AuthServices";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import Order from "../../components/Order/Order";
+import SearchLayout from "../../layout/searchLayout";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -87,7 +88,7 @@ const Orders = () => {
             Completed
           </span>
         </div>
-        <div className='flex flex-col gap-2 md:h-[50vh] overflow-scroll order-sect'>
+        <div id="style-1" className='flex flex-col gap-2 md:h-[50vh] overflow-y-scroll order-sect'>
           {orders.map((order) => (
             <Order order={order} />
           ))}
@@ -97,4 +98,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default SearchLayout(Orders);

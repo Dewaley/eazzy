@@ -1,6 +1,7 @@
 import notFound from "../assets/PageNotFound.svg";
 import Button from "../components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import SearchLayout from "../layout/searchLayout";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -23,4 +24,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default SearchLayout(NotFound);
