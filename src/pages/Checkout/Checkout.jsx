@@ -13,6 +13,32 @@ const Checkout = () => {
   const [delivery, setDelivery] = useState(2000);
   const [cartData, setCartData] = UseShoppingCartData([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const [minDate, setMinDate] = useState("");
+
+  useEffect(() => {
+    const today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate() + 1;
+    if (day > getDaysInMonth(year, month)) {
+      day = 1;
+      if (month === 12) {
+        month = 1;
+        year += 1;
+      } else {
+        month += 1;
+      }
+    }
+    month = ("0" + month).slice(-2);
+    day = ("0" + day).slice(-2);
+    setMinDate(year + "-" + month + "-" + day);
+  }, []);
+
+  function getDaysInMonth(year, month) {
+    return new Date(year, month, 0).getDate();
+  }
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -48,6 +74,27 @@ const Checkout = () => {
     return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  function validateTime(time) {
+    // Check that the time is in the correct format (hh:mm)
+    var timeFormat = /^([01]\d|2[0-3]):?([0-5]\d)$/;
+    if (!timeFormat.test(time)) {
+      setError("Time must be in the format hh:mm");
+      return false;
+    }
+
+    // Check that the time is within the allowed range (8am to 6pm)
+    var minTime = new Date("01/01/1900 8:00 AM");
+    var maxTime = new Date("01/01/1900 6:00 PM");
+    var selectedTime = new Date("01/01/1900 " + time);
+    if (selectedTime < minTime || selectedTime > maxTime) {
+      setError("Time must be between 8am and 6pm");
+      return false;
+    }
+
+    setError("");
+    return true;
+  }
+
   if (cartData?.length > 0) {
     return (
       <div className='bg-[#EBF2EB] flex flex-col md:flex-row gap-6 md:gap-8 justify-center min-h-[60vh] px-3 py-8 md:py-12 md:px-8'>
@@ -55,6 +102,7 @@ const Checkout = () => {
           <div className='flex flex-col gap-y-2 border-b-2 pb-2'>
             <h1 className='font-medium text-neutral-400'>Checkout</h1>
             <h4 className='font-medium'>Address details</h4>
+            {error}
           </div>
           <form action='' className='flex flex-col gap-6'>
             <div className='flex flex-col md:flex-row gap-4'>
@@ -109,7 +157,7 @@ const Checkout = () => {
                 onChange={(e) => {
                   setUser({
                     ...user,
-                    address: user.address + e.target.value,
+                    city: e.target.value,
                   });
                 }}
               >
@@ -120,7 +168,7 @@ const Checkout = () => {
                 <option value='Benue'>Benue</option>
               </select>
               <input
-                type='tel'
+                type='text'
                 name=''
                 id=''
                 placeholder='Delivery Address'
@@ -139,6 +187,7 @@ const Checkout = () => {
                 type='date'
                 name=''
                 id=''
+                min={minDate}
                 className='w-1/2 border-[1px] rounded p-2 font-lg'
                 placeholder='Date'
                 onChange={(e) => {
@@ -148,8 +197,12 @@ const Checkout = () => {
                   });
                 }}
               />
+              <input type='time' min='08:00' max='18:00' />
               <input
                 type='time'
+                min='08:00'
+                max='18:00'
+                step='1800'
                 name=''
                 id=''
                 placeholder='Time'
@@ -210,18 +263,23 @@ const Checkout = () => {
               const data = {
                 first_name: user?.first_name,
                 last_name: user?.last_name,
-                address: user?.address,
+                address: user?.address + user?.city,
                 datetime: user?.date + " " + user?.time,
                 phone: user?.phone,
                 email: user?.email,
                 location: user?.location,
               };
               setLoading(true);
-              PaymentServices.placeOrder(data).then((res) => {
-                console.log(res);
-                setLoading(false);
-                window.location.assign(res?.data?.orderDetails?.order_checkout_url)
-              });
+              validateTime(user?.time)
+              if (validateTime(user?.time)) {
+                PaymentServices.placeOrder(data).then((res) => {
+                  console.log(res);
+                  setLoading(false);
+                  window.location.assign(
+                    res?.data?.orderDetails?.order_checkout_url
+                  );
+                });
+              }
             }}
           />
         </div>
@@ -233,4 +291,3 @@ const Checkout = () => {
 };
 
 export default SearchLayout(Checkout);
-
