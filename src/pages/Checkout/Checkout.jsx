@@ -59,7 +59,6 @@ const Checkout = () => {
       setUser({
         first_name: res?.data?.first_name,
         last_name: res?.data?.last_name,
-        name: user.first_name,
         email: res?.data?.email,
         phone: res?.data?.phone,
         address: res?.data?.home_address,
@@ -72,6 +71,10 @@ const Checkout = () => {
 
   function numberWithCommas(x) {
     return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function hasEmptyFields(obj) {
+    return Object.values(obj).some((val) => val === "");
   }
 
   function validateTime(time) {
@@ -157,7 +160,7 @@ const Checkout = () => {
                 onChange={(e) => {
                   setUser({
                     ...user,
-                    city: e.target.value,
+                    location: e.target.value,
                   });
                 }}
               >
@@ -260,25 +263,37 @@ const Checkout = () => {
             large
             loader={loading}
             onClick={() => {
+              setLoading(true)
+              setError("")
               const data = {
                 first_name: user?.first_name,
                 last_name: user?.last_name,
-                address: user?.address + user?.city,
+                address: user?.address,
                 datetime: user?.date + " " + user?.time,
                 phone: user?.phone,
                 email: user?.email,
                 location: user?.location,
               };
-              setLoading(true);
-              validateTime(user?.time)
-              if (validateTime(user?.time)) {
-                PaymentServices.placeOrder(data).then((res) => {
-                  console.log(res);
+              console.log("user", user);
+              if (hasEmptyFields(user)) {
+                setError("Please fill all input fields")
+                setLoading(false)
+                // Object has empty fields
+              } else {
+                validateTime(user?.time);
+                // Object does not have empty fields
+                if (validateTime(user?.time)) {
+                  console.log("yes")
+                  PaymentServices.placeOrder(data).then((res) => {
+                    console.log(res);
+                    setLoading(false);
+                    window.location.assign(
+                      res?.data?.orderDetails?.order_checkout_url
+                    );
+                  });
+                } else {
                   setLoading(false);
-                  window.location.assign(
-                    res?.data?.orderDetails?.order_checkout_url
-                  );
-                });
+                }
               }
             }}
           />
