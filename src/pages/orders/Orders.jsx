@@ -37,76 +37,76 @@ const Orders = () => {
   //     default:
   //       return '#000000';  // black
   //   }
-  // }
+  // }      
 
-  const OrderList = () => {
-    <div className='bg-[#EBF2EB] flex justify-center items-center py-2 md:p-8'>
-      <div className='bg-white p-3 md:p-6 flex flex-col gap-6 w-[100%] md:w-[75%]'>
-        <h1 className='font-semibold text-["rgba(52, 53, 56, 0.52)"]'>
-          {user?.first_name + "'s orders"}{" "}
-        </h1>
-        <div className='flex text-sm justify-between sm:justify-start sm:gap-3'>
-          <span
-            className={`hover:font-semibold cursor-pointer ${
-              status === "All" && "font-semibold"
-            }`}
-            onClick={() => {
-              setStatus("All");
-            }}
-          >
-            All
-          </span>
-          <span
-            className={`hover:font-semibold cursor-pointer ${
-              status === "Processing" && "font-semibold"
-            }`}
-            onClick={() => {
-              setStatus("Processing");
-            }}
-          >
-            Processing
-          </span>
-          <span
-            className={`hover:font-semibold cursor-pointer ${
-              status === "Shipped" && "font-semibold"
-            }`}
-            onClick={() => {
-              setStatus("Shipped");
-            }}
-          >
-            Shipped
-          </span>
-          <span
-            className={`hover:font-semibold cursor-pointer ${
-              status === "Completed" && "font-semibold"
-            }`}
-            onClick={() => {
-              setStatus("Completed");
-            }}
-          >
-            Completed
-          </span>
-        </div>
-        <div
-          id='style-1'
-          className='flex flex-col items-center justify-center gap-2 md:h-[50vh] overflow-y-scroll order-sect'
-        >
-          {orders?.data?.length === 0 ? (
-            "You have not placed any order"
-          ) : (
-            <div>
-              {orders?.data?.map((order) => (
-                <Order order={order} />
-              ))}
+  return (
+    <div>
+      {orders?.current_page ? (
+        <div className='bg-[#EBF2EB] flex justify-center items-center py-2 md:p-8'>
+          <div className='bg-white p-3 md:p-6 flex flex-col gap-6 w-[100%] md:w-[75%]'>
+            <h1 className='font-semibold text-["rgba(52, 53, 56, 0.52)"]'>
+              {user?.first_name + "'s orders"}{" "}
+            </h1>
+            <div className='flex text-sm justify-between sm:justify-start sm:gap-3'>
+              <span
+                className={`hover:font-semibold cursor-pointer ${
+                  status === "All" && "font-semibold"
+                }`}
+                onClick={() => {
+                  setStatus("All");
+                }}
+              >
+                All
+              </span>
+              <span
+                className={`hover:font-semibold cursor-pointer ${
+                  status === "Processing" && "font-semibold"
+                }`}
+                onClick={() => {
+                  setStatus("Processing");
+                }}
+              >
+                Processing
+              </span>
+              <span
+                className={`hover:font-semibold cursor-pointer ${
+                  status === "Shipped" && "font-semibold"
+                }`}
+                onClick={() => {
+                  setStatus("Shipped");
+                }}
+              >
+                Shipped
+              </span>
+              <span
+                className={`hover:font-semibold cursor-pointer ${
+                  status === "Completed" && "font-semibold"
+                }`}
+                onClick={() => {
+                  setStatus("Completed");
+                }}
+              >
+                Completed
+              </span>
             </div>
-          )}
+            <div
+              id='style-1'
+              className='flex flex-col items-center gap-2 md:h-[50vh] overflow-y-scroll w-full'
+            >
+              {orders?.data?.length === 0 ? (
+                "You have not placed any order"
+              ) : (
+                <div className="w-full">
+                  {orders?.data?.map((order) => (
+                    <Order order={order} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>;
-  };
-
-  const Loading = () => {
-    <div className='bg-[#EBF2EB] flex justify-center items-center py-2 md:p-8'>
+      ) : (
+        <div className='bg-[#EBF2EB] flex justify-center items-center py-2 md:p-8'>
       <div className='bg-white p-3 md:p-6 flex flex-col gap-6 w-[100%] md:w-[75%]'>
         <h1 className='font-semibold text-["rgba(52, 53, 56, 0.52)"]'>
           Orders
@@ -160,10 +160,10 @@ const Orders = () => {
           <OrderSkeleton />
         </div>
       </div>
-    </div>;
-  };
-
-  return <div>{orders?.current_page ? <OrderList /> : <Loading />}</div>;
+    </div>
+      )}
+    </div>
+  );
 };
 
 export default SearchLayout(Orders);
