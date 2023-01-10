@@ -2,6 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PaymentServices from "../../services/PaymentServices";
 import { useNavigate } from "react-router-dom";
+import { UseShoppingCartData } from "../../context/CartContext";
+import ProductServices from "../../services/ProductServices";
 
 const OrderConfirmation = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,14 +25,17 @@ const OrderConfirmation = () => {
 
   useEffect(() => {
     if (phase === "Success") {
+      ProductServices.emptyCart().then((res) => {
+        console.log(res);
+      });
       setTimeout(() => {
         navigate("/orders");
       }, 3000);
     } else if (phase === "Fail") {
-        setTimeout(() => {
-          navigate("/checkout");
-        }, 3000);
-      }
+      setTimeout(() => {
+        navigate("/checkout");
+      }, 3000);
+    }
   }, [phase]);
 
   const Processing = () => {
