@@ -77,6 +77,20 @@ const Checkout = () => {
     return Object.values(obj).some((val) => val === "");
   }
 
+  function validateDate(dateInput) {
+    let date = new Date(dateInput);
+    let currentDate = new Date();
+    if (isNaN(date.getTime())) {
+      setError("Date can't be today or a previous date");
+      return false;
+    } else if (date <= currentDate) {
+      setError("Date can't be today or a previous date");
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   function validateTime(time) {
     // Check that the time is in the correct format (hh:mm)
     var timeFormat = /^([01]\d|2[0-3]):?([0-5]\d)$/;
@@ -105,7 +119,7 @@ const Checkout = () => {
           <div className='flex flex-col gap-y-2 border-b-2 pb-2'>
             <h1 className='font-medium text-neutral-400'>Checkout</h1>
             <h4 className='font-medium'>Address details</h4>
-            {error}
+            <p className="error">{error}</p> 
           </div>
           <form action='' className='flex flex-col gap-6'>
             <div className='flex flex-col md:flex-row gap-4'>
@@ -190,7 +204,7 @@ const Checkout = () => {
                 type='date'
                 name=''
                 id=''
-                min={minDate}
+                // min={minDate}
                 className='w-1/2 border-[1px] rounded p-2 font-lg'
                 placeholder='Date'
                 onChange={(e) => {
@@ -200,7 +214,6 @@ const Checkout = () => {
                   });
                 }}
               />
-              <input type='time' min='08:00' max='18:00' />
               <input
                 type='time'
                 min='08:00'
@@ -263,8 +276,8 @@ const Checkout = () => {
             large
             loader={loading}
             onClick={() => {
-              setLoading(true)
-              setError("")
+              setLoading(true);
+              setError("");
               const data = {
                 first_name: user?.first_name,
                 last_name: user?.last_name,
@@ -276,23 +289,31 @@ const Checkout = () => {
               };
               console.log("user", user);
               if (hasEmptyFields(user)) {
-                setError("Please fill all input fields")
-                setLoading(false)
+                setError("Please fill all input fields");
+                setLoading(false);
+                window.scrollTo({ top: 0, behavior: "smooth" });
                 // Object has empty fields
               } else {
-                validateTime(user?.time);
                 // Object does not have empty fields
-                if (validateTime(user?.time)) {
-                  console.log("yes")
-                  PaymentServices.placeOrder(data).then((res) => {
-                    console.log(res);
+                validateDate(user?.date);
+                if (validateDate(user?.date)) {
+                  validateTime(user?.time);
+                  if (validateTime(user?.time)) {
+                    console.log("yes");
+                    PaymentServices.placeOrder(data).then((res) => {
+                      console.log(res);
+                      setLoading(false);
+                      window.location.assign(
+                        res?.data?.orderDetails?.order_checkout_url
+                      );
+                    });
+                  } else {
                     setLoading(false);
-                    window.location.assign(
-                      res?.data?.orderDetails?.order_checkout_url
-                    );
-                  });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
                 } else {
                   setLoading(false);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }
               }
             }}
