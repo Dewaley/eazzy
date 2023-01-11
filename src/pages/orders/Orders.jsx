@@ -6,15 +6,18 @@ import PlaceholderLoading from "react-placeholder-loading";
 import Order from "../../components/Order/Order";
 import SearchLayout from "../../layout/searchLayout";
 import OrderSkeleton from "./OrderSkeleton";
+import { UseShoppingCartData } from "../../context/CartContext";
 
 const Orders = () => {
   const [orders, setOrders] = useState({});
   const [user, setUser] = useState({});
   const [status, setStatus] = useState("All");
+  const [cartData, setCartData] = UseShoppingCartData([]);
 
   useEffect(() => {
     AuthServices.fetchUser().then((res) => {
       console.log("user", res?.data);
+      setCartData(JSON.parse(res?.data?.cart))
       setUser(res?.data);
     });
     PaymentServices.fetchOrders(1).then(async (res) => {
