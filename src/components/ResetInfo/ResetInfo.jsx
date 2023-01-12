@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const ResetInfo = ({ nextStep }) => {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
+  const [msg, setMsg] = useState("");
   const navigate = useNavigate()
 
   const {
@@ -23,7 +24,7 @@ const ResetInfo = ({ nextStep }) => {
       console.log(res);
       setLoading(false);
       if (res?.status === 200) {
-        navigate("/passwordChange")
+        setMsg("Please check your mail to reset your password")
       } else {
         setErr(res?.data?.message)
       }
@@ -37,6 +38,7 @@ const ResetInfo = ({ nextStep }) => {
         <p className='text-center font-medium text-lg'>
           Enter your email to reset your password
         </p>
+        <p className='text-greenish'>{msg}</p>
         <p className='error'>{err}</p>
       </div>
       <form

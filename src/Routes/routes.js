@@ -78,7 +78,7 @@ const routes = [
     component: <OrderTracking/>
   },
   {
-    path: "/passwordChange",
+    path: "/passwordChange/:id",
     component: <ResetPassword/>
   },
   {
