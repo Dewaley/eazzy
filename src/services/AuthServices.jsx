@@ -18,6 +18,22 @@ const signupBusiness = async (data) => {
     });
 };
 
+const forgotPassword = async (data) => {
+  return axios
+    .post(USR_URL + "/forgot", data, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+}
+
 const signupUser = async (data) => {
   return axios
     .post(USR_URL + "/signup", data, {
@@ -107,6 +123,7 @@ const AuthServices = {
   fetchUser,
   logout,
   updateUser,
+  forgotPassword
 };
 
 export default AuthServices;

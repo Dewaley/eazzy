@@ -14,6 +14,7 @@ import OrderConfirmation from "../pages/orders/OrderConfirmation";
 import Orders from "../pages/orders/Orders";
 import NotFound from "../pages/404";
 import OrderTracking from "../pages/orders/OrderTracking";
+import ResetPassword from "../pages/ResetPassword/PasswordChange";
 
 const routes = [
   {
@@ -75,6 +76,10 @@ const routes = [
   {
     path: "/order/tracking",
     component: <OrderTracking/>
+  },
+  {
+    path: "/passwordChange",
+    component: <ResetPassword/>
   },
   {
     path: "*",

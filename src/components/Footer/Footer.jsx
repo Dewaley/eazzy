@@ -17,7 +17,8 @@ const Footer = () => {
         pathname.includes("/signin") ||
         pathname.includes("/signup") ||
         pathname.includes("/passwordreset") ||
-        pathname.includes("/order/confirm")
+        pathname.includes("/order/confirm") ||
+        pathname.includes("/passwordChange")
           ? "hidden"
           : "block"
       } bg-greenish p-8 text-white flex flex-col items-center overflow-x-hidden`}
